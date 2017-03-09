@@ -41,7 +41,7 @@ public class Sample {
 		{
 			fos = new FileOutputStream(file,true);
 			ps = new PrintStream(fos);
-			  System.setOut(ps);
+			 System.setOut(ps);
 			
 			
 		Configuration config=HBaseConfiguration.create();
@@ -60,7 +60,7 @@ public class Sample {
 				family=Bytes.toString(kv.getFamily());
 				qualifier=Bytes.toString(kv.getQualifier());
 				
-				if(rownames.equals("fr.kinepolis:https/"))
+				if(rownames.equals("fr.kinepolis:https/evenements/avant-premiere-x-men-days-future-past"))
 				{
 					if(family.equals("f") && qualifier.equals("cnt"))
 					{
@@ -68,22 +68,26 @@ public class Sample {
 											
 						System.out.println(content);
 						
-						System.out.println("\n\n\n\n");
+						//System.out.println("\n\n\n\n");
 					}
 					
-					if(family.equals("il"))
+				}
+				/*
+				if(family.equals("il"))
+				{
+					if(qualifier.equals("https://kinepolis.fr/"))
 					{
+											
 						System.out.println(rownames);
-						System.out.println("\n\n\n\n");
 						
-					}
-					
-					
-					if(family.equals("ol"))
-					{
-						System.out.println(rownames);
+						System.out.println("\n\n\n\n");
 					}
 				}
+					
+				*/
+				
+				
+				
 			}
 		}
 		
