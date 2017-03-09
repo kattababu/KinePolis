@@ -98,14 +98,19 @@ public class KinePolisCNRows {
 							if (c>0 && c<=5)
 								{
 								
-								new KinePolisRMCNT().KinePolisRNT(rownames);
+								new KinePolisRateCNT().KinePolisRatNT(rownames);
+								//new KinePolisPRCNT().KinePolisPNT(rownames);
+								//new KinePolisRMCNT().KinePolisRNT(rownames);
 								//new KinePolisMVNCT().KinePolisCNT(rownames);
 								}
 								
 							
 							if (c>5 && c<=10)
 							{
-								new KinePolisRMCNT().KinePolisRNT(rownames);
+								
+								new KinePolisRateCNT().KinePolisRatNT(rownames);
+								//new KinePolisPRCNT().KinePolisPNT(rownames);
+								//new KinePolisRMCNT().KinePolisRNT(rownames);
 								//new KinePolisMVNCT().KinePolisCNT(rownames);
 								
 							}

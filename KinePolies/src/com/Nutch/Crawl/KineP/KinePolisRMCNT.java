@@ -34,7 +34,6 @@ public class KinePolisRMCNT {
 	Scan sc;
 	ResultScanner rescan;
 	String rownames=null,family=null,qualifier=null,content=null,splitter_SK=null;
-	String symb34="";
 	
 	final String mainhost="https://kinepolis.fr";
 	
@@ -198,6 +197,20 @@ public class KinePolisRMCNT {
 		catch(Exception e)
 		{
 			e.printStackTrace();
+		}
+		
+		finally
+		{
+			try
+			{
+				ht.close();
+				rescan.close();
+			}
+			catch(Exception e)
+			{
+				e.getMessage();
+			}
+			
 		}
 	}
 							
