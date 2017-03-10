@@ -60,7 +60,7 @@ public class Sample {
 				family=Bytes.toString(kv.getFamily());
 				qualifier=Bytes.toString(kv.getQualifier());
 				
-				if(rownames.equals("fr.kinepolis:https/evenements/avant-premiere-x-men-days-future-past"))
+				if(rownames.equals("fr.kinepolis:https/personnes/mark-boone-junior"))
 				{
 					if(family.equals("f") && qualifier.equals("cnt"))
 					{

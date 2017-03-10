@@ -95,7 +95,7 @@ public class KinePolisCNRows {
 								c=c+1;
 							//System.out.println(rownames);
 								
-							if (c>0 && c<=5)
+							if (c>0 && c<=50)
 								{
 								
 								new KinePolisCrewCNT().KinePolisCrewNT(rownames);
@@ -106,7 +106,7 @@ public class KinePolisCNRows {
 								}
 								
 							
-							if (c>5 && c<=10)
+							if (c>50 && c<=100)
 							{
 								
 								new KinePolisCrewCNT().KinePolisCrewNT(rownames);
