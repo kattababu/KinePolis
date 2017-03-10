@@ -39,14 +39,23 @@ public class KinePolisRateCNT {
 	static String UserRat=null;
 	
 	
+	
+	static 
+	{
+		
+		file=new File("/katta/KinePole/RateCNT.txt");
+	}
+	
+	
+	
 	public void KinePolisRatNT(String names)
 	{
 		try
 		{
 			
-			//fos = new FileOutputStream(file,true);
-			//ps = new PrintStream(fos);
-			//System.setOut(ps);
+			fos = new FileOutputStream(file,true);
+			ps = new PrintStream(fos);
+			System.setOut(ps);
 			
 			Configuration config=HBaseConfiguration.create();
 			ht=new HTable(config,"kinepolies_webpage");
