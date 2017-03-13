@@ -1,6 +1,8 @@
+/**
+ * 
+ */
 package com.Nutch.Crawl.KineP;
 
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.text.SimpleDateFormat;
@@ -22,9 +24,16 @@ import org.jsoup.nodes.Document;
 
 import us.codecraft.xsoup.Xsoup;
 
-public class KinePolisCrewCNT {
+/**
+ * @author surendra
+ *
+ */
+public class KinePolisPCACT {
 
-	public KinePolisCrewCNT() {
+	/**
+	 * 
+	 */
+	public KinePolisPCACT() {
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -46,22 +55,8 @@ public class KinePolisCrewCNT {
 	List<String> RFlist=null;
 	static String symb="";
 	
-	static FileOutputStream fos=null;
-	static PrintStream ps=null;
 	
-	static File file=null;
-	static 
-	{
-		
-		file=new File("/katta/KinePole/CrewDTCNT.txt");
-	}
-	
-	
-	
-	
-	///////////////////////////////  Crew Director  List////////////////////////////////////////////
-	
-	public void KinePolisCrewNT(String names)
+	public void KinePolisCrewPANT(String names)
 	{
 		try
 		{
@@ -96,12 +91,19 @@ public class KinePolisCrewCNT {
 							Document document = Jsoup.parse(content);
 							
 							
-							String CrewDirector=Xsoup.compile("//div[@class='clearfix-field field field-name-field-movie-person-director field-type-node-reference field-label-inline clearfix']/div[@class='field-items']//a/@href").evaluate(document).get();
-							if(CrewDirector!=null)
+							List<String> CrewActors=Xsoup.compile("//div[@class='clearfix-field field field-name-movie-cast-list field-type-ds field-label-inline clearfix']//div[@class='field field-name-title field-type-ds field-label-hidden']//div[@class='field-items']//a/@href").evaluate(document).list();
+							if(CrewActors!=null)
 							{
+								for(String  CrewActor:CrewActors)
+								{
 							//System.out.println(mainhost+CrewDirector);
-							 String CrewDQL=mainhost+CrewDirector.trim();
-							KinePolisCrewQLsNT(CrewDQL);
+							 String CrewAQL=mainhost+CrewActor.trim();
+							 
+							 System.out.println(CrewAQL);
+							 
+							 KinePolisCrewPAQLNT(CrewAQL);
+								}
+							//KinePolisCrewQLsNT(CrewDQL);
 							}
 							
 						}
@@ -129,11 +131,14 @@ public class KinePolisCrewCNT {
 			
 		}
 	}
-//////////////////////////////////////// Crew Director CNT Rows////////////////////////////////////
 	
 	
 	
-	public void KinePolisCrewQLsNT(String names)
+	
+	//////////////////////////// Crew Actors List Qualifier Names////////////////////////////
+	
+	
+	public void KinePolisCrewPAQLNT(String names)
 	{
 		try
 		{
@@ -162,9 +167,12 @@ public class KinePolisCrewCNT {
 						SplitUrlNames(names);
 						 if(rownames.contains(splitter_UName) && rownames.endsWith(splitter_UName))
 						 {
-							// System.out.println(rownames);
+							 System.out.println("\n");
+							System.out.println(rownames);
+							System.out.println("\n");
 							 
-							 KinePolisCrewRCNT(rownames);
+							KinePolisCrewRPCACNT(rownames);
+							 //KinePolisCrewRCNT(rownames);
 						 }
 						
 					}
@@ -193,20 +201,18 @@ public class KinePolisCrewCNT {
 			
 		}
 	}
-
 	
 	
-	///////////////////////////// CNT ROWS Names//////////////////////////////////////////////////////
+	////////////////////////////// CNT OF  ROWS PCACNT////////////////////////////////////////
 	
-	
-	public void KinePolisCrewRCNT(String names)
+	public void KinePolisCrewRPCACNT(String names)
 	{
 		try
 		{
 			
-			fos = new FileOutputStream(file,true);
-			ps = new PrintStream(fos);
-			System.setOut(ps);
+			//fos = new FileOutputStream(file,true);
+			//ps = new PrintStream(fos);
+			//System.setOut(ps);
 			
 			Configuration config=HBaseConfiguration.create();
 			ht=new HTable(config,"kinepolies_webpage");
@@ -242,22 +248,27 @@ public class KinePolisCrewCNT {
 							
 							SplitUrlNames(CrewDurl);
 							
+							//System.out.println(CrewDurl);
+							
 							
 							CrewName=Xsoup.compile("//div[@class='field field-name-title field-type-ds field-label-hidden']/div[@class='field-items']//h1/text()").evaluate(document).get();
+							//System.out.println(CrewName);
 							 
 							//System.out.println(CrewName);
 							CrewDOB=Xsoup.compile("//div[@class='field field-name-field-person-birthday field-type-date field-label-inline clearfix']/div[@class='field-items']//span[@class='date-display-single']/text()").evaluate(document).get();
+							//System.out.println(CrewDOB);
 							
 							
 							//System.out.println(CrewDOB);
 							
 							
 							CrewCountry=Xsoup.compile("//div[@class='field field-name-field-country field-type-taxonomy-term-reference field-label-inline clearfix']/div[@class='field-items']//*/text()").evaluate(document).get();
-							
+							//System.out.println(CrewCountry);
 							
 							CrewImg=Xsoup.compile("//div[@class='field field-name-field-person-picture field-type-image field-label-hidden']/div[@class='field-items']//img/@src").evaluate(document).get();
 						
 							CrewImage=mainhost+CrewImg;
+							//System.out.println(CrewImage);
 							
 							
 							RFlist=Xsoup.compile("//div[@id='block-kinepolis-movie-filter-kinepolis-movie-filter-related']/div[@class='inner-block']//div[@class='movie-container-image-wrapper']/a/@href").evaluate(document).list();
@@ -265,7 +276,8 @@ public class KinePolisCrewCNT {
 							//System.out.println(CrewCountry);
 							
 							
-						ProgramCrewTabs();
+						//ProgramCrewTabs();
+							ProgramCrewActorsTabs();
 						}
 					}
 					
@@ -293,192 +305,188 @@ public class KinePolisCrewCNT {
 		}
 	}
 
- public void ProgramCrewTabs()
- {
-	 /////////////////////// Crew_SK///////////////////////////
-	 System.out.print(splitter_UName.trim()+"#<>#");
-	 
-///////////////////////Crew_ Name///////////////////////////
-	 System.out.print(CrewName.trim()+"#<>#");
-	 
-/////////////////////// Crew OriginalName///////////////////////////
-	 System.out.print("#<>#");
-	 
-/////////////////////// Crew Description///////////////////////////
-	 System.out.print("#<>#");
-	 
-	 
-/////////////////////// Crew aka///////////////////////////
-	 System.out.print("#<>#");
-	 
-	 
-/////////////////////// Crew_Gender///////////////////////////
-	 System.out.print("#<>#");
-	 
-	 
-	 
-/////////////////////// Crew Age ///////////////////////////
-	 System.out.print("#<>#");
-	 
-	 
-/////////////////////// Crew Blood_group///////////////////////////
-	 System.out.print("#<>#");
-	 
-	 
-///////////////////////Crew_BirthDate///////////////////////////
-	 if(CrewDOB!=null)
+	
+	
+	 public void ProgramCrewActorsTabs()
 	 {
-		 CrewDateFormat(CrewDOB);
-	 System.out.print(CrewDateCon.trim()+"#<>#");
-	 }
-	 else
-	 {
+		 /////////////////////// Crew_SK///////////////////////////
+		 System.out.print(splitter_UName.trim()+"#<>#");
+		 
+	///////////////////////Crew_ Name///////////////////////////
+		 System.out.print(CrewName.trim()+"#<>#");
+		 
+	/////////////////////// Crew OriginalName///////////////////////////
 		 System.out.print("#<>#");
 		 
-	 }
-	 
-	 
-	 
-/////////////////////// Crew_BirthPlace///////////////////////////
-	 System.out.print("#<>#");
-	 
-/////////////////////// Crew_Death_Date///////////////////////////
-	 System.out.print("#<>#");
-	 
-/////////////////////// Crew_Death_Place///////////////////////////
-	 System.out.print("#<>#");
-	 
-	 
-/////////////////////// Crew_Constellation///////////////////////////
-	 System.out.print("#<>#");
-	 
-	 
-/////////////////////// Crew_Country///////////////////////////
-	 if(CrewCountry!=null)
-	 {
-	 System.out.print(CrewCountry.trim()+"#<>#");
-	 }
-	 else
-	 {
+	/////////////////////// Crew Description///////////////////////////
 		 System.out.print("#<>#");
-	 }
-	 
-	 
-/////////////////////// Crew_Occuption///////////////////////////
-	 System.out.print("#<>#");
-	 
-	 
-/////////////////////// Crew_Biography///////////////////////////
-	 System.out.print("#<>#");
-	 
-	 
-/////////////////////// Crew_height///////////////////////////
-	 System.out.print("#<>#");
-	 
-/////////////////////// Crew_Weight//////////////////////////
-	 System.out.print("#<>#");
-	 
-	 
-/////////////////////// Crew_Rating///////////////////////////
-	 System.out.print("#<>#");
-	 
-	 
-/////////////////////// Crew_Top_rated_Works///////////////////////////
-	 System.out.print("#<>#");
-	 
-	 
-	 
-/////////////////////// Crew_Num_of Ratings///////////////////////////
-	 System.out.print("#<>#");
-	 
-	 
-	 
-/////////////////////// Crew_Family_Numbers///////////////////////////
-	 System.out.print("#<>#");
-	 
-	 
-/////////////////////// Crew_Recent_Films///////////////////////////
-	 
-	 if(RFlist!=null)
-	 {
-		 for(String RFL:RFlist)
+		 
+		 
+	/////////////////////// Crew aka///////////////////////////
+		 System.out.print("#<>#");
+		 
+		 
+	/////////////////////// Crew_Gender///////////////////////////
+		 System.out.print("#<>#");
+		 
+		 
+		 
+	/////////////////////// Crew Age ///////////////////////////
+		 System.out.print("#<>#");
+		 
+		 
+	/////////////////////// Crew Blood_group///////////////////////////
+		 System.out.print("#<>#");
+		 
+		 
+	///////////////////////Crew_BirthDate///////////////////////////
+		 if(CrewDOB!=null)
 		 {
-			 SplitUrlNames(RFL);
-			 System.out.print(symb+splitter_UName);
-			 symb="<>";
-			 
+			 CrewDateFormat(CrewDOB);
+		 System.out.print(CrewDateCon.trim()+"#<>#");
+		 }
+		 else
+		 {
+			 System.out.print("#<>#");
 			 
 		 }
+		 
+		 
+		 
+	/////////////////////// Crew_BirthPlace///////////////////////////
 		 System.out.print("#<>#");
 		 
-		 symb="";
-	 }
-	 else
-	 {
-	 System.out.print("#<>#");
-	 }
-	 
-	 
-/////////////////////// Crew_Image///////////////////////////
-	 if(CrewImg!=null)
-	 {
-	 System.out.print(CrewImage.trim()+"#<>#");
-	 }
-	 else
-	 {
+	/////////////////////// Crew_Death_Date///////////////////////////
 		 System.out.print("#<>#");
+		 
+	/////////////////////// Crew_Death_Place///////////////////////////
+		 System.out.print("#<>#");
+		 
+		 
+	/////////////////////// Crew_Constellation///////////////////////////
+		 System.out.print("#<>#");
+		 
+		 
+	/////////////////////// Crew_Country///////////////////////////
+		 if(CrewCountry!=null)
+		 {
+		 System.out.print(CrewCountry.trim()+"#<>#");
+		 }
+		 else
+		 {
+			 System.out.print("#<>#");
+		 }
+		 
+		 
+	/////////////////////// Crew_Occuption///////////////////////////
+		 System.out.print("#<>#");
+		 
+		 
+	/////////////////////// Crew_Biography///////////////////////////
+		 System.out.print("#<>#");
+		 
+		 
+	/////////////////////// Crew_height///////////////////////////
+		 System.out.print("#<>#");
+		 
+	/////////////////////// Crew_Weight//////////////////////////
+		 System.out.print("#<>#");
+		 
+		 
+	/////////////////////// Crew_Rating///////////////////////////
+		 System.out.print("#<>#");
+		 
+		 
+	/////////////////////// Crew_Top_rated_Works///////////////////////////
+		 System.out.print("#<>#");
+		 
+		 
+		 
+	/////////////////////// Crew_Num_of Ratings///////////////////////////
+		 System.out.print("#<>#");
+		 
+		 
+		 
+	/////////////////////// Crew_Family_Numbers///////////////////////////
+		 System.out.print("#<>#");
+		 
+		 
+	/////////////////////// Crew_Recent_Films///////////////////////////
+		 
+		 if(RFlist!=null)
+		 {
+			 for(String RFL:RFlist)
+			 {
+				 SplitUrlNames(RFL);
+				 System.out.print(symb+splitter_UName);
+				 symb="<>";
+				 
+				 
+			 }
+			 System.out.print("#<>#");
+			 
+			 symb="";
+		 }
+		 else
+		 {
+		 System.out.print("#<>#");
+		 }
+		 
+		 
+	/////////////////////// Crew_Image///////////////////////////
+		 if(CrewImg!=null)
+		 {
+		 System.out.print(CrewImage.trim()+"#<>#");
+		 }
+		 else
+		 {
+			 System.out.print("#<>#");
+		 }
+		 
+		 
+	/////////////////////// Crew_Videos///////////////////////////
+		 System.out.print("#<>#");
+		 
+		 
+		 
+	/////////////////////// Crew_Refernce_Url///////////////////////////
+		 System.out.print(CrewDurl.trim()+"#<>#");
+		 
+		 
+	/////////////////////// Crew_Aux_Info///////////////////////////
+		 System.out.print("#<>#");
+		 
+		 
+		 
+	/////////////////////// Crew_Created_At///////////////////////////
+		 System.out.print("#<>#");
+		 
+		 
+	/////////////////////// Crew_Modified_At///////////////////////////
+		 System.out.print("#<>#");
+		 
+		 
+	/////////////////////// Crew_Last_Seen///////////////////////////
+		 System.out.print("#<>#");
+		 
+		 
+	/////////////////////// Crew_New Line///////////////////////////
+		 System.out.print("\n");
+		 
+		 
+		 
+		 
+		 
 	 }
-	 
-	 
-/////////////////////// Crew_Videos///////////////////////////
-	 System.out.print("#<>#");
-	 
-	 
-	 
-/////////////////////// Crew_Refernce_Url///////////////////////////
-	 System.out.print(CrewDurl.trim()+"#<>#");
-	 
-	 
-/////////////////////// Crew_Aux_Info///////////////////////////
-	 System.out.print("#<>#");
-	 
-	 
-	 
-/////////////////////// Crew_Created_At///////////////////////////
-	 System.out.print("#<>#");
-	 
-	 
-/////////////////////// Crew_Modified_At///////////////////////////
-	 System.out.print("#<>#");
-	 
-	 
-/////////////////////// Crew_Last_Seen///////////////////////////
-	 System.out.print("#<>#");
-	 
-	 
-/////////////////////// Crew_New Line///////////////////////////
-	 System.out.print("\n");
-	 
-	 
-	 
-	 
-	 
- }
-	
-	
-	
-	
-	
-	
+		
+
+
 	public void SplitUrlNames(String name)
 	{
 		String[] split=name.split("\\/");
 		splitter_UName=split[split.length - 1];
 		//System.out.println(splitter);
 	}
-	
-
-	
 	
 	public void CrewDateFormat(String name)
 	{
@@ -507,5 +515,8 @@ public class KinePolisCrewCNT {
 	}
 	
 	
+
+	
+
 
 }
