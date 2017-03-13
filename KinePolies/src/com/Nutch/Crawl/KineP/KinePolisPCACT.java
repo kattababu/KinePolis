@@ -3,6 +3,7 @@
  */
 package com.Nutch.Crawl.KineP;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.text.SimpleDateFormat;
@@ -56,6 +57,13 @@ public class KinePolisPCACT {
 	static String symb="";
 	
 	
+	static FileOutputStream fos=null;
+	static PrintStream ps=null;
+	
+	static File file=null;
+	
+	
+	
 	public void KinePolisCrewPANT(String names)
 	{
 		try
@@ -84,9 +92,9 @@ public class KinePolisPCACT {
 						if(family.equals("f")&& qualifier.equals("cnt"))
 						{
 									
-							System.out.println("\n");
-							System.out.println(rownames);
-							System.out.println("\n");
+							//System.out.println("\n");
+							//System.out.println(rownames);
+							//System.out.println("\n");
 							content=Bytes.toString(kv.getValue());
 							Document document = Jsoup.parse(content);
 							
@@ -99,7 +107,7 @@ public class KinePolisPCACT {
 							//System.out.println(mainhost+CrewDirector);
 							 String CrewAQL=mainhost+CrewActor.trim();
 							 
-							 System.out.println(CrewAQL);
+							// System.out.println(CrewAQL);
 							 
 							 KinePolisCrewPAQLNT(CrewAQL);
 								}
@@ -167,9 +175,9 @@ public class KinePolisPCACT {
 						SplitUrlNames(names);
 						 if(rownames.contains(splitter_UName) && rownames.endsWith(splitter_UName))
 						 {
-							 System.out.println("\n");
-							System.out.println(rownames);
-							System.out.println("\n");
+							// System.out.println("\n");
+							//System.out.println(rownames);
+							//System.out.println("\n");
 							 
 							KinePolisCrewRPCACNT(rownames);
 							 //KinePolisCrewRCNT(rownames);
@@ -210,9 +218,9 @@ public class KinePolisPCACT {
 		try
 		{
 			
-			//fos = new FileOutputStream(file,true);
-			//ps = new PrintStream(fos);
-			//System.setOut(ps);
+			fos = new FileOutputStream(FileStore.fileC,true);
+			ps = new PrintStream(fos);
+			System.setOut(ps);
 			
 			Configuration config=HBaseConfiguration.create();
 			ht=new HTable(config,"kinepolies_webpage");
@@ -234,7 +242,7 @@ public class KinePolisPCACT {
 						{
 									
 							//System.out.println("\n");
-						System.out.println("Content Rows"+rownames);
+						//System.out.println("Content Rows"+rownames);
 							//System.out.println("\n");
 							
 							
@@ -296,6 +304,8 @@ public class KinePolisPCACT {
 			{
 				ht.close();
 				rescan.close();
+				ps.close();
+				fos.close();
 			}
 			catch(Exception e)
 			{

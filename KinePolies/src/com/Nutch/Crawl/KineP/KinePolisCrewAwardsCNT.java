@@ -3,6 +3,9 @@
  */
 package com.Nutch.Crawl.KineP;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
 import java.util.List;
 
 import org.apache.hadoop.conf.Configuration;
@@ -41,13 +44,19 @@ public class KinePolisCrewAwardsCNT {
 	static String splitter_Year=null;
 	
 	
-	List<String> CrewAwardNames=null;
-	List<String> CrewAwardCategorys=null;
-	List<String> CrewAwardYears=null;
-	List<String> CrewAwardWinNames=null;
-	List<String> CrewAwardWins_SK=null;
 	final String mainhost="https://kinepolis.fr";
 	
+	static FileOutputStream fos=null;
+	static PrintStream ps=null;
+	
+	static File file=null;
+	
+	static 
+	{
+		FileStore.AwardsTable("awards");
+		
+		//file=new File("/katta/KinePole/CrewDTCNT.txt");
+	}
 	
 	
 	
@@ -240,9 +249,9 @@ public class KinePolisCrewAwardsCNT {
 		try
 		{
 			
-			//fos = new FileOutputStream(file,true);
-			//ps = new PrintStream(fos);
-			//System.setOut(ps);
+			fos = new FileOutputStream(FileStore.fileCA,true);
+			ps = new PrintStream(fos);
+			System.setOut(ps);
 			
 			Configuration config=HBaseConfiguration.create();
 			ht=new HTable(config,"kinepolies_webpage");
@@ -483,6 +492,8 @@ public class KinePolisCrewAwardsCNT {
 			{
 				ht.close();
 				rescan.close();
+				ps.close();
+				fos.close();
 			}
 			catch(Exception e)
 			{

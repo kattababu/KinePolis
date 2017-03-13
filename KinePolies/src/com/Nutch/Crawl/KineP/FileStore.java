@@ -26,10 +26,12 @@ public class FileStore {
 	final  static String filePath ="/katta/KinePole";
 	final  static String filename="KinePolis_Terminal_";
 	static File fileM=null;
+	static File fileMRAT=null;
 	static File fileC=null;
 	static File filePC=null;
 	static File fileRM=null;
 	static File filePR=null;
+	static File fileCA=null;
 	static File fileTvshow=null;
 	static File fileTvshowEps=null;
 	//static int count=0;
@@ -61,7 +63,7 @@ public class FileStore {
         try {
         	  if (!fileM.exists()) {
                   fileM.createNewFile();
-                  System.out.println("File is created; file name is " + fileM.getName());
+                 // System.out.println("File is created; file name is " + fileM.getName());
                   
                   
                    
@@ -69,7 +71,7 @@ public class FileStore {
                  
               } else {
             	  
-            	    System.out.println("File already exist");
+            	   // System.out.println("File already exist");
               }
         	  
          
@@ -92,9 +94,9 @@ public class FileStore {
         try {
             if (!fileTvshow.exists()) {
                 fileTvshow.createNewFile();
-                System.out.println("File is created; file name is " + fileTvshow.getName());
+                //System.out.println("File is created; file name is " + fileTvshow.getName());
             } else {
-                System.out.println("File already exist");
+                //System.out.println("File already exist");
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -112,9 +114,9 @@ public class FileStore {
         try {
             if (!fileTvshowEps.exists()) {
                 fileTvshowEps.createNewFile();
-                System.out.println("File is created; file name is " + fileTvshowEps.getName());
+                //System.out.println("File is created; file name is " + fileTvshowEps.getName());
             } else {
-                System.out.println("File already exist");
+                //System.out.println("File already exist");
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -125,7 +127,7 @@ public class FileStore {
 	/////////////////////////////////////////////////////////////////////// ProgramRelease///////////////
 	
 	
-	public static void ProgramRelease(String table) {
+	public static void ProgramReleaseTable(String table) {
         //get current project path
        // String filePath = ;
         //create a new file with Time Stamp
@@ -134,9 +136,9 @@ public class FileStore {
         try {
             if (!filePR.exists()) {
                 filePR.createNewFile();
-                System.out.println("File is created; file name is " + filePR.getName());
+               // System.out.println("File is created; file name is " + filePR.getName());
             } else {
-                System.out.println("File already exist");
+                //System.out.println("File already exist");
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -147,7 +149,7 @@ public class FileStore {
 	
 	
 	
-	public static void ProgramCrew(String table) {
+	public static void ProgramCrewTable(String table) {
         //get current project path
        // String filePath = ;
         //create a new file with Time Stamp
@@ -156,9 +158,9 @@ public class FileStore {
         try {
             if (!filePC.exists()) {
                 filePC.createNewFile();
-                System.out.println("File is created; file name is " + filePC.getName());
+                //System.out.println("File is created; file name is " + filePC.getName());
             } else {
-                System.out.println("File already exist");
+                //System.out.println("File already exist");
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -166,7 +168,7 @@ public class FileStore {
     }
 ////////////////////////////////////////////////////////////////Crew///////////////////////////////
 	
-	public static void Crew(String table) {
+	public static void CrewTable(String table) {
         //get current project path
        // String filePath = ;
         //create a new file with Time Stamp
@@ -175,9 +177,9 @@ public class FileStore {
         try {
             if (!fileC.exists()) {
                 fileC.createNewFile();
-                System.out.println("File is created; file name is " + fileC.getName());
+                //System.out.println("File is created; file name is " + fileC.getName());
             } else {
-                System.out.println("File already exist");
+                //System.out.println("File already exist");
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -187,7 +189,7 @@ public class FileStore {
 	
 	////////////////////////////////////////RichMedia//////////////////////////
 	
-	public static void RichMedia(String table) {
+	public static void RichMediaTable(String table) {
         //get current project path
        // String filePath = ;
         //create a new file with Time Stamp
@@ -196,9 +198,9 @@ public class FileStore {
         try {
             if (!fileRM.exists()) {
                 fileRM.createNewFile();
-                System.out.println("File is created; file name is " + fileRM.getName());
+                //System.out.println("File is created; file name is " + fileRM.getName());
             } else {
-                System.out.println("File already exist");
+                //System.out.println("File already exist");
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -206,8 +208,49 @@ public class FileStore {
     }
 
 
+////////////////////////////////  Awards Table///////////////////////////
+	
+	
+	public static void AwardsTable(String table) {
+        //get current project path
+       // String filePath = ;
+        //create a new file with Time Stamp
+        fileCA= new File(filePath + "/" + filename+table+"_"+GetCurrentTimeStamp().replace(":","").replace(".","")+".queries");
 
+        try {
+            if (!fileCA.exists()) {
+                fileCA.createNewFile();
+                //System.out.println("File is created; file name is " + fileCA.getName());
+            } else {
+                //System.out.println("File already exist");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
+//////////////////////////////////////// Rating Table///////////////////////////
+	
+	
+	public static void RatingTable(String table) {
+        //get current project path
+       // String filePath = ;
+        //create a new file with Time Stamp
+        fileMRAT= new File(filePath + "/" + filename+table+"_"+GetCurrentTimeStamp().replace(":","").replace(".","")+".queries");
+
+        try {
+            if (!fileMRAT.exists()) {
+                fileMRAT.createNewFile();
+                //System.out.println("File is created; file name is " + fileMRAT.getName());
+            } else {
+              //  System.out.println("File already exist");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+	
 	
 	
 	

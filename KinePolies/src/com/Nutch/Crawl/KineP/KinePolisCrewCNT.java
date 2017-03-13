@@ -50,10 +50,12 @@ public class KinePolisCrewCNT {
 	static PrintStream ps=null;
 	
 	static File file=null;
+	
 	static 
 	{
+		FileStore.CrewTable("crew");
 		
-		file=new File("/katta/KinePole/CrewDTCNT.txt");
+		//file=new File("/katta/KinePole/CrewDTCNT.txt");
 	}
 	
 	
@@ -89,9 +91,9 @@ public class KinePolisCrewCNT {
 						if(family.equals("f")&& qualifier.equals("cnt"))
 						{
 									
-							System.out.println("\n");
-							System.out.println(rownames);
-							System.out.println("\n");
+							//System.out.println("\n");
+							//System.out.println(rownames);
+							//System.out.println("\n");
 							content=Bytes.toString(kv.getValue());
 							Document document = Jsoup.parse(content);
 							
@@ -204,7 +206,7 @@ public class KinePolisCrewCNT {
 		try
 		{
 			
-			fos = new FileOutputStream(file,true);
+			fos = new FileOutputStream(FileStore.fileC,true);
 			ps = new PrintStream(fos);
 			System.setOut(ps);
 			
@@ -228,7 +230,7 @@ public class KinePolisCrewCNT {
 						{
 									
 							//System.out.println("\n");
-						System.out.println("Content Rows"+rownames);
+						//System.out.println("Content Rows"+rownames);
 							//System.out.println("\n");
 							
 							
@@ -284,6 +286,8 @@ public class KinePolisCrewCNT {
 			{
 				ht.close();
 				rescan.close();
+				ps.close();
+				fos.close();
 			}
 			catch(Exception e)
 			{

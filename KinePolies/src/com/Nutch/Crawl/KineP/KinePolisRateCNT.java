@@ -43,7 +43,7 @@ public class KinePolisRateCNT {
 	static 
 	{
 		
-		file=new File("/katta/KinePole/RateCNT.txt");
+		FileStore.RatingTable("rating");
 	}
 	
 	
@@ -53,7 +53,7 @@ public class KinePolisRateCNT {
 		try
 		{
 			
-			fos = new FileOutputStream(file,true);
+			fos = new FileOutputStream(FileStore.fileMRAT,true);
 			ps = new PrintStream(fos);
 			System.setOut(ps);
 			
@@ -76,9 +76,9 @@ public class KinePolisRateCNT {
 						if(family.equals("f")&& qualifier.equals("cnt"))
 						{
 									
-							System.out.println("\n");
-							System.out.println(rownames);
-							System.out.println("\n");
+							//System.out.println("\n");
+							//System.out.println(rownames);
+							//System.out.println("\n");
 							content=Bytes.toString(kv.getValue());
 							Document document = Jsoup.parse(content);
 						
@@ -130,6 +130,8 @@ public class KinePolisRateCNT {
 			{
 				ht.close();
 				rescan.close();
+				ps.close();
+				fos.close();
 			}
 			catch(Exception e)
 			{

@@ -54,13 +54,15 @@ public class KinePolisPRCNT {
 	String symb34="";
 	static String country=null;
 	
-	/*
+	
 	static 
 	{
 		
-		file=new File("/katta/KinePole/PRMCNT.txt");
+		//file=new File("/katta/KinePole/PRMCNT.txt");
+		
+		FileStore.ProgramReleaseTable("release");
 	}
-	*/
+	
 	
 
 	public void KinePolisPNT(String names)
@@ -68,9 +70,9 @@ public class KinePolisPRCNT {
 		try
 		{
 			
-			//fos = new FileOutputStream(file,true);
-			//ps = new PrintStream(fos);
-			//System.setOut(ps);
+			fos = new FileOutputStream(FileStore.filePR,true);
+			ps = new PrintStream(fos);
+			System.setOut(ps);
 			
 			Configuration config=HBaseConfiguration.create();
 			ht=new HTable(config,"kinepolies_webpage");
@@ -91,9 +93,9 @@ public class KinePolisPRCNT {
 						if(family.equals("f")&& qualifier.equals("cnt"))
 						{
 									
-							System.out.println("\n");
-							System.out.println(rownames);
-							System.out.println("\n");
+						//	System.out.println("\n");
+							//System.out.println(rownames);
+							//System.out.println("\n");
 							content=Bytes.toString(kv.getValue());
 							Document document = Jsoup.parse(content);
 						
@@ -236,6 +238,8 @@ public class KinePolisPRCNT {
 			{
 				ht.close();
 				rescan.close();
+				ps.close();
+				fos.close();
 			}
 			catch(Exception e)
 			{

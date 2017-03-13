@@ -3,6 +3,9 @@
  */
 package com.Nutch.Crawl.KineP;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
 import java.util.List;
 
 import org.apache.hadoop.conf.Configuration;
@@ -37,15 +40,23 @@ public class KinePolisPCAICNT {
 	String rownames=null,family=null,qualifier=null,content=null,splitter_PSK=null,splitter_UName=null;
 	static String CrewAurl=null;
 	int i=1;
+	
+	static FileOutputStream fos=null;
+	static PrintStream ps=null;
+	
+	static File file=null;
+	
+	
+	
 	//final String mainhost="https://kinepolis.fr";
 	public void KinePolisCrewPrgACTNT(String names)
 	{
 		try
 		{
 			
-		//	fos = new FileOutputStream(file,true);
-			//ps = new PrintStream(fos);
-			//System.setOut(ps);
+		fos = new FileOutputStream(FileStore.filePC,true);
+			ps = new PrintStream(fos);
+			System.setOut(ps);
 			
 			Configuration config=HBaseConfiguration.create();
 			ht=new HTable(config,"kinepolies_webpage");
@@ -66,9 +77,9 @@ public class KinePolisPCAICNT {
 						if(family.equals("f")&& qualifier.equals("cnt"))
 						{
 									
-							System.out.println("\n");
-							System.out.println(rownames);
-							System.out.println("\n");
+						//	System.out.println("\n");
+							//System.out.println(rownames);
+							//System.out.println("\n");
 							content=Bytes.toString(kv.getValue());
 							Document document = Jsoup.parse(content);
 							
@@ -111,6 +122,8 @@ public class KinePolisPCAICNT {
 			{
 				ht.close();
 				rescan.close();
+				ps.close();
+				fos.close();
 			}
 			catch(Exception e)
 			{

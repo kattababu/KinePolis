@@ -55,7 +55,11 @@ public class KinePolisMVNCT {
 	static 
 	{
 		
-		file=new File("/katta/KinePole/MovieCNT.txt");
+		//file=new File("/katta/KinePole/MovieCNT.txt");
+				
+				FileStore.MovieTable("movie");
+		 
+
 	}
 	
 
@@ -64,7 +68,7 @@ public class KinePolisMVNCT {
 		try
 		{
 			
-			fos = new FileOutputStream(file,true);
+			fos = new FileOutputStream(FileStore.fileM,true);
 			ps = new PrintStream(fos);
 			 System.setOut(ps);
 			
@@ -87,20 +91,15 @@ public class KinePolisMVNCT {
 						if(family.equals("f")&& qualifier.equals("cnt"))
 						{
 									
-							System.out.println("\n");
-							System.out.println(rownames);
-							System.out.println("\n");
+							//System.out.println("\n");
+							//System.out.println(rownames);
+							//System.out.println("\n");
 							
 							
 							content=Bytes.toString(kv.getValue());
 							Document document = Jsoup.parse(content);
 							
-								 
-							
 								
-							
-						
-							
 								//////////Movie SK _ Value//////////////
 							
 							String url=Xsoup.compile("//meta[@property='og:url']/@content").evaluate(document).get();
@@ -280,29 +279,12 @@ public class KinePolisMVNCT {
 							///////////////////Last_Seen///////////////////
 							System.out.print("#<>#");
 							
+							///////////////// New Line////////////
+							
+							System.out.print("\n");
 							
 							
-							
-						
-
-							
-							
-
-							
-
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
+														
 							
 						}
 					}
@@ -323,6 +305,8 @@ public class KinePolisMVNCT {
 			{
 				ht.close();
 				rescan.close();
+				ps.close();
+				fos.close();
 			}
 			catch(Exception e)
 			{
