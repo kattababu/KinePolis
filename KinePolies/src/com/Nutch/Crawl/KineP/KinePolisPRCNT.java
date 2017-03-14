@@ -151,7 +151,47 @@ public class KinePolisPRCNT {
 								////////////Release_Year////////////////
 								
 								System.out.print(splitter_PRDY.trim()+"#<>#");
+														
 								*/
+								
+								
+								List<String> clist=Xsoup.compile("//div[@class='clearfix-field field field-name-field-country field-type-taxonomy-term-reference field-label-inline clearfix']//div[@class='field-items']/*/text()").evaluate(document).list();
+								
+								if(clist!=null)
+								{
+								 for(String Cot_PR:clist)
+								 {
+										
+										country=Cot_PR.trim();
+										SplitCountry(country);
+											
+											//symb34="<>";
+									 //System.out.println(country);
+											ReleaseTab(PRDate,splitter_Count);
+								////////////Country////////////////
+											
+											
+										//System.out.print(Cot_PR.trim());
+											
+
+											
+									 }
+								 
+								 
+									 
+									 
+									 
+									 
+								 }
+								
+								
+								else
+								{
+									splitter_Count="".trim();
+									
+									ReleaseTab(PRDate,splitter_Count);
+								}
+
 
 																		
 								
@@ -161,43 +201,7 @@ public class KinePolisPRCNT {
 							
 							
 							
-							List<String> clist=Xsoup.compile("//div[@class='clearfix-field field field-name-field-country field-type-taxonomy-term-reference field-label-inline clearfix']//div[@class='field-items']/*/text()").evaluate(document).list();
-							
-							if(clist!=null)
-							{
-							 for(String Cot_PR:clist)
-							 {
-									
-									country=Cot_PR.trim();
-									SplitCountry(country);
-										
-										//symb34="<>";
-								 //System.out.println(country);
-										ReleaseTab();
-							////////////Country////////////////
-										
-										
-									//System.out.print(Cot_PR.trim());
-										
-
-										
-								 }
-							 
-							 
-								 
-								 
-								 
-								 
-							 }
-							
-							
-							else
-							{
-								splitter_Count="".trim();
-								
-								ReleaseTab();
-							}
-						/*	
+													/*	
 						 * 
 						 * 
 							System.out.print("#<>#");
@@ -272,7 +276,7 @@ public class KinePolisPRCNT {
 	
 	
 	
-	public void ReleaseTab()
+	public void ReleaseTab(String rdate,String prcounty)
 	{
 		
 ////////////Program_Sk////////////////
@@ -299,19 +303,22 @@ public class KinePolisPRCNT {
 		
 		
 ////////////Release_Date////////////////
-		System.out.print(PRDate.trim()+"#<>#");
+		System.out.print(rdate.trim());
+		System.out.print("#<>#");
 		
 		
 		////////////Release_Year////////////////
 		
-		System.out.print(splitter_PRDY.trim()+"#<>#");
+		System.out.print(splitter_PRDY.trim());
+		System.out.print("#<>#");
+		
 		
 		
 		
 		
 		/////////////// Country_Name/////////////////
 		
-		System.out.print(splitter_Count.trim()+"#<>#");
+		System.out.print(prcounty.trim()+"#<>#");
 		
 		
 		

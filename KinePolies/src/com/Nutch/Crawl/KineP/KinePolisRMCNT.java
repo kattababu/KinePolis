@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
@@ -33,7 +35,7 @@ public class KinePolisRMCNT {
 	HTable ht;
 	Scan sc;
 	ResultScanner rescan;
-	String rownames=null,family=null,qualifier=null,content=null,splitter_SK=null;
+	String rownames=null,family=null,qualifier=null,content=null,splitter_SK=null,ImgDimes=null;
 	
 	final String mainhost="https://kinepolis.fr";
 	
@@ -98,14 +100,27 @@ public class KinePolisRMCNT {
 							String imgurl=Xsoup.compile("//*[contains(@class, 'field-items')]/div[contains(@class, 'field-item') and contains(@class, 'even')]/img/@src").evaluate(document).get();
 							if(imgurl!=null)
 							{
-							
+								String Dimen_size="";
+						
 							//System.out.println(mainhost+imgurl);
 								
 								MImg=mainhost+imgurl.trim();
 								msd.MD5(MImg.trim());
 								
 								String Img_typ="medium";
-								String Dimen_size="";
+								if(MImg.contains("x"))
+								{
+									ImageDes(MImg);
+									Dimen_size=ImgDimes;
+									
+									//System.out.print(ImgDimes+"#<>#");
+								}
+								else
+								{
+									Dimen_size="";
+									
+								}
+								
 								
 								
 								ImagTab(Img_typ,Dimen_size);
@@ -308,6 +323,49 @@ public class KinePolisRMCNT {
 			//System.out.println(splitter);
 		}
 	
+		
+		public void ImageDes(String name)
+		{
+			
+				String[] split=name.split("\\/");
+				String splitterIMD=split[split.length - 1];
+				//System.out.println("\n");
+				
+				String pattern="(\\d+)(x)(\\d+)";
+				
+				Pattern r = Pattern.compile(pattern);
+
+			      // Now create matcher object.
+			      Matcher m = r.matcher(splitterIMD);
+			      if (m.find( )) {
+			    	  ImgDimes=  m.group(0) ;
+			           }else {
+			         System.out.println("NO MATCH");
+			      }
+			      /*
+				String dsp[]=splitterIMD.split("x");
+				String fn=dsp[0];
+				System.out.println(num);
+				
+				
+				String nn=dsp[1];
+				String lastn=nn.substring(0, num);
+				
+				ImgDimes=fn+"x"+lastn;
+				*/
+			
+			//System.out.println(dsp);
+				
+				//System.out.println("\n");
+				
+				
+			}
+		
+		
+
+		
+		
+		
 
 	
 }

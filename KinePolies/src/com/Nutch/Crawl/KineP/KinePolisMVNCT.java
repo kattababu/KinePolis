@@ -45,7 +45,7 @@ public class KinePolisMVNCT {
 	HTable ht;
 	Scan sc;
 	ResultScanner rescan;
-	String rownames=null,family=null,qualifier=null,content=null,splitter_SK=null;
+	String rownames=null,family=null,qualifier=null,content=null,splitter_SK=null,splitter_Count=null;
 	String symb34="";
 	
 	static FileOutputStream fos=null;
@@ -241,7 +241,9 @@ public class KinePolisMVNCT {
 									for(Element singdiv:mltdivs)
 									{
 										String attrbs=singdiv.ownText();
-										System.out.print(symb34+attrbs);
+										SplitCountry(attrbs);
+										
+										System.out.print(symb34+splitter_Count);
 										
 										symb34="<>";
 										
@@ -321,6 +323,14 @@ public class KinePolisMVNCT {
 		{
 			String[] split=name.split("\\/");
 			splitter_SK=split[split.length - 1];
+			//System.out.println(splitter);
+		}
+		
+		public void SplitCountry(String name)
+		{
+			String[] split=name.split("\\(|\\,");
+			splitter_Count=split[0];
+			//Splitter_count=split[1];
 			//System.out.println(splitter);
 		}
 	

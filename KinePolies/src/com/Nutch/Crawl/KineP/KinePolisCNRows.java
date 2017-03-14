@@ -97,30 +97,30 @@ public class KinePolisCNRows {
 								
 							if (c>0 && c<=250)
 								{
-								new KinePolisMVNCT().KinePolisCNT(rownames);
-								new KinePolisRMCNT().KinePolisRNT(rownames);
+								//new KinePolisMVNCT().KinePolisCNT(rownames);
+								//new KinePolisRMCNT().KinePolisRNT(rownames);
 								new KinePolisPRCNT().KinePolisPNT(rownames);
-								new KinePolisRateCNT().KinePolisRatNT(rownames);
-								new KinePolisCrewCNT().KinePolisCrewNT(rownames);
-								new KinePolisPCDCT().KinePolisCrewPrgNT(rownames);
-								new KinePolisPCACT().KinePolisCrewPANT(rownames);
-								new KinePolisPCAICNT().KinePolisCrewPrgACTNT(rownames);
-								new KinePolisCrewAwardsCNT().KinePolisCrewActAwdCNT(rownames);
+								//new KinePolisRateCNT().KinePolisRatNT(rownames);
+								//new KinePolisCrewCNT().KinePolisCrewNT(rownames);
+								//new KinePolisPCDCT().KinePolisCrewPrgNT(rownames);
+								//new KinePolisPCACT().KinePolisCrewPANT(rownames);
+								//new KinePolisPCAICNT().KinePolisCrewPrgACTNT(rownames);
+								//new KinePolisCrewAwardsCNT().KinePolisCrewActAwdCNT(rownames);
 								}
 								
 							
 							if (c>250 && c<=500)
 							{
 								
-								new KinePolisMVNCT().KinePolisCNT(rownames);
-								new KinePolisRMCNT().KinePolisRNT(rownames);
-								new KinePolisPRCNT().KinePolisPNT(rownames);
-								new KinePolisRateCNT().KinePolisRatNT(rownames);
-								new KinePolisCrewCNT().KinePolisCrewNT(rownames);
-								new KinePolisPCDCT().KinePolisCrewPrgNT(rownames);
-								new KinePolisPCACT().KinePolisCrewPANT(rownames);
-								new KinePolisPCAICNT().KinePolisCrewPrgACTNT(rownames);
-								new KinePolisCrewAwardsCNT().KinePolisCrewActAwdCNT(rownames);
+								//new KinePolisMVNCT().KinePolisCNT(rownames);
+								//new KinePolisRMCNT().KinePolisRNT(rownames);
+								//new KinePolisPRCNT().KinePolisPNT(rownames);
+								//new KinePolisRateCNT().KinePolisRatNT(rownames);
+								//new KinePolisCrewCNT().KinePolisCrewNT(rownames);
+								//new KinePolisPCDCT().KinePolisCrewPrgNT(rownames);
+								//new KinePolisPCACT().KinePolisCrewPANT(rownames);
+								//new KinePolisPCAICNT().KinePolisCrewPrgACTNT(rownames);
+								//new KinePolisCrewAwardsCNT().KinePolisCrewActAwdCNT(rownames);
 
 										
 							}
