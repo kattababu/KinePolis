@@ -27,6 +27,8 @@ public class KinePolisMain {
 		
 		
 		kpcr.KinePolisCR();
+		
+		SplitFiles.FileSplitS();
 		//kpcr.KinePolisCRM();
 	}
 	

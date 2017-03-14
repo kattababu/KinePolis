@@ -225,6 +225,7 @@ public class KinePolisPCACT {
 			Configuration config=HBaseConfiguration.create();
 			ht=new HTable(config,"kinepolies_webpage");
 			sc=new Scan();
+			//sc.setCaching(10);
 			rescan=ht.getScanner(sc);
 			
 			for(Result res = rescan.next(); (res != null); res=rescan.next())
