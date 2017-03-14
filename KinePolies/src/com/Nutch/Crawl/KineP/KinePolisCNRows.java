@@ -69,8 +69,8 @@ public class KinePolisCNRows {
 			ht=new HTable(config,"kinepolies_webpage");
 		sc=new Scan();
 		//sc.setMaxVersions(1);
-	    sc.setCaching(100);
-	    sc.setBatch(100);
+	   // sc.setCaching(100);
+	    //sc.setBatch(100);
 		rescan=ht.getScanner(sc);
 	int c=0;
 			
@@ -95,7 +95,7 @@ public class KinePolisCNRows {
 								c=c+1;
 							//System.out.println(rownames);
 								
-							if (c>0 && c<=50)
+							if (c>0 && c<=250)
 								{
 								new KinePolisMVNCT().KinePolisCNT(rownames);
 								new KinePolisRMCNT().KinePolisRNT(rownames);
@@ -109,18 +109,18 @@ public class KinePolisCNRows {
 								}
 								
 							
-							if (c>50 && c<=100)
+							if (c>250 && c<=500)
 							{
 								
-								//new KinePolisMVNCT().KinePolisCNT(rownames);
-								//new KinePolisRMCNT().KinePolisRNT(rownames);
-								//new KinePolisPRCNT().KinePolisPNT(rownames);
-								//new KinePolisRateCNT().KinePolisRatNT(rownames);
-								//new KinePolisCrewCNT().KinePolisCrewNT(rownames);
-								//new KinePolisPCDCT().KinePolisCrewPrgNT(rownames);
-								//new KinePolisPCACT().KinePolisCrewPANT(rownames);
-								//new KinePolisPCAICNT().KinePolisCrewPrgACTNT(rownames);
-								//new KinePolisCrewAwardsCNT().KinePolisCrewActAwdCNT(rownames);
+								new KinePolisMVNCT().KinePolisCNT(rownames);
+								new KinePolisRMCNT().KinePolisRNT(rownames);
+								new KinePolisPRCNT().KinePolisPNT(rownames);
+								new KinePolisRateCNT().KinePolisRatNT(rownames);
+								new KinePolisCrewCNT().KinePolisCrewNT(rownames);
+								new KinePolisPCDCT().KinePolisCrewPrgNT(rownames);
+								new KinePolisPCACT().KinePolisCrewPANT(rownames);
+								new KinePolisPCAICNT().KinePolisCrewPrgACTNT(rownames);
+								new KinePolisCrewAwardsCNT().KinePolisCrewActAwdCNT(rownames);
 
 										
 							}
@@ -187,5 +187,10 @@ public class KinePolisCNRows {
 			
 		}
 	}
+	
+	//////////////////////////////////////////////////////////////RM/////////////////////////////
+	
+	
+		
 
 }

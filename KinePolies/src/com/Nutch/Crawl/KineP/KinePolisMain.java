@@ -24,7 +24,14 @@ public class KinePolisMain {
 		// TODO Auto-generated method stub
 
 		KinePolisCNRows kpcr=new KinePolisCNRows();
+		
+		
 		kpcr.KinePolisCR();
+		//kpcr.KinePolisCRM();
 	}
-
+	
+	
+	
+	
 }
+
