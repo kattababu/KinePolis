@@ -108,6 +108,7 @@ public class KinePolisRMCNT {
 								msd.MD5(MImg.trim());
 								
 								String Img_typ="medium";
+								
 								if(MImg.contains("x"))
 								{
 									ImageDes(MImg);
@@ -340,7 +341,8 @@ public class KinePolisRMCNT {
 			      if (m.find( )) {
 			    	  ImgDimes=  m.group(0) ;
 			           }else {
-			         System.out.println("NO MATCH");
+			        	   ImgDimes="";
+			        // System.out.println("NO MATCH");
 			      }
 			      /*
 				String dsp[]=splitterIMD.split("x");

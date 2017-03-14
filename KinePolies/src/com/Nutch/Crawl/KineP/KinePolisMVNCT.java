@@ -243,7 +243,7 @@ public class KinePolisMVNCT {
 										String attrbs=singdiv.ownText();
 										SplitCountry(attrbs);
 										
-										System.out.print(symb34+splitter_Count);
+										System.out.print(symb34+splitter_Count.trim());
 										
 										symb34="<>";
 										
