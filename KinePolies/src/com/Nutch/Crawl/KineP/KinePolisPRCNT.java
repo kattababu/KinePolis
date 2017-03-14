@@ -28,7 +28,7 @@ public class KinePolisPRCNT {
 	HTable ht;
 	Scan sc;
 	ResultScanner rescan;
-	String rownames=null,family=null,qualifier=null,content=null,splitter_SK=null,splitter_PRDY=null;
+	String rownames=null,family=null,qualifier=null,content=null,splitter_SK=null,splitter_PRDY=null,splitter_Count=null;
 	/*
 		
 	final String mainhost="https://kinepolis.fr";
@@ -104,6 +104,8 @@ public class KinePolisPRCNT {
 							
 							SplitPRurl(PRurl);
 							
+							/*
+							
 				//////////// Program_Sk////////////////
 							System.out.print(splitter_SK.trim()+"#<>#");
 							
@@ -126,7 +128,7 @@ public class KinePolisPRCNT {
 					////////////Company_Rights////////////////
 							System.out.print("#<>#");
 							
-							
+							*/
 
 							
 						
@@ -139,6 +141,8 @@ public class KinePolisPRCNT {
 								
 								PRDate=releaseDate.replace("/", "-");
 								SplitPRYurl(PRDate);
+								
+								/*
 				
 								////////////Release_Date////////////////
 								System.out.print(PRDate.trim()+"#<>#");
@@ -147,6 +151,7 @@ public class KinePolisPRCNT {
 								////////////Release_Year////////////////
 								
 								System.out.print(splitter_PRDY.trim()+"#<>#");
+								*/
 
 																		
 								
@@ -157,30 +162,44 @@ public class KinePolisPRCNT {
 							
 							
 							List<String> clist=Xsoup.compile("//div[@class='clearfix-field field field-name-field-country field-type-taxonomy-term-reference field-label-inline clearfix']//div[@class='field-items']/*/text()").evaluate(document).list();
+							
+							if(clist!=null)
+							{
 							 for(String Cot_PR:clist)
 							 {
-								 if(Cot_PR!=null)
-								 {
 									
-									 country=symb34+Cot_PR.trim();
+									country=Cot_PR.trim();
+									SplitCountry(country);
 										
-										symb34="<>";
+										//symb34="<>";
 								 //System.out.println(country);
-										//ProgramRTab();
+										ReleaseTab();
 							////////////Country////////////////
 										
 										
-										System.out.print(country.trim());
+									//System.out.print(Cot_PR.trim());
 										
 
 										
 								 }
+							 
+							 
 								 
 								 
 								 
 								 
 							 }
 							
+							
+							else
+							{
+								splitter_Count="".trim();
+								
+								ReleaseTab();
+							}
+						/*	
+						 * 
+						 * 
 							System.out.print("#<>#");
 							
 							
@@ -219,6 +238,8 @@ public class KinePolisPRCNT {
 							System.out.print("\n");
 							
 							
+							*/
+							
 						}
 						
 						
@@ -250,6 +271,90 @@ public class KinePolisPRCNT {
 	}
 	
 	
+	
+	public void ReleaseTab()
+	{
+		
+////////////Program_Sk////////////////
+		System.out.print(splitter_SK.trim()+"#<>#");
+		
+		
+////////////Program_Type////////////////
+		System.out.print("movie"+"#<>#");
+		
+////////////Company_name////////////////
+		System.out.print("#<>#");
+		
+		
+////////////Region////////////////
+		System.out.print("#<>#");
+		
+		
+////////////Relation///////////////
+		System.out.print("#<>#");
+		
+		
+////////////Company_Rights////////////////
+		System.out.print("#<>#");
+		
+		
+////////////Release_Date////////////////
+		System.out.print(PRDate.trim()+"#<>#");
+		
+		
+		////////////Release_Year////////////////
+		
+		System.out.print(splitter_PRDY.trim()+"#<>#");
+		
+		
+		
+		
+		/////////////// Country_Name/////////////////
+		
+		System.out.print(splitter_Count.trim()+"#<>#");
+		
+		
+		
+		
+		////////////Studio////////////////
+					System.out.print("#<>#");
+					
+					
+					
+			////////////IS_Max////////////////
+					System.out.print("#<>#");
+					
+					
+			////////////IS_Gaint_Screens////////////////
+					System.out.print("#<>#");
+					
+					
+			////////////Aux_Info////////////////
+					System.out.print("#<>#");
+					
+					
+			////////////Created-At////////////////
+					System.out.print("#<>#");
+					
+					
+					
+			////////////Modified_At////////////////
+					System.out.print("#<>#");
+					
+					
+			////////////Last_Seen////////////////
+					System.out.print("#<>#");
+					
+			////////////New Line////////////////
+					System.out.print("\n");
+				
+		
+
+		
+
+		
+	}
+	
 	public void SplitPRurl(String name)
 	{
 		String[] split=name.split("\\/");
@@ -264,5 +369,13 @@ public class KinePolisPRCNT {
 		//System.out.println(splitter);
 	}
 	
+	
+	public void SplitCountry(String name)
+	{
+		String[] split=name.split("\\(|\\,");
+		splitter_Count=split[0];
+		//Splitter_count=split[1];
+		//System.out.println(splitter);
+	}
 }
 
