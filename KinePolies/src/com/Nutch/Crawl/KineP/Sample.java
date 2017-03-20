@@ -3,6 +3,11 @@
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
@@ -28,6 +33,15 @@ public class Sample {
 	static FileOutputStream fos=null;
 	static PrintStream ps=null;
 	static File file=null;
+	static String namesC=null;
+	static String namesC2=null;
+	
+	static String rownames=null,family=null,qualifier=null;
+	static String content=null;
+	
+	static HTable ht=null;
+	static Scan sc=null;
+	
 	
 	static 
 	{
@@ -45,22 +59,23 @@ public class Sample {
 			
 			
 		Configuration config=HBaseConfiguration.create();
-		HTable ht=new HTable(config,"kinepolies_webpage");
-		Scan sc=new Scan();
+		ht=new HTable(config,"kinepolies_webpage");
+		sc=new Scan();
 		ResultScanner rescan=ht.getScanner(sc);
 		
-		String rownames=null,family=null,qualifier=null;
-		String content=null;
 		for(Result res = rescan.next(); (res != null); res=rescan.next())
 		{
 			for(KeyValue kv:res.list())
 			{
 				
 				rownames=Bytes.toString(kv.getRow());
+				
 				family=Bytes.toString(kv.getFamily());
 				qualifier=Bytes.toString(kv.getQualifier());
 				
-				if(rownames.equals("fr.kinepolis:https/personnes/mark-boone-junior"))
+				
+				
+				if(rownames.equals("fr.kinepolis:https/cinemas/forvm-centre-nimes/infos"))
 				{
 					if(family.equals("f") && qualifier.equals("cnt"))
 					{
@@ -72,26 +87,14 @@ public class Sample {
 					}
 					
 				}
-				/*
-				if(family.equals("il"))
-				{
-					if(qualifier.equals("https://kinepolis.fr/"))
-					{
-											
-						System.out.println(rownames);
-						
-						System.out.println("\n\n\n\n");
-					}
-				}
-					
-				*/
 				
 				
+				
+								
 				
 			}
 		}
 		
-		//accion-10-edicion-del-mediodia/accion-10-mediodia--programa-del-24-de-enero-2017-22642
 		
 		ht.close();
 		rescan.close();
@@ -105,10 +108,10 @@ public class Sample {
 		
 		
 		
-		
-
-	
 
 	}
+	
+	
+	
 
 }

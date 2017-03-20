@@ -53,7 +53,7 @@ public class KinePolisCrewAwardsCNT {
 	
 	static 
 	{
-		FileStore.AwardsTable("awards");
+		FileStore.AwardsTable("award");
 		
 		//file=new File("/katta/KinePole/CrewDTCNT.txt");
 	}

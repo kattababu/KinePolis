@@ -66,5 +66,7 @@
 	<classpathentry kind="lib" path="/NutchCrawl/JarsFiles/xmlenc-0.52.jar"/>
 	<classpathentry kind="lib" path="/NutchCrawl/JarsFiles/xsoup-0.3.1.jar"/>
 	<classpathentry kind="lib" path="/NutchCrawl/JarsFiles/zookeeper-3.4.5.jar"/>
+	<classpathentry kind="lib" path="/NutchCrawl/JarsFiles/json-lib-2.2.2-jdk15.jar"/>
+	<classpathentry kind="lib" path="/NutchCrawl/JarsFiles/json-simple-1.1.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

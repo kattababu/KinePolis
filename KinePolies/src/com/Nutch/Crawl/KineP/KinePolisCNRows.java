@@ -36,7 +36,7 @@ public class KinePolisCNRows {
 	HTable ht;
 	Scan sc;
 	ResultScanner rescan;
-	String rownames=null,family=null,qualifier=null;
+	String rownames=null,family=null,qualifier=null,rownames1=null;
 	
 	/*
 	static FileOutputStream fos=null;
@@ -81,7 +81,10 @@ public class KinePolisCNRows {
 					
 					rownames=Bytes.toString(kv.getRow());
 					family=Bytes.toString(kv.getFamily());
+					rownames1=Bytes.toString(kv.getRow());
 					qualifier=Bytes.toString(kv.getQualifier());
+					
+					
 					
 					if(family.equals("ol"))
 					{
@@ -139,6 +142,36 @@ public class KinePolisCNRows {
 						
 						
 					}
+					
+					
+					/*
+					
+					if(family.equals("ol")||family.equals("il"))
+					{
+						if(qualifier.equals("https://kinepolis.fr/") || qualifier.equals("https://kinepolis.fr/cinek"))
+						{
+								
+
+							if(rownames.contains("/cinemas/") || rownames1.contains("/cinemas/"))
+							{
+								//System.out.println(qualifier);
+								
+								if(rownames.equals(rownames1))
+								{
+									break;
+								}
+								else{
+									System.out.println(rownames);
+									System.out.println("LastRow:"+rownames1);
+								}
+							//System.out.println(rownames);
+							}
+							
+						}
+					}
+					
+					
+					*/
 					
 					/*
 					
