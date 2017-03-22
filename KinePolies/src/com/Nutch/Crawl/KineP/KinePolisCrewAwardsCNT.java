@@ -50,6 +50,7 @@ public class KinePolisCrewAwardsCNT {
 	static PrintStream ps=null;
 	
 	static File file=null;
+	/*
 	
 	static 
 	{
@@ -57,7 +58,7 @@ public class KinePolisCrewAwardsCNT {
 		
 		//file=new File("/katta/KinePole/CrewDTCNT.txt");
 	}
-	
+	*/
 	
 	
 	
@@ -249,9 +250,9 @@ public class KinePolisCrewAwardsCNT {
 		try
 		{
 			
-			fos = new FileOutputStream(FileStore.fileCA,true);
-			ps = new PrintStream(fos);
-			System.setOut(ps);
+			//fos = new FileOutputStream(FileStore.fileCA,true);
+			//ps = new PrintStream(fos);
+			//System.setOut(ps);
 			
 			Configuration config=HBaseConfiguration.create();
 			ht=new HTable(config,"kinepolies_webpage");
@@ -308,14 +309,16 @@ public class KinePolisCrewAwardsCNT {
 						for(Element xel:el)
 						{
 							
+							if(xel!=null)
+							{
 							/////////////// Program_SK/////////////////
-							SplitUrlNames(Movie_url);
+							SplitUrlNames(Movie_url.trim());
 							
 							System.out.print(splitter_UName.trim()+"#<>#");
 						
 							/////////////// Program_Type////////////////
 							
-							System.out.print("movie"+"#<>#");
+							System.out.print("movie".trim()+"#<>#");
 						
 							
 							///////////////////////////  Crew Awards Names////////////////////
@@ -323,7 +326,8 @@ public class KinePolisCrewAwardsCNT {
 							String CrewAwardNames=Xsoup.compile("/h3/text()").evaluate(xel).get();
 							if(CrewAwardNames!=null)
 							{
-								System.out.print(CrewAwardNames+"#<>#");
+								String filterCrewAwardNames=CrewAwardNames.replace(",", "").trim();
+								System.out.print(filterCrewAwardNames.trim()+"#<>#");
 							}
 							else
 							{
@@ -336,7 +340,7 @@ public class KinePolisCrewAwardsCNT {
 							String CrewAwardCategorys=Xsoup.compile("//span[@class='award-category']/text()").evaluate(xel).get();
 							if(CrewAwardCategorys!=null)
 							{
-								System.out.print(CrewAwardCategorys+"#<>#");
+								System.out.print(CrewAwardCategorys.trim()+"#<>#");
 							}
 							else
 							{
@@ -396,7 +400,7 @@ public class KinePolisCrewAwardsCNT {
 							
 							///////////////Winner_Type/////////////////
 						
-							System.out.print("actor"+"#<>#");
+							System.out.print("actor".trim()+"#<>#");
 						
 							///////////////Winner_Flag////////////////
 						
@@ -422,7 +426,9 @@ public class KinePolisCrewAwardsCNT {
 
 							
 							//String att=xel.className();
-							System.out.println("\n");
+							System.out.print("\n");
+							
+							}
 							
 						}
 					

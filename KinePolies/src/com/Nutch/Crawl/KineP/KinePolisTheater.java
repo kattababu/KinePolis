@@ -350,7 +350,7 @@ public class KinePolisTheater {
 							Element el=document.select("script[type=\'application/ld+json\']").first();
 							String scriptContent = el.html();
 							
-							System.out.println(scriptContent);
+							//System.out.println(scriptContent);
 							JSONParser parser = new JSONParser();
 							//
 							Object object = parser.parse(scriptContent); 

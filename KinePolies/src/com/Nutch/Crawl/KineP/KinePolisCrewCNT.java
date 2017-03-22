@@ -32,7 +32,7 @@ public class KinePolisCrewCNT {
 	HTable ht;
 	Scan sc;
 	ResultScanner rescan;
-	String rownames=null,family=null,qualifier=null,content=null,splitter_SK=null,splitter_UName=null;
+	String rownames=null,family=null,qualifier=null,content=null,splitter_SK=null,splitter_UName=null,splitter_Count=null;
 	final String mainhost="https://kinepolis.fr";
 	
 	
@@ -51,12 +51,14 @@ public class KinePolisCrewCNT {
 	
 	static File file=null;
 	
+	
 	static 
 	{
 		FileStore.CrewTable("crew");
 		
 		//file=new File("/katta/KinePole/CrewDTCNT.txt");
 	}
+	
 	
 	
 	
@@ -103,7 +105,15 @@ public class KinePolisCrewCNT {
 							{
 							//System.out.println(mainhost+CrewDirector);
 							 String CrewDQL=mainhost+CrewDirector.trim();
+							 if(CrewDQL.contains("/films/"))
+							 {
+								 break;
+							 }
+							 else
+							 {
+							
 							KinePolisCrewQLsNT(CrewDQL);
+							 }
 							}
 							
 						}
@@ -162,9 +172,9 @@ public class KinePolisCrewCNT {
 					if(qualifier.equals(names))
 					{
 						SplitUrlNames(names);
-						 if(rownames.contains(splitter_UName) && rownames.endsWith(splitter_UName))
+						 if(rownames.contains(splitter_UName) && rownames.endsWith(splitter_UName) && rownames.contains("/personnes/"))
 						 {
-							// System.out.println(rownames);
+							//System.out.println(rownames);
 							 
 							 KinePolisCrewRCNT(rownames);
 						 }
@@ -304,7 +314,9 @@ public class KinePolisCrewCNT {
 	 System.out.print(splitter_UName.trim()+"#<>#");
 	 
 ///////////////////////Crew_ Name///////////////////////////
-	 System.out.print(CrewName.trim()+"#<>#");
+	// System.out.println(CrewName.length());
+	 String FilterName=CrewName.replace("-", " ").trim();
+	 System.out.print(FilterName.trim()+"#<>#");
 	 
 /////////////////////// Crew OriginalName///////////////////////////
 	 System.out.print("#<>#");
@@ -361,7 +373,9 @@ public class KinePolisCrewCNT {
 /////////////////////// Crew_Country///////////////////////////
 	 if(CrewCountry!=null)
 	 {
-	 System.out.print(CrewCountry.trim()+"#<>#");
+		 SplitCountry(CrewCountry);
+			
+	 System.out.print(splitter_Count.trim()+"#<>#");
 	 }
 	 else
 	 {
@@ -409,7 +423,7 @@ public class KinePolisCrewCNT {
 		 for(String RFL:RFlist)
 		 {
 			 SplitUrlNames(RFL);
-			 System.out.print(symb+splitter_UName);
+			 System.out.print(symb+splitter_UName.trim());
 			 symb="<>";
 			 
 			 
@@ -483,7 +497,14 @@ public class KinePolisCrewCNT {
 	}
 	
 
-	
+	public void SplitCountry(String name)
+	{
+		String[] split=name.split("\\(|\\,");
+		splitter_Count=split[0];
+		//Splitter_count=split[1];
+		//System.out.println(splitter);
+	}
+
 	
 	public void CrewDateFormat(String name)
 	{
@@ -499,9 +520,9 @@ public class KinePolisCrewCNT {
 
 		    Calendar cal = Calendar.getInstance();
 		    cal.setTime(formatter);
-		    CrewDateCon = cal.get(Calendar.DATE) + "-" + 
+		    CrewDateCon = cal.get(Calendar.YEAR) + "-" + 
 		            (cal.get(Calendar.MONTH) + 1) + 
-		            "-" +         cal.get(Calendar.YEAR);
+		            "-" +         cal.get(Calendar.DATE);
 		   // System.out.println("formatedDate : " + formatedDate);
 
 	}

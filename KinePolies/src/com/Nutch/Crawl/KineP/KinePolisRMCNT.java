@@ -49,12 +49,14 @@ public class KinePolisRMCNT {
 	
 	MSDigest msd=new MSDigest();
 	
+	
 	static 
 	{
 		
 		//file=new File("/katta/KinePole/RichMCNT.txt");
 		FileStore.RichMediaTable("richmedia");
 	}
+	
 	
 
 	public void KinePolisRNT(String names)
@@ -92,15 +94,27 @@ public class KinePolisRMCNT {
 							content=Bytes.toString(kv.getValue());
 							Document document = Jsoup.parse(content);
 							
-							Mvurl=Xsoup.compile("//meta[@property='og:url']/@content").evaluate(document).get();
+							//Mvurl=Xsoup.compile("//meta[@property='og:url']/@content").evaluate(document).get();
 							
-							SplitMurl(Mvurl);
+							//SplitMurl(Mvurl);
 							
 							
 							
 							String imgurl=Xsoup.compile("//*[contains(@class, 'field-items')]/div[contains(@class, 'field-item') and contains(@class, 'even')]/img/@src").evaluate(document).get();
-							if(imgurl!=null)
+							
+							if(imgurl.isEmpty()||imgurl==""||imgurl==null)
 							{
+								
+							//System.out.println(Vimgurl3);
+								break;
+								
+								
+							}
+							else if(imgurl!=null)
+							{
+								Mvurl=Xsoup.compile("//meta[@property='og:url']/@content").evaluate(document).get();
+								
+								
 								String Dimen_size="";
 						
 							//System.out.println(mainhost+imgurl);
@@ -125,7 +139,7 @@ public class KinePolisRMCNT {
 								
 								
 								
-								ImagTab(Img_typ,Dimen_size);
+								ImagTab(Img_typ,Dimen_size,Mvurl);
 							}
 							
 							
@@ -136,10 +150,20 @@ public class KinePolisRMCNT {
 							List<String>alist=Xsoup.compile("//div[contains(@class, 'field field-name-field-person-picture field-type-image field-label-hidden')]/div[contains(@class, 'field-items')]/div[contains(@class, 'field-item') and contains(@class, 'even')]/img/@src").evaluate(document).list();
 							for(String actsimgurl2:alist)
 							{
+								if(actsimgurl2.isEmpty()||actsimgurl2==""||actsimgurl2==null)
+								{
+									
+								//System.out.println(Vimgurl3);
+									break;
+									
+									
+								}
+								
 							if(actsimgurl2!=null)
 							{
 							
 								//System.out.println(mainhost+actsimgurl2);
+								Mvurl=Xsoup.compile("//meta[@property='og:url']/@content").evaluate(document).get();
 								
 								MImg=mainhost+actsimgurl2.trim();
 								msd.MD5(MImg.trim());
@@ -149,7 +173,7 @@ public class KinePolisRMCNT {
 								String Image_Type="small";
 								String Dimen_size=Iwidth.trim()+"x"+Iheight.trim();
 								
-								ImagTab(Image_Type,Dimen_size);
+								ImagTab(Image_Type,Dimen_size,Mvurl);
 								
 							}
 							
@@ -159,9 +183,21 @@ public class KinePolisRMCNT {
 							
 							
 							String Vimgurl3=Xsoup.compile("//div[@class='video-js-wrapper']//video/@poster").evaluate(document).get();
-							if(Vimgurl3!=null)
+							
+							
+							
+							if(Vimgurl3.isEmpty()||Vimgurl3==""||Vimgurl3==null)
+							{
+								
+							//System.out.println(Vimgurl3);
+								break;
+								
+								
+							}
+							else if(Vimgurl3!=null)
 							{
 							//System.out.println(Vimgurl3);
+								Mvurl=Xsoup.compile("//meta[@property='og:url']/@content").evaluate(document).get();
 								
 								MImg=Vimgurl3.trim();
 								msd.MD5(MImg.trim());
@@ -173,7 +209,7 @@ public class KinePolisRMCNT {
 								String Image_Type="poster";
 								String Dimen_size=Iwidth.trim()+"x"+Iheight.trim();
 								
-								ImagTab(Image_Type,Dimen_size);
+								ImagTab(Image_Type,Dimen_size,Mvurl);
 								
 								
 							}
@@ -184,11 +220,21 @@ public class KinePolisRMCNT {
 							List<String>list=Xsoup.compile("//ul[@class='kinepolis-slider-list']//li//img/@src").evaluate(document).list();
 							for(String Slideimgurl3:list)
 							{
+								
+								if(Slideimgurl3.isEmpty()||Slideimgurl3==""||Slideimgurl3==null)
+								{
+									
+								//System.out.println(Vimgurl3);
+									break;
+									
+									
+								}
 							if(Slideimgurl3!=null)
 							{
 								
 								
 							//System.out.println(mainhost+Slideimgurl3);
+								Mvurl=Xsoup.compile("//meta[@property='og:url']/@content").evaluate(document).get();
 								
 								MImg=mainhost+Slideimgurl3.trim();
 								msd.MD5(MImg.trim());
@@ -200,7 +246,7 @@ public class KinePolisRMCNT {
 								String Image_Type="large";
 								String Dimen_size=Iwidth.trim()+"x"+Iheight.trim();
 								
-								ImagTab(Image_Type,Dimen_size);
+								ImagTab(Image_Type,Dimen_size,Mvurl);
 								
 							}
 							}
@@ -214,7 +260,7 @@ public class KinePolisRMCNT {
 		}
 		catch(Exception e)
 		{
-			e.printStackTrace();
+			e.getMessage();
 		}
 		
 		finally
@@ -235,9 +281,10 @@ public class KinePolisRMCNT {
 	}
 							
 							
-		public void ImagTab(String Image_Type,String Dimension_Image)
+		public void ImagTab(String Image_Type,String Dimension_Image,String Murl)
 		{
 			///////////// Image SK/////////////////
+			SplitMurl(Murl);
 			
 			System.out.print(msd.md5s+"#<>#");
 			
@@ -281,7 +328,7 @@ public class KinePolisRMCNT {
 			
 ///////////// Reference_Url/////////////////
 			
-			System.out.print(Mvurl.trim()+"#<>#");
+			System.out.print(Murl.trim()+"#<>#");
 			
 			
 ///////////// Aux_Info/////////////////

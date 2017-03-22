@@ -3,7 +3,11 @@ package com.Nutch.Crawl.KineP;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
@@ -29,6 +33,7 @@ public class KinePolisPRCNT {
 	Scan sc;
 	ResultScanner rescan;
 	String rownames=null,family=null,qualifier=null,content=null,splitter_SK=null,splitter_PRDY=null,splitter_Count=null;
+	String CrewDateCon=null;
 	/*
 		
 	final String mainhost="https://kinepolis.fr";
@@ -53,7 +58,7 @@ public class KinePolisPRCNT {
 	static String PRDate=null;
 	String symb34="";
 	static String country=null;
-	
+	/*
 	
 	static 
 	{
@@ -63,16 +68,16 @@ public class KinePolisPRCNT {
 		FileStore.ProgramReleaseTable("release");
 	}
 	
-	
+	*/
 
 	public void KinePolisPNT(String names)
 	{
 		try
 		{
 			
-			fos = new FileOutputStream(FileStore.filePR,true);
-			ps = new PrintStream(fos);
-			System.setOut(ps);
+			//fos = new FileOutputStream(FileStore.filePR,true);
+			//ps = new PrintStream(fos);
+			//System.setOut(ps);
 			
 			Configuration config=HBaseConfiguration.create();
 			ht=new HTable(config,"kinepolies_webpage");
@@ -101,9 +106,7 @@ public class KinePolisPRCNT {
 							Document document = Jsoup.parse(content);
 						
 							
-							PRurl=Xsoup.compile("//meta[@property='og:url']/@content").evaluate(document).get();
 							
-							SplitPRurl(PRurl);
 							
 							/*
 							
@@ -137,10 +140,18 @@ public class KinePolisPRCNT {
 							
 							String releaseDate=Xsoup.compile("//div[@class='clearfix-field field field-name-field-movie-release-date field-type-date field-label-inline clearfix']/div[@class='field-items']/div[@class='odd first last']/span[@class='date-display-single']/text()").evaluate(document).get();
 							if(releaseDate!=null)
+								
+								
 							{
+								
+								PRurl=Xsoup.compile("//meta[@property='og:url']/@content").evaluate(document).get();
+								
+								SplitPRurl(PRurl);
 								//System.out.println(releaseDate);
 								
 								PRDate=releaseDate.replace("/", "-");
+								CrewDateFormat(PRDate);
+								
 								SplitPRYurl(PRDate);
 								
 								/*
@@ -168,7 +179,7 @@ public class KinePolisPRCNT {
 											
 											//symb34="<>";
 									 //System.out.println(country);
-											ReleaseTab(PRDate,splitter_Count);
+											ReleaseTab(CrewDateCon,splitter_Count);
 								////////////Country////////////////
 											
 											
@@ -190,7 +201,7 @@ public class KinePolisPRCNT {
 								{
 									splitter_Count="".trim();
 									
-									ReleaseTab(PRDate,splitter_Count);
+									ReleaseTab(CrewDateCon,splitter_Count);
 								}
 
 
@@ -304,6 +315,7 @@ public class KinePolisPRCNT {
 		
 		
 ////////////Release_Date////////////////
+	
 		System.out.print(rdate.trim());
 		System.out.print("#<>#");
 		
@@ -385,5 +397,34 @@ public class KinePolisPRCNT {
 		//Splitter_count=split[1];
 		//System.out.println(splitter);
 	}
+	
+	
+	
+	public void CrewDateFormat(String name)
+	{
+		try
+		{
+			
+			
+		
+		Date formatter = (Date) new SimpleDateFormat("dd-MM-yyyy").parse(name);
+		  //  Date date;
+		    //date = (Date)formatter.parse(fecha.toString());
+		  //  System.out.println(date);        
+
+		    Calendar cal = Calendar.getInstance();
+		    cal.setTime(formatter);
+		    CrewDateCon = cal.get(Calendar.YEAR) + "-" + 
+		            (cal.get(Calendar.MONTH) + 1) + 
+		            "-" +         cal.get(Calendar.DATE);
+		   // System.out.println("formatedDate : " + formatedDate);
+
+	}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
 }
 

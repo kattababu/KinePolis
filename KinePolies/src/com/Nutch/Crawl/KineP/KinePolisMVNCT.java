@@ -62,6 +62,7 @@ public class KinePolisMVNCT {
 
 	}
 	
+	
 
 	public void KinePolisCNT(String names)
 	{
@@ -112,7 +113,8 @@ public class KinePolisMVNCT {
 							///////////////////////////Movie _ title/////////////////////////
 							
 							String title=Xsoup.compile("//div[@class='field-item even']/h1/text()").evaluate(document).get();
-							System.out.print(title.trim()+"#<>#");
+							String filtertitle=title.replace(",", "").replace("... ", " ").replace("...", " ");
+							System.out.print(filtertitle.trim()+"#<>#");
 							//System.out.println("\n\n\n\n");
 							
 							//////////////// Original_Title///////////////////
@@ -127,7 +129,8 @@ public class KinePolisMVNCT {
 							if(descript!=null)
 							{
 							
-							System.out.print(descript.trim()+"#<>#");
+								String filterDesc=descript.replace("…", ".").replace("...", ".").replace("... ", ".");
+							System.out.print(filterDesc.trim()+"#<>#");
 							}
 							else
 							{
@@ -183,7 +186,11 @@ public class KinePolisMVNCT {
 								Pattern p = Pattern.compile("\\d+");
 							    Matcher m = p.matcher(mtvalue);
 							    while(m.find())
-							      System.out.print(m.group().trim()+"#<>#");
+							    {
+							    	//System.out.println(m.group().trim());
+							    	int min=Integer.parseInt(m.group().trim());
+							      System.out.print((60*min)+"#<>#");
+							    }
 							  
 								
 								//System.out.print(mtvalue.trim()+"#<>#");
@@ -323,6 +330,7 @@ public class KinePolisMVNCT {
 	
 		public void SplitUrl(String name)
 		{
+			//System.out.println(name);
 			String[] split=name.split("\\/");
 			splitter_SK=split[split.length - 1];
 			//System.out.println(splitter);

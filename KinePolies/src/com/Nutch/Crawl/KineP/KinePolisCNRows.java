@@ -96,27 +96,42 @@ public class KinePolisCNRows {
 							if(rownames.contains("/films/") ||rownames.contains("/evenements/"))
 							{
 								c=c+1;
+								
+									
 							//System.out.println(rownames);
 								
-							if (c>0 && c<=250)
+							if (c>0 && c<=10)
 								{
-								new KinePolisMVNCT().KinePolisCNT(rownames);
-								new KinePolisRMCNT().KinePolisRNT(rownames);
+								
+								if(rownames.endsWith("/marathons-0"))
+								{
+									break;
+								}
+								else 
+									
+								{
+								System.out.println(rownames);
+								//
+								//new KinePolisMVNCT().KinePolisCNT(rownames);
+								
+								//new KinePolisRMCNT().KinePolisRNT(rownames);
 							new KinePolisPRCNT().KinePolisPNT(rownames);
-							new KinePolisRateCNT().KinePolisRatNT(rownames);
-							new KinePolisCrewCNT().KinePolisCrewNT(rownames);
-							new KinePolisPCDCT().KinePolisCrewPrgNT(rownames);
-							new KinePolisPCACT().KinePolisCrewPANT(rownames);
-							new KinePolisPCAICNT().KinePolisCrewPrgACTNT(rownames);
-							new KinePolisCrewAwardsCNT().KinePolisCrewActAwdCNT(rownames);
+							//new KinePolisRateCNT().KinePolisRatNT(rownames);
+							//new KinePolisCrewCNT().KinePolisCrewNT(rownames);
+							//new KinePolisPCDCT().KinePolisCrewPrgNT(rownames);
+							//new KinePolisPCACT().KinePolisCrewPANT(rownames);
+							//new KinePolisPCAICNT().KinePolisCrewPrgACTNT(rownames);
+							//new KinePolisCrewAwardsCNT().KinePolisCrewActAwdCNT(rownames);
+								}
 								}
 								
 							
 							if (c>250 && c<=500)
 							{
 								
+								/*
 								new KinePolisMVNCT().KinePolisCNT(rownames);
-								new KinePolisRMCNT().KinePolisRNT(rownames);
+							new KinePolisRMCNT().KinePolisRNT(rownames);
 								new KinePolisPRCNT().KinePolisPNT(rownames);
 								new KinePolisRateCNT().KinePolisRatNT(rownames);
 								new KinePolisCrewCNT().KinePolisCrewNT(rownames);
@@ -125,6 +140,7 @@ public class KinePolisCNRows {
 								new KinePolisPCAICNT().KinePolisCrewPrgACTNT(rownames);
 								new KinePolisCrewAwardsCNT().KinePolisCrewActAwdCNT(rownames);
 
+*/
 										
 							}
 						
