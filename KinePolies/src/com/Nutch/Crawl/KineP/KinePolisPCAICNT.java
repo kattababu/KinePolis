@@ -40,6 +40,7 @@ public class KinePolisPCAICNT {
 	String rownames=null,family=null,qualifier=null,content=null,splitter_PSK=null,splitter_UName=null;
 	static String CrewAurl=null;
 	int i=1;
+	int j=2;
 	
 	static FileOutputStream fos=null;
 	static PrintStream ps=null;
@@ -54,9 +55,9 @@ public class KinePolisPCAICNT {
 		try
 		{
 			
-		fos = new FileOutputStream(FileStore.filePC,true);
-			ps = new PrintStream(fos);
-			System.setOut(ps);
+		//fos = new FileOutputStream(FileStore.filePC,true);
+			//ps = new PrintStream(fos);
+			//System.setOut(ps);
 			
 			Configuration config=HBaseConfiguration.create();
 			ht=new HTable(config,"kinepolies_webpage");
@@ -85,6 +86,21 @@ public class KinePolisPCAICNT {
 							Document document = Jsoup.parse(content);
 							
 							
+							 
+							 List<String> CrewDirector=Xsoup.compile("//div[@class='clearfix-field field field-name-field-movie-person-director field-type-node-reference field-label-inline clearfix']/div[@class='field-items']//a/@href").evaluate(document).list();
+								if(CrewDirector!=null)
+								{
+									for(String a:CrewDirector)
+									{
+										i=i+1;
+										
+										
+									}
+									//System.out.println(i);
+									
+									
+							 
+								
 							
 							
 							List<String> CrewActors=Xsoup.compile("//div[@class='clearfix-field field field-name-movie-cast-list field-type-ds field-label-inline clearfix']//div[@class='field field-name-title field-type-ds field-label-hidden']//div[@class='field-items']//a/@href").evaluate(document).list();
@@ -99,11 +115,11 @@ public class KinePolisPCAICNT {
 							 String CrewAQL=CrewActor.trim();
 							 SplitUrlNames(CrewAQL);
 							//KinePolisCrewQLsNT(CrewDQL);
-							 PActCrewTabs();
+							 PActCrewTabs(i);
 							 i++;
 								}
-							 
-							 
+							
+							}
 							}
 							
 						}
@@ -154,7 +170,7 @@ public class KinePolisPCAICNT {
 	
 	
 	
-	public void PActCrewTabs()
+	public void PActCrewTabs(int a)
 	{
 		////////// Program_SK///////////////////////
 		System.out.print(splitter_PSK.trim()+"#<>#");
@@ -185,7 +201,7 @@ public class KinePolisPCAICNT {
 		
 		
 //////////Rank///////////////////////
-		System.out.print(i+"#<>#");
+		System.out.print(a+"#<>#");
 		
 //////////aux_info///////////////////////
 		System.out.print("#<>#");

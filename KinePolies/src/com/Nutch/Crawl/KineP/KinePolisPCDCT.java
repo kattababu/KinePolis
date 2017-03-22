@@ -6,6 +6,7 @@ package com.Nutch.Crawl.KineP;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
+import java.util.List;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
@@ -50,13 +51,14 @@ public class KinePolisPCDCT {
 	static File file=null;
 	
 	
-	
+	/*
 	static 
 	{
 		FileStore.ProgramCrewTable("programcrew");
 		
 		//file=new File("/katta/KinePole/CrewDTCNT.txt");
 	}
+	*/
 	
 	//final String mainhost="https://kinepolis.fr";
 	public void KinePolisCrewPrgNT(String names)
@@ -64,9 +66,9 @@ public class KinePolisPCDCT {
 		try
 		{
 			
-		fos = new FileOutputStream(FileStore.filePC,true);
-		ps = new PrintStream(fos);
-		System.setOut(ps);
+		//fos = new FileOutputStream(FileStore.filePC,true);
+		//ps = new PrintStream(fos);
+		//System.setOut(ps);
 			
 			Configuration config=HBaseConfiguration.create();
 			ht=new HTable(config,"kinepolies_webpage");
@@ -97,17 +99,23 @@ public class KinePolisPCDCT {
 							
 							
 							
-							String CrewDirector=Xsoup.compile("//div[@class='clearfix-field field field-name-field-movie-person-director field-type-node-reference field-label-inline clearfix']/div[@class='field-items']//a/@href").evaluate(document).get();
+							List<String> CrewDirector=Xsoup.compile("//div[@class='clearfix-field field field-name-field-movie-person-director field-type-node-reference field-label-inline clearfix']/div[@class='field-items']//a/@href").evaluate(document).list();
 							if(CrewDirector!=null)
+								
 							{
+								
+								for(String CrewDts:CrewDirector)
+								{
 								CrewDurl=Xsoup.compile("//meta[@property='og:url']/@content").evaluate(document).get();
 								SplitPSK(CrewDurl);
-							//System.out.println(mainhost+CrewDirector);
-							 String CrewDQL=CrewDirector.trim();
+							//System.out.println(CrewDirector);
+							 String CrewDQL=CrewDts.trim();
 							 SplitUrlNames(CrewDQL);
 							//KinePolisCrewQLsNT(CrewDQL);
 							 PCrewTabs();
 							 i++;
+								}
+							 
 							 
 							 
 							}

@@ -61,7 +61,7 @@ public class KinePolisPCACT {
 	static PrintStream ps=null;
 	
 	static File file=null;
-	
+	/////////////////////////////////////////////////// Crew For Actors//////////////////////////////
 	
 	
 	public void KinePolisCrewPANT(String names)
@@ -107,9 +107,19 @@ public class KinePolisPCACT {
 							//System.out.println(mainhost+CrewDirector);
 							 String CrewAQL=mainhost+CrewActor.trim();
 							 
+							 if(CrewAQL.contains("/films/")||CrewAQL.contains("/evenements/"))
+							 {
+								 break;
+							 }
+							 else
+							 {
+								 KinePolisCrewPAQLNT(CrewAQL);
+																	 
+							 }
+							 
 							// System.out.println(CrewAQL);
 							 
-							 KinePolisCrewPAQLNT(CrewAQL);
+							 	
 								}
 							//KinePolisCrewQLsNT(CrewDQL);
 							}
@@ -173,13 +183,15 @@ public class KinePolisPCACT {
 					if(qualifier.equals(names))
 					{
 						SplitUrlNames(names);
-						 if(rownames.contains(splitter_UName) && rownames.endsWith(splitter_UName))
+						 if(rownames.contains(splitter_UName) && rownames.endsWith(splitter_UName) && rownames.contains("/personnes/"))
 						 {
 							// System.out.println("\n");
 							//System.out.println(rownames);
 							//System.out.println("\n");
 							 
-							KinePolisCrewRPCACNT(rownames);
+							new KinePolisPCACT().KinePolisCrewRPCACNT(rownames);
+							
+							new KinePolisRMCNT().KinePolisCDCANT(rownames);
 							 //KinePolisCrewRCNT(rownames);
 						 }
 						
@@ -324,7 +336,8 @@ public class KinePolisPCACT {
 		 System.out.print(splitter_UName.trim()+"#<>#");
 		 
 	///////////////////////Crew_ Name///////////////////////////
-		 System.out.print(CrewName.trim()+"#<>#");
+		 String FilterName=CrewName.replace("-", " ").trim();
+		 System.out.print(FilterName.trim()+"#<>#");
 		 
 	/////////////////////// Crew OriginalName///////////////////////////
 		 System.out.print("#<>#");
@@ -429,7 +442,7 @@ public class KinePolisPCACT {
 			 for(String RFL:RFlist)
 			 {
 				 SplitUrlNames(RFL);
-				 System.out.print(symb+splitter_UName);
+				 System.out.print(symb+splitter_UName.trim());
 				 symb="<>";
 				 
 				 
@@ -513,9 +526,9 @@ public class KinePolisPCACT {
 
 		    Calendar cal = Calendar.getInstance();
 		    cal.setTime(formatter);
-		    CrewDateCon = cal.get(Calendar.DATE) + "-" + 
+		    CrewDateCon = cal.get(Calendar.YEAR) + "-" + 
 		            (cal.get(Calendar.MONTH) + 1) + 
-		            "-" +         cal.get(Calendar.YEAR);
+		            "-" +         cal.get(Calendar.DATE);
 		   // System.out.println("formatedDate : " + formatedDate);
 
 	}

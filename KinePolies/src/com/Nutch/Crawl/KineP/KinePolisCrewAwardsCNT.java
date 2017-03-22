@@ -308,7 +308,14 @@ public class KinePolisCrewAwardsCNT {
 						Elements el=Xsoup.compile("//div[@class='award-contest-title']").evaluate(document).getElements();
 						for(Element xel:el)
 						{
-							
+							if(xel.text().isEmpty()||xel.text()==""||xel.text()==null||xel==null)
+							{
+								
+							//System.out.println(Vimgurl3);
+								break;
+								
+								
+							}
 							if(xel!=null)
 							{
 							/////////////// Program_SK/////////////////
@@ -490,7 +497,7 @@ public class KinePolisCrewAwardsCNT {
 		
 		catch(Exception e)
 		{
-			e.printStackTrace();
+			e.getMessage();
 		}
 		
 		finally

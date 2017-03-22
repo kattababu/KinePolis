@@ -48,6 +48,7 @@ public class KinePolisRMCNT {
 	static File file=null;
 	
 	MSDigest msd=new MSDigest();
+	/*
 	
 	
 	static 
@@ -58,15 +59,15 @@ public class KinePolisRMCNT {
 	}
 	
 	
-
+*/
 	public void KinePolisRNT(String names)
 	{
 		try
 		{
 			
-			fos = new FileOutputStream(FileStore.fileRM,true);
-			ps = new PrintStream(fos);
-			 System.setOut(ps);
+			//fos = new FileOutputStream(FileStore.fileRM,true);
+			//ps = new PrintStream(fos);
+			// System.setOut(ps);
 			
 			Configuration config=HBaseConfiguration.create();
 			ht=new HTable(config,"kinepolies_webpage");
@@ -145,8 +146,8 @@ public class KinePolisRMCNT {
 							
 							
 							
-							
-							
+							/*
+							////////////////////////// Personnes/////////////// Images//////////
 							List<String>alist=Xsoup.compile("//div[contains(@class, 'field field-name-field-person-picture field-type-image field-label-hidden')]/div[contains(@class, 'field-items')]/div[contains(@class, 'field-item') and contains(@class, 'even')]/img/@src").evaluate(document).list();
 							for(String actsimgurl2:alist)
 							{
@@ -179,7 +180,7 @@ public class KinePolisRMCNT {
 							
 							
 							}
-							
+							*/
 							
 							
 							String Vimgurl3=Xsoup.compile("//div[@class='video-js-wrapper']//video/@poster").evaluate(document).get();
@@ -279,7 +280,120 @@ public class KinePolisRMCNT {
 			
 		}
 	}
+	
+	
+	
+	
+	//////////////////////////////////// FOR Crew Director AND Crew Actor RICHMEDIA ///////////////////////////
+	
+	public void KinePolisCDCANT(String names)
+	{
+		try
+		{
+			
+			//fos = new FileOutputStream(FileStore.fileRM,true);
+			//ps = new PrintStream(fos);
+			// System.setOut(ps);
+			
+			Configuration config=HBaseConfiguration.create();
+			ht=new HTable(config,"kinepolies_webpage");
+			sc=new Scan();
+			//sc.setCaching(10);
+			rescan=ht.getScanner(sc);
+			
+			for(Result res = rescan.next(); (res != null); res=rescan.next())
+			{
+				for(KeyValue kv:res.list())
+				{
+					
+					rownames=Bytes.toString(kv.getRow());
+					family=Bytes.toString(kv.getFamily());
+					qualifier=Bytes.toString(kv.getQualifier());
+					
+					if(rownames.equals(names))
+					{
+						if(family.equals("f")&& qualifier.equals("cnt"))
+						{
+									
+							//System.out.println("\n");
+							//System.out.println(rownames);
+							//System.out.println("\n");
+							content=Bytes.toString(kv.getValue());
+							Document document = Jsoup.parse(content);
 							
+							
+							List<String>alist=Xsoup.compile("//div[contains(@class, 'field field-name-field-person-picture field-type-image field-label-hidden')]/div[contains(@class, 'field-items')]/div[contains(@class, 'field-item') and contains(@class, 'even')]/img/@src").evaluate(document).list();
+							for(String actsimgurl2:alist)
+							{
+								if(actsimgurl2.isEmpty()||actsimgurl2==""||actsimgurl2==null)
+								{
+									
+								//System.out.println(Vimgurl3);
+									break;
+									
+									
+								}
+								
+							if(actsimgurl2!=null)
+							{
+							
+								//System.out.println(mainhost+actsimgurl2);
+								Mvurl=Xsoup.compile("//meta[@property='og:url']/@content").evaluate(document).get();
+								
+								MImg=mainhost+actsimgurl2.trim();
+								msd.MD5(MImg.trim());
+								String Iwidth=Xsoup.compile("//div[contains(@class, 'field field-name-field-person-picture field-type-image field-label-hidden')]/div[contains(@class, 'field-items')]/div[contains(@class, 'field-item') and contains(@class, 'even')]/img/@width").evaluate(document).get();
+								String Iheight=Xsoup.compile("//div[contains(@class, 'field field-name-field-person-picture field-type-image field-label-hidden')]/div[contains(@class, 'field-items')]/div[contains(@class, 'field-item') and contains(@class, 'even')]/img/@height").evaluate(document).get();
+								
+								String Image_Type="small";
+								String Dimen_size=Iwidth.trim()+"x"+Iheight.trim();
+								
+								ImagTab(Image_Type,Dimen_size,Mvurl);
+								
+							}
+							
+							
+							}
+							
+							
+						}
+					}
+				}
+			}
+		}
+		catch(Exception e)
+		{
+			e.getMessage();
+		}
+		
+		finally
+		{
+			try
+			{
+				ht.close();
+				rescan.close();
+				ps.close();
+				fos.close();
+			}
+			catch(Exception e)
+			{
+				e.getMessage();
+			}
+			
+		}
+	}
+		
+							
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/////////////////////////////////////////////////////////END//////////////////////						
 							
 		public void ImagTab(String Image_Type,String Dimension_Image,String Murl)
 		{

@@ -51,6 +51,8 @@ public class KinePolisCrewCNT {
 	
 	static File file=null;
 	
+	/*
+	
 	
 	static 
 	{
@@ -59,7 +61,7 @@ public class KinePolisCrewCNT {
 		//file=new File("/katta/KinePole/CrewDTCNT.txt");
 	}
 	
-	
+	*/
 	
 	
 	
@@ -105,7 +107,8 @@ public class KinePolisCrewCNT {
 							{
 							//System.out.println(mainhost+CrewDirector);
 							 String CrewDQL=mainhost+CrewDirector.trim();
-							 if(CrewDQL.contains("/films/"))
+							
+							 if(CrewDQL.contains("/films/")||CrewDQL.contains("/evenements/"))
 							 {
 								 break;
 							 }
@@ -174,9 +177,12 @@ public class KinePolisCrewCNT {
 						SplitUrlNames(names);
 						 if(rownames.contains(splitter_UName) && rownames.endsWith(splitter_UName) && rownames.contains("/personnes/"))
 						 {
-							//System.out.println(rownames);
+							//System.out.println("Crew Data:"+rownames);
 							 
-							 KinePolisCrewRCNT(rownames);
+							new KinePolisCrewCNT().KinePolisCrewRCNT(rownames);
+							//System.out.println("CrewImage Data:"+rownames);
+							
+							new KinePolisRMCNT().KinePolisCDCANT(rownames);
 						 }
 						
 					}
@@ -216,9 +222,9 @@ public class KinePolisCrewCNT {
 		try
 		{
 			
-			fos = new FileOutputStream(FileStore.fileC,true);
-			ps = new PrintStream(fos);
-			System.setOut(ps);
+			//fos = new FileOutputStream(FileStore.fileC,true);
+			//ps = new PrintStream(fos);
+			//System.setOut(ps);
 			
 			Configuration config=HBaseConfiguration.create();
 			ht=new HTable(config,"kinepolies_webpage");

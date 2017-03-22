@@ -85,7 +85,7 @@ public class Sample {
 				
 				
 				
-				if(rownames.equals("fr.kinepolis:https/films/13-la-douzaine-2"))
+				if(rownames.equals("fr.kinepolis:https/personnes/ted-demme"))
 				{
 					if(family.equals("f") && qualifier.equals("cnt"))
 					{

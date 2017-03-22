@@ -5,6 +5,7 @@
  */
 package com.Nutch.Crawl.KineP;
 
+import java.util.List;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
@@ -45,7 +46,7 @@ public class KinePolisMVNCT {
 	HTable ht;
 	Scan sc;
 	ResultScanner rescan;
-	String rownames=null,family=null,qualifier=null,content=null,splitter_SK=null,splitter_Count=null;
+	String rownames=null,family=null,qualifier=null,content=null,splitter_SK=null,splitter_Count=null,Desclang=null;;
 	String symb34="";
 	
 	static FileOutputStream fos=null;
@@ -125,12 +126,18 @@ public class KinePolisMVNCT {
 							System.out.print("#<>#");
 							
 							///////////////////Description///////////////////
-							String descript=Xsoup.compile("//div[@class='field-item even']/p/text()").evaluate(document).get();
+							List<String> descript=Xsoup.compile("//div[@class='field-item even']/p/text()").evaluate(document).list();
 							if(descript!=null)
+								
 							{
+								for(String desc:descript)
+								{
+									Desclang=desc;
 							
-								String filterDesc=descript.replace("…", ".").replace("...", ".").replace("... ", ".");
-							System.out.print(filterDesc.trim()+"#<>#");
+								String filterDesc=Desclang.replace("…", ".").replace("...", ".").replace("... ", ".");
+							System.out.print(filterDesc.trim());
+							}
+								System.out.print("#<>#");
 							}
 							else
 							{
@@ -213,7 +220,7 @@ public class KinePolisMVNCT {
 							System.out.print("#<>#");
 							
 							///////////////////MetaData_Language///////////////////
-							LanguageIdentifier identifier = new LanguageIdentifier(descript);
+							LanguageIdentifier identifier = new LanguageIdentifier(Desclang);
 							String lang=identifier.getLanguage();
 							Locale loc =new Locale(lang);
 							String namevalue=loc.getISO3Language();
