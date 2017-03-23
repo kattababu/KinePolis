@@ -34,6 +34,8 @@ public class FileStore {
 	static File fileCA=null;
 	static File fileTvshow=null;
 	static File fileTvshowEps=null;
+	static File fileTHR=null;
+	
 	//static int count=0;
 	/*
 	final static String movietable="movie_";
@@ -254,6 +256,27 @@ public class FileStore {
 	
 	
 	
+///////////////////////////////////////////////////////////////////	Theater Table////////////////////////////////////////////
+	
+	
+	public static void TheaterTable(String table) {
+        //get current project path
+       // String filePath = ;
+        //create a new file with Time Stamp
+        fileTHR= new File(filePath + "/" + filename+table+"_"+GetCurrentTimeStamp().replace(":","").replace(".","")+".queries");
+
+        try {
+            if (!fileTHR.exists()) {
+                fileTHR.createNewFile();
+                //System.out.println("File is created; file name is " + fileMRAT.getName());
+            } else {
+              //  System.out.println("File already exist");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 	
 	
 	

@@ -84,7 +84,7 @@ public class KinePolisCNRows {
 					rownames1=Bytes.toString(kv.getRow());
 					qualifier=Bytes.toString(kv.getQualifier());
 					
-					
+				
 					
 					if(family.equals("ol"))
 					{
@@ -100,9 +100,13 @@ public class KinePolisCNRows {
 									
 							//System.out.println(rownames);
 								
-							if (c>0 && c<=10)
+					
+								
+							if (c>50 && c<=100)
 								{
 								
+								
+								//System.out.println(rownames);
 								if(rownames.endsWith("/marathons-0"))
 								{
 									break;
@@ -114,11 +118,11 @@ public class KinePolisCNRows {
 								//
 								//new KinePolisMVNCT().KinePolisCNT(rownames);
 								
-								new KinePolisRMCNT().KinePolisRNT(rownames);
+							//new KinePolisRMCNT().KinePolisRNT(rownames);
 							//new KinePolisPRCNT().KinePolisPNT(rownames);
 							//new KinePolisRateCNT().KinePolisRatNT(rownames);
-							new KinePolisCrewCNT().KinePolisCrewNT(rownames);
-							//new KinePolisPCDCT().KinePolisCrewPrgNT(rownames);
+							//new KinePolisCrewCNT().KinePolisCrewNT(rownames);
+							new KinePolisPCDCT().KinePolisCrewPrgNT(rownames);
 							//new KinePolisPCACT().KinePolisCrewPANT(rownames);
 							//new KinePolisPCAICNT().KinePolisCrewPrgACTNT(rownames);
 							//new KinePolisCrewAwardsCNT().KinePolisCrewActAwdCNT(rownames);
@@ -126,10 +130,11 @@ public class KinePolisCNRows {
 								}
 								
 							
-							if (c>250 && c<=500)
+							if (c>500 && c<=1000)
 							{
 								
-								/*
+								//System.out.println(rownames);
+								
 								new KinePolisMVNCT().KinePolisCNT(rownames);
 							new KinePolisRMCNT().KinePolisRNT(rownames);
 								new KinePolisPRCNT().KinePolisPNT(rownames);
@@ -140,7 +145,7 @@ public class KinePolisCNRows {
 								new KinePolisPCAICNT().KinePolisCrewPrgACTNT(rownames);
 								new KinePolisCrewAwardsCNT().KinePolisCrewActAwdCNT(rownames);
 
-*/
+
 										
 							}
 						
@@ -159,35 +164,32 @@ public class KinePolisCNRows {
 						
 					}
 					
+			
 					
-					/*
 					
-					if(family.equals("ol")||family.equals("il"))
-					{
-						if(qualifier.equals("https://kinepolis.fr/") || qualifier.equals("https://kinepolis.fr/cinek"))
-						{
-								
+					
+						/*
 
-							if(rownames.contains("/cinemas/") || rownames1.contains("/cinemas/"))
+							if(rownames.endsWith("/infos"))
 							{
-								//System.out.println(qualifier);
-								
-								if(rownames.equals(rownames1))
+								if(family.equals("f") && qualifier.equals("cnt"))
 								{
-									break;
+								
+								System.out.println(rownames);
 								}
-								else{
-									System.out.println(rownames);
-									System.out.println("LastRow:"+rownames1);
-								}
+									
+						
+								
+								
+								
 							//System.out.println(rownames);
-							}
+						
 							
 						}
-					}
-					
-					
 					*/
+					
+					
+				
 					
 					/*
 					

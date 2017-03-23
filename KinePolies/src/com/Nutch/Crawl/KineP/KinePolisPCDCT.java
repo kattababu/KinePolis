@@ -108,7 +108,7 @@ public class KinePolisPCDCT {
 								{
 								CrewDurl=Xsoup.compile("//meta[@property='og:url']/@content").evaluate(document).get();
 								SplitPSK(CrewDurl);
-							//System.out.println(CrewDirector);
+							System.out.println(CrewDirector);
 							 String CrewDQL=CrewDts.trim();
 							 SplitUrlNames(CrewDQL);
 							//KinePolisCrewQLsNT(CrewDQL);

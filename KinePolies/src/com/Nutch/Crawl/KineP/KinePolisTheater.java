@@ -3,6 +3,9 @@
  */
 package com.Nutch.Crawl.KineP;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -47,8 +50,22 @@ public class KinePolisTheater {
 	 String finalrooms=null;
 	 int totalseats=0;
 	 String add1=null,add2=null,add3=null,add4=null,add5=null,add6=null,add7=null,add8=null,add9=null;
+	 static FileOutputStream fos=null;
+		static PrintStream ps=null;
+		
+		static File file=null;
 	
-	  
+
+	 
+	 static 
+		{
+			FileStore.TheaterTable("theater");
+			
+			//file=new File("/katta/KinePole/CrewDTCNT.txt");
+		}
+		
+	 
+	 
 	
 	
 	
@@ -78,8 +95,21 @@ public class KinePolisTheater {
 				
 					qualifier=Bytes.toString(kv.getQualifier());
 					
+					if(rownames.endsWith("/infos"))
+					{
+						if(family.equals("f") && qualifier.equals("cnt"))
+						{
+						
+							new KinePolisTheater().KinePolisCMH2R(rownames);
+						//System.out.println(rownames);
+						}
 					
 					
+				}
+			
+					
+					
+					/*
 					if(family.equals("ol"))
 					{
 						if(qualifier.equals("https://kinepolis.fr/"))
@@ -93,7 +123,7 @@ public class KinePolisTheater {
 								
 								for(String one:sam)
 								{
-									//System.out.println("Value:"+one);
+									System.out.println("Value:"+one);
 									new KinePolisTheater().KinePolisCMH2R(one);
 									
 								}
@@ -113,8 +143,10 @@ public class KinePolisTheater {
 						
 						
 						
+						
+						
 					}
-					
+					*/
 					
 					
 					
@@ -144,7 +176,7 @@ public class KinePolisTheater {
 	
 	
 	
-	
+	/*
 	
 	public void KinePolisCMH2()
 	{
@@ -184,6 +216,7 @@ public class KinePolisTheater {
 						if(rownames.endsWith("/infos"))
 						{
 							last=rownames;
+							System.out.println("rowlast"+last);
 							
 							
 							
@@ -233,6 +266,10 @@ public class KinePolisTheater {
 			
 		}
 						}
+	
+	
+	
+	*/
 
 	//////////////////////////////
 	
@@ -243,9 +280,9 @@ public class KinePolisTheater {
 		try
 		{
 			
-			//fos = new FileOutputStream(file,true);
-			//ps = new PrintStream(fos);
-		//System.out.println("incoming row"+names);
+			fos = new FileOutputStream(FileStore.fileTHR,true);
+			ps = new PrintStream(fos);
+		System.out.println("incoming row"+names);
 			
 			
 			Configuration config=HBaseConfiguration.create();
