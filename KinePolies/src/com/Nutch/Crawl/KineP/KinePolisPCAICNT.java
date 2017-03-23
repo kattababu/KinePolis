@@ -40,7 +40,7 @@ public class KinePolisPCAICNT {
 	String rownames=null,family=null,qualifier=null,content=null,splitter_PSK=null,splitter_UName=null;
 	static String CrewAurl=null;
 	int i=1;
-	int j=2;
+	int j=0;
 	
 	static FileOutputStream fos=null;
 	static PrintStream ps=null;
@@ -92,6 +92,8 @@ public class KinePolisPCAICNT {
 								{
 									for(String a:CrewDirector)
 									{
+										//j=Integer.parseInt(a);
+										
 										i=i+1;
 										
 										

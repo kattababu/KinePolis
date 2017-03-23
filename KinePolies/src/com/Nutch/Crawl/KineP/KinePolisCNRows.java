@@ -102,7 +102,7 @@ public class KinePolisCNRows {
 								
 					
 								
-							if (c>50 && c<=100)
+							if (c>0 && c<=20)
 								{
 								
 								
@@ -124,7 +124,7 @@ public class KinePolisCNRows {
 							//new KinePolisCrewCNT().KinePolisCrewNT(rownames);
 							new KinePolisPCDCT().KinePolisCrewPrgNT(rownames);
 							//new KinePolisPCACT().KinePolisCrewPANT(rownames);
-							//new KinePolisPCAICNT().KinePolisCrewPrgACTNT(rownames);
+							new KinePolisPCAICNT().KinePolisCrewPrgACTNT(rownames);
 							//new KinePolisCrewAwardsCNT().KinePolisCrewActAwdCNT(rownames);
 								}
 								}
@@ -134,7 +134,7 @@ public class KinePolisCNRows {
 							{
 								
 								//System.out.println(rownames);
-								
+								/*
 								new KinePolisMVNCT().KinePolisCNT(rownames);
 							new KinePolisRMCNT().KinePolisRNT(rownames);
 								new KinePolisPRCNT().KinePolisPNT(rownames);
@@ -144,6 +144,7 @@ public class KinePolisCNRows {
 								new KinePolisPCACT().KinePolisCrewPANT(rownames);
 								new KinePolisPCAICNT().KinePolisCrewPrgACTNT(rownames);
 								new KinePolisCrewAwardsCNT().KinePolisCrewActAwdCNT(rownames);
+								*/
 
 
 										
