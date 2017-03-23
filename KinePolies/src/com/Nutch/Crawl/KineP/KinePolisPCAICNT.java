@@ -6,6 +6,7 @@ package com.Nutch.Crawl.KineP;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
+import java.util.Collections;
 import java.util.List;
 
 import org.apache.hadoop.conf.Configuration;
@@ -93,6 +94,8 @@ public class KinePolisPCAICNT {
 									for(String a:CrewDirector)
 									{
 										//j=Integer.parseInt(a);
+									j = Collections.frequency(CrewDirector, a);
+									System.out.println(j);
 										
 										i=i+1;
 										
