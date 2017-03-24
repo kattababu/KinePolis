@@ -24,14 +24,6 @@ public class KinePolisMain {
 		// TODO Auto-generated method stub
 		
 
-		
-		
-		
-		
-	
-		
-		
-	
 		new KinePolisTheater().KinePolisCMH();
 		new KinePolisCNRows().KinePolisCR();
 		//new KinePolisTheater().KinePolisCMH2();
@@ -39,13 +31,7 @@ public class KinePolisMain {
 		//KinePolisCNRows kpcr=new KinePolisCNRows();
 		//kpcr.KinePolisCR();
 		
-		
-		
-		
-		
-		
-		
-		//SplitFiles.FileSplitS();
+		SplitFiles.FileSplitS();
 	}
 	
 	
