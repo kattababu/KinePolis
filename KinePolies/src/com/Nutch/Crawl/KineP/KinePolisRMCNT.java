@@ -48,31 +48,31 @@ public class KinePolisRMCNT {
 	static File file=null;
 	
 	MSDigest msd=new MSDigest();
-	/*
+	
 	
 	
 	static 
 	{
 		
-		//file=new File("/katta/KinePole/RichMCNT.txt");
+		
 		FileStore.RichMediaTable("richmedia");
 	}
 	
 	
-*/
+
 	public void KinePolisRNT(String names)
 	{
 		try
 		{
 			
-			//fos = new FileOutputStream(FileStore.fileRM,true);
-			//ps = new PrintStream(fos);
-			// System.setOut(ps);
+			fos = new FileOutputStream(FileStore.fileRM,true);
+			ps = new PrintStream(fos);
+			 System.setOut(ps);
 			
 			Configuration config=HBaseConfiguration.create();
 			ht=new HTable(config,"kinepolies_webpage");
 			sc=new Scan();
-			//sc.setCaching(10);
+			
 			rescan=ht.getScanner(sc);
 			
 			for(Result res = rescan.next(); (res != null); res=rescan.next())
@@ -89,9 +89,7 @@ public class KinePolisRMCNT {
 						if(family.equals("f")&& qualifier.equals("cnt"))
 						{
 									
-							//System.out.println("\n");
-							//System.out.println(rownames);
-							//System.out.println("\n");
+							
 							content=Bytes.toString(kv.getValue());
 							Document document = Jsoup.parse(content);
 							
@@ -291,14 +289,14 @@ public class KinePolisRMCNT {
 		try
 		{
 			
-			//fos = new FileOutputStream(FileStore.fileRM,true);
-			//ps = new PrintStream(fos);
-			// System.setOut(ps);
+			fos = new FileOutputStream(FileStore.fileRM,true);
+			ps = new PrintStream(fos);
+			 System.setOut(ps);
 			
 			Configuration config=HBaseConfiguration.create();
 			ht=new HTable(config,"kinepolies_webpage");
 			sc=new Scan();
-			//sc.setCaching(10);
+	
 			rescan=ht.getScanner(sc);
 			
 			for(Result res = rescan.next(); (res != null); res=rescan.next())
@@ -315,9 +313,7 @@ public class KinePolisRMCNT {
 						if(family.equals("f")&& qualifier.equals("cnt"))
 						{
 									
-							//System.out.println("\n");
-							//System.out.println(rownames);
-							//System.out.println("\n");
+						
 							content=Bytes.toString(kv.getValue());
 							Document document = Jsoup.parse(content);
 							

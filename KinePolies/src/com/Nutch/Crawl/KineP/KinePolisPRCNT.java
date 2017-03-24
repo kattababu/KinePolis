@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
+
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
@@ -58,7 +58,7 @@ public class KinePolisPRCNT {
 	static String PRDate=null;
 	String symb34="";
 	static String country=null;
-	/*
+	
 	
 	static 
 	{
@@ -68,16 +68,16 @@ public class KinePolisPRCNT {
 		FileStore.ProgramReleaseTable("release");
 	}
 	
-	*/
+	
 
 	public void KinePolisPNT(String names)
 	{
 		try
 		{
 			
-			//fos = new FileOutputStream(FileStore.filePR,true);
-			//ps = new PrintStream(fos);
-			//System.setOut(ps);
+			fos = new FileOutputStream(FileStore.filePR,true);
+			ps = new PrintStream(fos);
+			System.setOut(ps);
 			
 			Configuration config=HBaseConfiguration.create();
 			ht=new HTable(config,"kinepolies_webpage");

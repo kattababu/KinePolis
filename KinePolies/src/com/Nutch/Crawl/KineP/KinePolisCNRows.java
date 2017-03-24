@@ -6,9 +6,7 @@ package com.Nutch.Crawl.KineP;
 
 
 
-//import java.io.File;
-//import java.io.FileOutputStream;
-//import java.io.PrintStream;
+
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
@@ -38,39 +36,22 @@ public class KinePolisCNRows {
 	ResultScanner rescan;
 	String rownames=null,family=null,qualifier=null,rownames1=null;
 	
-	/*
-	static FileOutputStream fos=null;
-	static PrintStream ps=null;
-	static File file=null;
 	
-	static 
-	{
-		
-		file=new File("/katta/KinePole/Rows.txt");
-	}
-	
-	
-*/
 	//@SuppressWarnings("deprecation")
 	public void KinePolisCR()
 	{
 		try
 		{
 			
-			//fos = new FileOutputStream(file,true);
-			//ps = new PrintStream(fos);
-			// System.setOut(ps);
+			
 			
 			
 			Configuration config=HBaseConfiguration.create();
 			
-			//HTablePool pool = new HTablePool(config, 1000);  
-	         //ht = (HTable) pool.getTable("kinepolies_webpage");
+			
 			ht=new HTable(config,"kinepolies_webpage");
 		sc=new Scan();
-		//sc.setMaxVersions(1);
-	   //sc.setCaching(10);
-	    //sc.setBatch(100);
+		
 		rescan=ht.getScanner(sc);
 	int c=0;
 			
@@ -81,7 +62,7 @@ public class KinePolisCNRows {
 					
 					rownames=Bytes.toString(kv.getRow());
 					family=Bytes.toString(kv.getFamily());
-					rownames1=Bytes.toString(kv.getRow());
+					
 					qualifier=Bytes.toString(kv.getQualifier());
 					
 				
@@ -91,22 +72,20 @@ public class KinePolisCNRows {
 						if(qualifier.equals("https://kinepolis.fr/"))
 						{
 												
-							//System.out.println(rownames);
+						
 							
 							if(rownames.contains("/films/") ||rownames.contains("/evenements/"))
 							{
 								c=c+1;
 								
-									
-							//System.out.println(rownames);
-								
+											
 					
 								
-							if (c>0 && c<=20)
+							if (c>0 && c<=250)
 								{
 								
 								
-								//System.out.println(rownames);
+							
 								if(rownames.endsWith("/marathons-0"))
 								{
 									break;
@@ -114,27 +93,24 @@ public class KinePolisCNRows {
 								else 
 									
 								{
-								System.out.println(rownames);
-								//
-								//new KinePolisMVNCT().KinePolisCNT(rownames);
-								
-							//new KinePolisRMCNT().KinePolisRNT(rownames);
-							//new KinePolisPRCNT().KinePolisPNT(rownames);
-							//new KinePolisRateCNT().KinePolisRatNT(rownames);
-							//new KinePolisCrewCNT().KinePolisCrewNT(rownames);
+								new KinePolisMVNCT().KinePolisCNT(rownames);								
+							new KinePolisRMCNT().KinePolisRNT(rownames);
+							new KinePolisPRCNT().KinePolisPNT(rownames);
+							new KinePolisRateCNT().KinePolisRatNT(rownames);
+							new KinePolisCrewCNT().KinePolisCrewNT(rownames);
 							new KinePolisPCDCT().KinePolisCrewPrgNT(rownames);
-							//new KinePolisPCACT().KinePolisCrewPANT(rownames);
+							new KinePolisPCACT().KinePolisCrewPANT(rownames);
 							new KinePolisPCAICNT().KinePolisCrewPrgACTNT(rownames);
-							//new KinePolisCrewAwardsCNT().KinePolisCrewActAwdCNT(rownames);
+							new KinePolisCrewAwardsCNT().KinePolisCrewActAwdCNT(rownames);
 								}
 								}
 								
-							
+							/*
 							if (c>500 && c<=1000)
 							{
 								
 								//System.out.println(rownames);
-								/*
+								
 								new KinePolisMVNCT().KinePolisCNT(rownames);
 							new KinePolisRMCNT().KinePolisRNT(rownames);
 								new KinePolisPRCNT().KinePolisPNT(rownames);
@@ -144,11 +120,12 @@ public class KinePolisCNRows {
 								new KinePolisPCACT().KinePolisCrewPANT(rownames);
 								new KinePolisPCAICNT().KinePolisCrewPrgACTNT(rownames);
 								new KinePolisCrewAwardsCNT().KinePolisCrewActAwdCNT(rownames);
-								*/
+								
 
 
 										
 							}
+							*/
 						
 								
 							}

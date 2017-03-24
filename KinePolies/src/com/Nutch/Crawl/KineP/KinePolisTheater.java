@@ -6,10 +6,7 @@ package com.Nutch.Crawl.KineP;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
@@ -282,7 +279,8 @@ public class KinePolisTheater {
 			
 			fos = new FileOutputStream(FileStore.fileTHR,true);
 			ps = new PrintStream(fos);
-		System.out.println("incoming row"+names);
+			System.setOut(ps);
+		//System.out.println("incoming row"+names);
 			
 			
 			Configuration config=HBaseConfiguration.create();

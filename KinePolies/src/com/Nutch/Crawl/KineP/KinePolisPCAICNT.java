@@ -56,9 +56,9 @@ public class KinePolisPCAICNT {
 		try
 		{
 			
-		//fos = new FileOutputStream(FileStore.filePC,true);
-			//ps = new PrintStream(fos);
-			//System.setOut(ps);
+		fos = new FileOutputStream(FileStore.filePC,true);
+		ps = new PrintStream(fos);
+		System.setOut(ps);
 			
 			Configuration config=HBaseConfiguration.create();
 			ht=new HTable(config,"kinepolies_webpage");
@@ -95,9 +95,9 @@ public class KinePolisPCAICNT {
 									{
 										//j=Integer.parseInt(a);
 									j = Collections.frequency(CrewDirector, a);
-									System.out.println(j);
+									//System.out.println(j);
 										
-										i=i+1;
+										i=i+j;
 										
 										
 									}

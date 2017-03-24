@@ -69,9 +69,7 @@ public class KinePolisPCACT {
 		try
 		{
 			
-		//	fos = new FileOutputStream(file,true);
-			//ps = new PrintStream(fos);
-			//System.setOut(ps);
+	
 			
 			Configuration config=HBaseConfiguration.create();
 			ht=new HTable(config,"kinepolies_webpage");
@@ -92,9 +90,7 @@ public class KinePolisPCACT {
 						if(family.equals("f")&& qualifier.equals("cnt"))
 						{
 									
-							//System.out.println("\n");
-							//System.out.println(rownames);
-							//System.out.println("\n");
+						
 							content=Bytes.toString(kv.getValue());
 							Document document = Jsoup.parse(content);
 							

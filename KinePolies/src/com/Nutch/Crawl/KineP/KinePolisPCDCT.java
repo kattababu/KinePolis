@@ -51,29 +51,29 @@ public class KinePolisPCDCT {
 	static File file=null;
 	
 	
-	/*
+	
 	static 
 	{
 		FileStore.ProgramCrewTable("programcrew");
 		
-		//file=new File("/katta/KinePole/CrewDTCNT.txt");
+		
 	}
-	*/
+
 	
-	//final String mainhost="https://kinepolis.fr";
+	
 	public void KinePolisCrewPrgNT(String names)
 	{
 		try
 		{
 			
-		//fos = new FileOutputStream(FileStore.filePC,true);
-		//ps = new PrintStream(fos);
-		//System.setOut(ps);
+		fos = new FileOutputStream(FileStore.filePC,true);
+		ps = new PrintStream(fos);
+		System.setOut(ps);
 			
 			Configuration config=HBaseConfiguration.create();
 			ht=new HTable(config,"kinepolies_webpage");
 			sc=new Scan();
-			//sc.setCaching(10);
+
 			rescan=ht.getScanner(sc);
 			
 			for(Result res = rescan.next(); (res != null); res=rescan.next())
@@ -90,9 +90,7 @@ public class KinePolisPCDCT {
 						if(family.equals("f")&& qualifier.equals("cnt"))
 						{
 									
-							//System.out.println("\n");
-							//System.out.println(rownames);
-							//System.out.println("\n");
+							
 							content=Bytes.toString(kv.getValue());
 							Document document = Jsoup.parse(content);
 							
@@ -108,7 +106,7 @@ public class KinePolisPCDCT {
 								{
 								CrewDurl=Xsoup.compile("//meta[@property='og:url']/@content").evaluate(document).get();
 								SplitPSK(CrewDurl);
-							System.out.println(CrewDirector);
+							//System.out.println(CrewDirector);
 							 String CrewDQL=CrewDts.trim();
 							 SplitUrlNames(CrewDQL);
 							//KinePolisCrewQLsNT(CrewDQL);

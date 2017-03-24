@@ -50,7 +50,7 @@ public class KinePolisCrewAwardsCNT {
 	static PrintStream ps=null;
 	
 	static File file=null;
-	/*
+	
 	
 	static 
 	{
@@ -58,7 +58,7 @@ public class KinePolisCrewAwardsCNT {
 		
 		//file=new File("/katta/KinePole/CrewDTCNT.txt");
 	}
-	*/
+	
 	
 	
 	
@@ -250,9 +250,9 @@ public class KinePolisCrewAwardsCNT {
 		try
 		{
 			
-			//fos = new FileOutputStream(FileStore.fileCA,true);
-			//ps = new PrintStream(fos);
-			//System.setOut(ps);
+			fos = new FileOutputStream(FileStore.fileCA,true);
+			ps = new PrintStream(fos);
+		System.setOut(ps);
 			
 			Configuration config=HBaseConfiguration.create();
 			ht=new HTable(config,"kinepolies_webpage");

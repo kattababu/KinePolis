@@ -51,7 +51,7 @@ public class KinePolisCrewCNT {
 	
 	static File file=null;
 	
-	/*
+	
 	
 	
 	static 
@@ -61,7 +61,7 @@ public class KinePolisCrewCNT {
 		//file=new File("/katta/KinePole/CrewDTCNT.txt");
 	}
 	
-	*/
+	
 	
 	
 	
@@ -222,9 +222,9 @@ public class KinePolisCrewCNT {
 		try
 		{
 			
-			//fos = new FileOutputStream(FileStore.fileC,true);
-			//ps = new PrintStream(fos);
-			//System.setOut(ps);
+			fos = new FileOutputStream(FileStore.fileC,true);
+			ps = new PrintStream(fos);
+			System.setOut(ps);
 			
 			Configuration config=HBaseConfiguration.create();
 			ht=new HTable(config,"kinepolies_webpage");

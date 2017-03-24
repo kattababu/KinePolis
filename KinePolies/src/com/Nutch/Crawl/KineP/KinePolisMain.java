@@ -24,23 +24,28 @@ public class KinePolisMain {
 		// TODO Auto-generated method stub
 		
 
-		KinePolisCNRows kpcr=new KinePolisCNRows();
 		
 		
-		kpcr.KinePolisCR();
+		
+		
+	
+		
+		
+	
+		new KinePolisTheater().KinePolisCMH();
+		new KinePolisCNRows().KinePolisCR();
+		//new KinePolisTheater().KinePolisCMH2();
+		//new KinePolisAvailTheater().KinePolisATTCNT();
+		//KinePolisCNRows kpcr=new KinePolisCNRows();
+		//kpcr.KinePolisCR();
+		
+		
+		
+		
+		
 		
 		
 		//SplitFiles.FileSplitS();
-		
-		
-	//new KinePolisTheater();
-		//new KinePolisTheater().KinePolisCMH();
-		//new KinePolisTheater().KinePolisCMH2();
-		
-		
-		
-		//kpt.KinePolisCMH2();
-		//kpcr.KinePolisCRM();
 	}
 	
 	
