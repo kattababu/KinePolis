@@ -81,7 +81,7 @@ public class KinePolisCNRows {
 											
 					
 								
-							if (c>0 && c<=250)
+							if (c>0 && c<=50)
 								{
 								
 								
@@ -94,14 +94,14 @@ public class KinePolisCNRows {
 									
 								{
 								new KinePolisMVNCT().KinePolisCNT(rownames);								
-							new KinePolisRMCNT().KinePolisRNT(rownames);
-							new KinePolisPRCNT().KinePolisPNT(rownames);
-							new KinePolisRateCNT().KinePolisRatNT(rownames);
-							new KinePolisCrewCNT().KinePolisCrewNT(rownames);
-							new KinePolisPCDCT().KinePolisCrewPrgNT(rownames);
-							new KinePolisPCACT().KinePolisCrewPANT(rownames);
-							new KinePolisPCAICNT().KinePolisCrewPrgACTNT(rownames);
-							new KinePolisCrewAwardsCNT().KinePolisCrewActAwdCNT(rownames);
+							//new KinePolisRMCNT().KinePolisRNT(rownames);
+							//new KinePolisPRCNT().KinePolisPNT(rownames);
+							//new KinePolisRateCNT().KinePolisRatNT(rownames);
+							//new KinePolisCrewCNT().KinePolisCrewNT(rownames);
+							//new KinePolisPCDCT().KinePolisCrewPrgNT(rownames);
+							//new KinePolisPCACT().KinePolisCrewPANT(rownames);
+							//new KinePolisPCAICNT().KinePolisCrewPrgACTNT(rownames);
+							//new KinePolisCrewAwardsCNT().KinePolisCrewActAwdCNT(rownames);
 								}
 								}
 								

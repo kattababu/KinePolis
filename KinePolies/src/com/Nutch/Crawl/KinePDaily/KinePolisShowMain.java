@@ -23,7 +23,7 @@ public class KinePolisShowMain {
 		// TODO Auto-generated method stub
 
 		new KinePolisAvailTheater().KinePolisATTCNT();
-		
+
 		
 	}
 

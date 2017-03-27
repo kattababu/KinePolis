@@ -52,6 +52,8 @@ public class KinePolisMVNCT {
 	static FileOutputStream fos=null;
 	static PrintStream ps=null;
 	static File file=null;
+	static String comma=null;
+	/*
 	
 	static 
 	{
@@ -62,7 +64,7 @@ public class KinePolisMVNCT {
 		 
 
 	}
-	
+	*/
 	
 
 	public void KinePolisCNT(String names)
@@ -70,9 +72,9 @@ public class KinePolisMVNCT {
 		try
 		{
 			
-			fos = new FileOutputStream(FileStore.fileM,true);
-			ps = new PrintStream(fos);
-			 System.setOut(ps);
+			//fos = new FileOutputStream(FileStore.fileM,true);
+			//ps = new PrintStream(fos);
+			 //System.setOut(ps);
 			
 			Configuration config=HBaseConfiguration.create();
 			ht=new HTable(config,"kinepolies_webpage");
@@ -281,10 +283,59 @@ public class KinePolisMVNCT {
 							
 							
 							System.out.print("#<>#");
+							//System.out.println("\n\n");
 							
 							///////////////////Aux_Info///////////////////
+							
+							String moveFormatD=Xsoup.compile("//div[@class='field field-name-movie-technologies field-type-ds field-label-above']//ul/li/span[@class='technology-available']/text()").evaluate(document).get();	
+							
+							String cinelistD=Xsoup.compile("//div[@class='field field-name-movie-technologies field-type-ds field-label-above']//ul/li/span[@class='technology-available-list']/text()").evaluate(document).get();	
+							if(moveFormatD!=null&& cinelistD!=null)
+							{
+							
+							Elements el=Xsoup.compile("//div[@class='field field-name-movie-technologies field-type-ds field-label-above']//ul/li").evaluate(document).getElements();
+							comma="";
+								
+								
+								if(el!=null)
+								{
+									System.out.print("{");
+									
+									
+									for(Element xel:el)
+									{
+										
+									
+								
+								
+									String moveFormat=Xsoup.compile("/span[@class='technology-available']/text()").evaluate(xel).get();	
+									
+									String cinelist=Xsoup.compile("/span[@class='technology-available-list']/text()").evaluate(xel).get();
+									
+									
+									System.out.print(comma+"\""+moveFormat.replace(": ", "")+"\""+":\""+cinelist.replace(", ", "<>").trim()+"\"");
+									comma=",";
+									
+									//
+									
+									
+									
+									
+								}
+								
+									System.out.print("}");
+							
+							}
+								
+								
+							}
+							
+							
+							
+							
 							System.out.print("#<>#");
 							
+							//System.out.println("\n\n");
 							///////////////////Reference_URL///////////////////
 							System.out.print(url.trim()+"#<>#");
 							
@@ -315,7 +366,8 @@ public class KinePolisMVNCT {
 		}
 		catch(Exception e)
 		{
-			e.printStackTrace();
+			//e.printStackTrace();
+			e.getMessage();
 		}
 		finally
 		{
@@ -338,8 +390,11 @@ public class KinePolisMVNCT {
 		public void SplitUrl(String name)
 		{
 			//System.out.println(name);
+			if(name!=null)
+			{
 			String[] split=name.split("\\/");
 			splitter_SK=split[split.length - 1];
+			}
 			//System.out.println(splitter);
 		}
 		

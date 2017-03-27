@@ -26,12 +26,12 @@ public class KinePolisMain {
 
 		new KinePolisTheater().KinePolisCMH();
 		new KinePolisCNRows().KinePolisCR();
-		//new KinePolisTheater().KinePolisCMH2();
-		//new KinePolisAvailTheater().KinePolisATTCNT();
-		//KinePolisCNRows kpcr=new KinePolisCNRows();
-		//kpcr.KinePolisCR();
+		new KinePolisJsonShowData().KinePolisJSD();
+	
 		
 		SplitFiles.FileSplitS();
+		
+		
 	}
 	
 	

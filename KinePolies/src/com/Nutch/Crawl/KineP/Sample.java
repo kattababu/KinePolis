@@ -62,6 +62,7 @@ public class Sample {
 			//fos = new FileOutputStream(file,true);
 			//ps = new PrintStream(fos);
 			// System.setOut(ps);
+			/////kinepolies_webpage
 			
 			
 		Configuration config=HBaseConfiguration.create();

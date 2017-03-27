@@ -35,6 +35,7 @@ public class FileStore {
 	static File fileTvshow=null;
 	static File fileTvshowEps=null;
 	static File fileTHR=null;
+	static File fileTHRAVL=null;
 	
 	//static int count=0;
 	/*
@@ -277,10 +278,31 @@ public class FileStore {
         }
     }
 
+///////////////////////////////////////////////////////////////////	TheaterAvailability Table////////////////////////////////////////////
+	
+	public static void TheaterAvailTable(String table) {
+        //get current project path
+       // String filePath = ;
+        //create a new file with Time Stamp
+        fileTHRAVL= new File(filePath + "/" + filename+table+"_"+GetCurrentTimeStamp().replace(":","").replace(".","")+".queries");
+
+        try {
+            if (!fileTHRAVL.exists()) {
+                fileTHRAVL.createNewFile();
+                //System.out.println("File is created; file name is " + fileMRAT.getName());
+            } else {
+              //  System.out.println("File already exist");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 	
 	
 	
 	
+	
+	////////////////////////////////////////////////////////////  GET SYSTEM TIME ////////////////////////////////////////////
 	
 	
         // Get current system time
