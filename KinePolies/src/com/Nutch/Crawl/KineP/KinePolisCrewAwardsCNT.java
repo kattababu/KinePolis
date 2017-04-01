@@ -52,6 +52,7 @@ public class KinePolisCrewAwardsCNT {
 	static File file=null;
 	
 	
+	
 	static 
 	{
 		FileStore.AwardsTable("award");
@@ -93,9 +94,9 @@ public class KinePolisCrewAwardsCNT {
 						if(family.equals("f")&& qualifier.equals("cnt"))
 						{
 									
-							//System.out.println("\n");
-							//System.out.println(rownames);
-							//System.out.println("\n");
+							System.out.println("\n");
+							System.out.println(rownames);
+							System.out.println("\n");
 							content=Bytes.toString(kv.getValue());
 							Document document = Jsoup.parse(content);
 							
@@ -108,12 +109,16 @@ public class KinePolisCrewAwardsCNT {
 							
 							//SplitUrlNames(Movie_url);
 							
-							String CrewDirector=Xsoup.compile("//div[@class='clearfix-field field field-name-field-movie-person-director field-type-node-reference field-label-inline clearfix']/div[@class='field-items']//a/@href").evaluate(document).get();
-							if(CrewDirector!=null)
+							
+							List<String> CrewDirectors=Xsoup.compile("//div[@class='clearfix-field field field-name-field-movie-person-director field-type-node-reference field-label-inline clearfix']/div[@class='field-items']//a/@href").evaluate(document).list();
+							if(CrewDirectors!=null)
 							{
+								for(String CrewDirector:CrewDirectors)
+								{
 								String CrewDirect=mainhost+CrewDirector.trim();
 								//System.out.println(CrewDirect);
-								KinePolisCrewAwdQLNT(CrewDirect);
+								KinePolisCrewAwdDctQLNT(CrewDirect);
+								}
 								 
 							}
 							
@@ -127,7 +132,7 @@ public class KinePolisCrewAwardsCNT {
 							 String CrewAwdQL=mainhost+CrewActor.trim();
 							 
 							 //System.out.println(CrewAwdQL);
-							 KinePolisCrewAwdQLNT(CrewAwdQL);
+							 KinePolisCrewAwdActQLNT(CrewAwdQL);
 							 
 							// KinePolisCrewPAQLNT(CrewAQL);
 								}
@@ -161,10 +166,10 @@ public class KinePolisCrewAwardsCNT {
 	}
 	
 	
-	//////////////////////////// Crew Qualifier List Data////////////////////////
+	//////////////////////////// Crew Qualifier List Director////////////////////////
 	
 	
-	public void KinePolisCrewAwdQLNT(String names)
+	public void KinePolisCrewAwdDctQLNT(String names)
 	{
 		try
 		{
@@ -186,6 +191,8 @@ public class KinePolisCrewAwardsCNT {
 					rownames=Bytes.toString(kv.getRow());
 					family=Bytes.toString(kv.getFamily());
 					qualifier=Bytes.toString(kv.getQualifier());
+					
+					
 					if(family.equals("ol"))
 					{
 					if(qualifier.equals(names))
@@ -193,11 +200,14 @@ public class KinePolisCrewAwardsCNT {
 						SplitUrlNames(names);
 						 if(rownames.contains(splitter_UName) && rownames.endsWith(splitter_UName))
 						 {
-							// System.out.println("\n");
-							//System.out.println(rownames);
-							//System.out.println("\n");
+							 System.out.println("\n");
+							System.out.println(rownames);
+							System.out.println("\n");
 							
-							KinePolisCrewAwdCNT(rownames);
+							
+							String Win_type="director";
+							
+							KinePolisCrewAwdCNT(rownames,Win_type);
 							 
 							//KinePolisCrewRPCACNT(rownames);
 							 //KinePolisCrewRCNT(rownames);
@@ -241,11 +251,108 @@ public class KinePolisCrewAwardsCNT {
 	}
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+//////////////////////////// Crew Qualifier List Actors////////////////////////
+	
+	
+	public void KinePolisCrewAwdActQLNT(String names)
+	{
+		try
+		{
+			
+		//	fos = new FileOutputStream(file,true);
+			//ps = new PrintStream(fos);
+			//System.setOut(ps);
+			
+			Configuration config=HBaseConfiguration.create();
+			ht=new HTable(config,"kinepolies_webpage");
+			sc=new Scan();
+			rescan=ht.getScanner(sc);
+			
+			for(Result res = rescan.next(); (res != null); res=rescan.next())
+			{
+				for(KeyValue kv:res.list())
+				{
+					
+					rownames=Bytes.toString(kv.getRow());
+					family=Bytes.toString(kv.getFamily());
+					qualifier=Bytes.toString(kv.getQualifier());
+					
+					
+					if(family.equals("ol"))
+					{
+					if(qualifier.equals(names))
+					{
+						SplitUrlNames(names);
+						 if(rownames.contains(splitter_UName) && rownames.endsWith(splitter_UName))
+						 {
+							 System.out.println("\n");
+							System.out.println(rownames);
+							System.out.println("\n");
+							
+							String Win_type="actor";
+							
+							KinePolisCrewAwdCNT(rownames,Win_type);
+							 
+							//KinePolisCrewRPCACNT(rownames);
+							 //KinePolisCrewRCNT(rownames);
+							
+							//CrewAwardName=Xsoup.compile("//div[@class='field field-name-title field-type-ds field-label-hidden']/div[@class='field-items']//h1/text()").evaluate(document).get();
+							
+							
+							
+							
+							
+							
+							
+							
+						 }
+						
+					}
+					}
+				
+				}
+			}
+		}
+		
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		finally
+		{
+			try
+			{
+				ht.close();
+				rescan.close();
+			}
+			catch(Exception e)
+			{
+				e.getMessage();
+			}
+			
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
 	/////////////////////// Crew Award Rows CNT Data//////////////////////////////
 	
 	
 	
-	public void KinePolisCrewAwdCNT(String names)
+	public void KinePolisCrewAwdCNT(String names,String Win_type)
 	{
 		try
 		{
@@ -319,9 +426,21 @@ public class KinePolisCrewAwardsCNT {
 							if(xel!=null)
 							{
 							/////////////// Program_SK/////////////////
-							SplitUrlNames(Movie_url.trim());
+							//SplitUrlNames(Movie_url.trim());
 							
-							System.out.print(splitter_UName.trim()+"#<>#");
+							//System.out.print(splitter_UName.trim()+"#<>#");
+							
+							
+							
+							 String Prog_SK=Xsoup.compile("//span[@class='award-actor']/a/@href").evaluate(xel).get();
+								if(Prog_SK!=null)
+								{
+									SplitUrlNames(Prog_SK.trim());
+									System.out.print(splitter_UName.trim());
+									
+								}
+								
+								System.out.print("#<>#");
 						
 							/////////////// Program_Type////////////////
 							
@@ -390,26 +509,41 @@ public class KinePolisCrewAwardsCNT {
 							///////////////////////////// Crew Winner_Sk////////////////////////////
 							
 							
-							 String CrewAwardWins_SK=Xsoup.compile("//span[@class='award-actor']/a/@href").evaluate(xel).get();
-							if(CrewAwardWins_SK!=null)
-							{
-								SplitWinNames(CrewAwardWins_SK);
-								System.out.print(splitter_WName.trim()+"#<>#");
+							 String CrewAwardWins_SK=Xsoup.compile("//meta[@property='og:url']/@content").evaluate(document).get();
+								if(CrewAwardWins_SK!=null)
+								{
+									SplitWinNames(CrewAwardWins_SK);
+									System.out.print(splitter_WName.trim()+"#<>#");
+									
+								}
+								else
+								{
+									
+									System.out.print("#<>#");
+								}
 								
-							}
-							else
-							{
-								
-								System.out.print("#<>#");
-							}
-							
 							
 							
 							///////////////Winner_Type/////////////////
 						
-							System.out.print("actor".trim()+"#<>#");
+							System.out.print(Win_type.trim()+"#<>#");
 						
 							///////////////Winner_Flag////////////////
+							//System.out.println("\n");
+							
+							 String CrewAwardWins_Flag=Xsoup.compile("//div[@class='field field-name-kinepolis-awards-nominations field-type-ds field-label-inline clearfix']/h2[@class='label-inline field-label ds-normal-text']/text()").evaluate(document).get();
+								//System.out.println(CrewAwardWins_Flag);
+							 
+							 if(CrewAwardWins_Flag.contains("Nominations"))
+							 {
+								 System.out.print("0");
+							 }
+							
+							 else
+							 {
+								 System.out.print("1");
+							 }
+							
 						
 							System.out.print("#<>#");
 						

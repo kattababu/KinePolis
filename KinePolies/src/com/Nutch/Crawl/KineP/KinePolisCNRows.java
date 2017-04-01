@@ -76,12 +76,25 @@ public class KinePolisCNRows {
 							
 							if(rownames.contains("/films/") ||rownames.contains("/evenements/"))
 							{
-								c=c+1;
+								/*
 								
-											
+								if(rownames.equals("fr.kinepolis:https/evenements/avant-premiere-transformers-age-de-lextinction"))
+								{
+									
+									System.out.println(rownames);
+									//new KinePolisPRCNT().KinePolisPNT(rownames);
+									
+									new KinePolisRelatedPG().KinePolisRPRGCNT(rownames);
+								}
+								
+								*/
+								
+								
+										
 					
-								
-							if (c>0 && c<=50)
+							
+								c=c+1;
+							if (c>0 && c<=250)
 								{
 								
 								
@@ -93,7 +106,7 @@ public class KinePolisCNRows {
 								else 
 									
 								{
-								new KinePolisMVNCT().KinePolisCNT(rownames);								
+								//new KinePolisMVNCT().KinePolisCNT(rownames);								
 							//new KinePolisRMCNT().KinePolisRNT(rownames);
 							//new KinePolisPRCNT().KinePolisPNT(rownames);
 							//new KinePolisRateCNT().KinePolisRatNT(rownames);
@@ -102,9 +115,14 @@ public class KinePolisCNRows {
 							//new KinePolisPCACT().KinePolisCrewPANT(rownames);
 							//new KinePolisPCAICNT().KinePolisCrewPrgACTNT(rownames);
 							//new KinePolisCrewAwardsCNT().KinePolisCrewActAwdCNT(rownames);
+									
+									new KinePolisRelatedPG().KinePolisRPRGCNT(rownames);
 								}
 								}
 								
+								
+								
+							
 							/*
 							if (c>500 && c<=1000)
 							{

@@ -42,7 +42,7 @@ public class KinePolisPCACT {
 	HTable ht;
 	Scan sc;
 	ResultScanner rescan;
-	String rownames=null,family=null,qualifier=null,content=null,splitter_SK=null,splitter_UName=null;
+	String rownames=null,family=null,qualifier=null,content=null,splitter_SK=null,splitter_UName=null,splitter_Count=null;
 	final String mainhost="https://kinepolis.fr";
 	
 	
@@ -94,6 +94,9 @@ public class KinePolisPCACT {
 							content=Bytes.toString(kv.getValue());
 							Document document = Jsoup.parse(content);
 							
+							//System.out.println("\n");
+						//	System.out.println(rownames);
+							//System.out.println("\n");
 							
 							List<String> CrewActors=Xsoup.compile("//div[@class='clearfix-field field field-name-movie-cast-list field-type-ds field-label-inline clearfix']//div[@class='field field-name-title field-type-ds field-label-hidden']//div[@class='field-items']//a/@href").evaluate(document).list();
 							if(CrewActors!=null)
@@ -189,7 +192,7 @@ public class KinePolisPCACT {
 							
 							
 							
-							new KinePolisRMCNT().KinePolisCDCANT(rownames);
+							//new KinePolisRMCNT().KinePolisCDCANT(rownames);
 							 //KinePolisCrewRCNT(rownames);
 						 }
 						
@@ -392,7 +395,11 @@ public class KinePolisPCACT {
 	/////////////////////// Crew_Country///////////////////////////
 		 if(CrewCountry!=null)
 		 {
-		 System.out.print(CrewCountry.trim()+"#<>#");
+			 SplitCountry(CrewCountry);
+				
+			 System.out.print(splitter_Count.trim()+"#<>#");
+			
+		 //System.out.print(CrewCountry.trim()+"#<>#");
 		 }
 		 else
 		 {
@@ -509,6 +516,15 @@ public class KinePolisPCACT {
 		splitter_UName=split[split.length - 1];
 		//System.out.println(splitter);
 	}
+	
+	public void SplitCountry(String name)
+	{
+		String[] split=name.split("\\(|\\,");
+		splitter_Count=split[0];
+		//Splitter_count=split[1];
+		//System.out.println(splitter);
+	}
+
 	
 	public void CrewDateFormat(String name)
 	{

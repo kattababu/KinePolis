@@ -32,7 +32,7 @@ public class KinePolisCrewCNT {
 	HTable ht;
 	Scan sc;
 	ResultScanner rescan;
-	String rownames=null,family=null,qualifier=null,content=null,splitter_SK=null,splitter_UName=null,splitter_Count=null;
+	String rownames=null,family=null,qualifier=null,content=null,splitter_SK=null,splitter_UName=null,splitter_Count=null,splitter_Day=null;
 	final String mainhost="https://kinepolis.fr";
 	
 	
@@ -60,6 +60,7 @@ public class KinePolisCrewCNT {
 		
 		//file=new File("/katta/KinePole/CrewDTCNT.txt");
 	}
+	
 	
 	
 	
@@ -102,10 +103,14 @@ public class KinePolisCrewCNT {
 							Document document = Jsoup.parse(content);
 							
 							
-							String CrewDirector=Xsoup.compile("//div[@class='clearfix-field field field-name-field-movie-person-director field-type-node-reference field-label-inline clearfix']/div[@class='field-items']//a/@href").evaluate(document).get();
-							if(CrewDirector!=null)
+							List<String> CrewDirectors=Xsoup.compile("//div[@class='clearfix-field field field-name-field-movie-person-director field-type-node-reference field-label-inline clearfix']/div[@class='field-items']//a/@href").evaluate(document).list();
+							if(CrewDirectors!=null)
 							{
+								for(String CrewDirector:CrewDirectors)
+								{
 							//System.out.println(mainhost+CrewDirector);
+								
+							
 							 String CrewDQL=mainhost+CrewDirector.trim();
 							
 							 if(CrewDQL.contains("/films/")||CrewDQL.contains("/evenements/"))
@@ -117,6 +122,10 @@ public class KinePolisCrewCNT {
 							
 							KinePolisCrewQLsNT(CrewDQL);
 							 }
+							 
+							 
+							 
+								}
 							}
 							
 						}
@@ -182,7 +191,7 @@ public class KinePolisCrewCNT {
 							new KinePolisCrewCNT().KinePolisCrewRCNT(rownames);
 							//System.out.println("CrewImage Data:"+rownames);
 							
-							new KinePolisRMCNT().KinePolisCDCANT(rownames);
+							//new KinePolisRMCNT().KinePolisCDCANT(rownames);
 						 }
 						
 					}
@@ -465,7 +474,23 @@ public class KinePolisCrewCNT {
 	 
 	 
 /////////////////////// Crew_Aux_Info///////////////////////////
-	 System.out.print("#<>#");
+	 
+	 if(CrewDOB!=null)
+	 {
+		 //CrewDateFormat(CrewDOB);
+		 SplitDay(CrewDOB);
+		
+	 System.out.print("{\"day\""+":\""+splitter_Day.trim()+"\"}"+"#<>#");
+	 }
+	 else
+	 {
+		 System.out.print("#<>#");
+		 
+	 }
+	
+	 
+	 
+	 //System.out.print("#<>#");
 	 
 	 
 	 
@@ -507,6 +532,15 @@ public class KinePolisCrewCNT {
 	{
 		String[] split=name.split("\\(|\\,");
 		splitter_Count=split[0];
+		//Splitter_count=split[1];
+		//System.out.println(splitter);
+	}
+	
+	
+	public void SplitDay(String name)
+	{
+		String[] split=name.split("\\,");
+		splitter_Day=split[0];
 		//Splitter_count=split[1];
 		//System.out.println(splitter);
 	}

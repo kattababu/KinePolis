@@ -63,7 +63,6 @@ public class KinePolisPRCNT {
 	static 
 	{
 		
-		//file=new File("/katta/KinePole/PRMCNT.txt");
 		
 		FileStore.ProgramReleaseTable("release");
 	}
@@ -98,10 +97,13 @@ public class KinePolisPRCNT {
 					{
 						if(family.equals("f")&& qualifier.equals("cnt"))
 						{
+							/*
 									
-						//	System.out.println("\n");
-							//System.out.println(rownames);
-							//System.out.println("\n");
+						System.out.println("\n");
+				System.out.println(rownames);
+							System.out.println("\n");
+							
+							*/
 							content=Bytes.toString(kv.getValue());
 							Document document = Jsoup.parse(content);
 						
@@ -139,10 +141,12 @@ public class KinePolisPRCNT {
 							//clearfix-field field field-name-field-movie-release-date field-type-date field-label-inline clearfix
 							
 							String releaseDate=Xsoup.compile("//div[@class='clearfix-field field field-name-field-movie-release-date field-type-date field-label-inline clearfix']/div[@class='field-items']/div[@class='odd first last']/span[@class='date-display-single']/text()").evaluate(document).get();
+							//System.out.println(releaseDate);
 							if(releaseDate!=null)
 								
 								
 							{
+								//System.out.println("Inside"+releaseDate);
 								
 								PRurl=Xsoup.compile("//meta[@property='og:url']/@content").evaluate(document).get();
 								
@@ -154,18 +158,11 @@ public class KinePolisPRCNT {
 								
 								SplitPRYurl(PRDate);
 								
-								/*
-				
-								////////////Release_Date////////////////
-								System.out.print(PRDate.trim()+"#<>#");
 								
-								
-								////////////Release_Year////////////////
-								
-								System.out.print(splitter_PRDY.trim()+"#<>#");
-														
-								*/
-								
+								String country=Xsoup.compile("//div[@class='clearfix-field field field-name-field-country field-type-taxonomy-term-reference field-label-inline clearfix']//div[@class='field-items']/*/text()").evaluate(document).get();
+								if(country!=null)
+								{
+											
 								
 								List<String> clist=Xsoup.compile("//div[@class='clearfix-field field field-name-field-country field-type-taxonomy-term-reference field-label-inline clearfix']//div[@class='field-items']/*/text()").evaluate(document).list();
 								
@@ -177,27 +174,17 @@ public class KinePolisPRCNT {
 										country=Cot_PR.trim();
 										SplitCountry(country);
 											
-											//symb34="<>";
-									 //System.out.println(country);
 											ReleaseTab(CrewDateCon,splitter_Count);
-								////////////Country////////////////
-											
-											
-										//System.out.print(Cot_PR.trim());
-											
-
-											
+																			
 									 }
-								 
-								 
-									 
-									 
-									 
-									 
+								 	 
 								 }
 								
 								
-								else
+								}
+														
+								else 
+								
 								{
 									splitter_Count="".trim();
 									
@@ -331,7 +318,8 @@ public class KinePolisPRCNT {
 		
 		/////////////// Country_Name/////////////////
 		
-		System.out.print(prcounty.trim()+"#<>#");
+		System.out.print(prcounty.trim());
+		System.out.print("#<>#");
 		
 		
 		

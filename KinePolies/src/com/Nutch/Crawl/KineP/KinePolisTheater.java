@@ -422,38 +422,42 @@ public class KinePolisTheater {
 							String address1=Xsoup.compile("//div[@class='padding-fields field field-name-field-theater-address field-type-addressfield field-label-above']/div[@class='addressfield-container-inline name-block']/*/text()").evaluate(document).get();
 							if(address1!=null)
 							{
-								add1=address1;
+								add1=address1.replace(",", "").trim();
 								System.out.print(add1.trim());
 							}
 							
 							String address2=Xsoup.compile("//div[@class='padding-fields field field-name-field-theater-address field-type-addressfield field-label-above']/div[@class='street-block']/*/text()").evaluate(document).get();
 							if(address2!=null)
 							{
-								add2=address2;
+								add2=address2.replace(",", "").trim();
 								System.out.print(add2.trim());
 							}
 							
 							String address3=Xsoup.compile("//div[@class='padding-fields field field-name-field-theater-address field-type-addressfield field-label-above']//span[@class='postal-code']/text()").evaluate(document).get();
 							if(address3!=null)
 							{
-								add3=address3;
+								add3=address3.replace(",", "").trim();
 								System.out.print(add3.trim());
 							}
 							
 							String address4=Xsoup.compile("//div[@class='addressfield-container-inline locality-block country-FR']/span[@class='locality']/text()").evaluate(document).get();
 							if(address4!=null)
 							{
-								add4=address4;
+								add4=address4.replace(",", "").trim();
 								System.out.print(add4.trim());
 							}
 							
 							String address5=Xsoup.compile("//div[@class='padding-fields field field-name-field-theater-address field-type-addressfield field-label-above']//span[@class='country']/text()").evaluate(document).get();
 							if(address5!=null)
 							{
-								add5=address5;
+								add5=address5.replace(",", "").trim();
 								System.out.print(add5.trim());
 							}
 							
+							
+							//////////////////// Tel: Phone Numbers//////////////////
+							
+							/*
 							String address6=Xsoup.compile("//div[@class='field field-name-field-theater-phone field-type-text field-label-hidden']//div[@class='field-item even']/span/text()").evaluate(document).get();
 							if(address6!=null)
 							{
@@ -468,7 +472,13 @@ public class KinePolisTheater {
 								add7=address7;
 								System.out.print(add7.trim());
 							}
-						
+							
+							*/
+							
+							
+							//////////////////////// Fax: Fax Numbers//////////////////////////////
+							
+						/*
 							
 							
 							String address8=Xsoup.compile("//div[@class='field field-name-field-theater-fax field-type-text field-label-hidden']//div[@class='field-item even']/span/text()").evaluate(document).get();
@@ -486,7 +496,7 @@ public class KinePolisTheater {
 							}
 							
 						
-							
+							*/
 							System.out.print("#<>#");
 							
 						///////////////////////////  Theater_Theater_URL//////////////////

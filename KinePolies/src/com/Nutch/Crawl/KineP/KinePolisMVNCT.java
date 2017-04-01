@@ -46,7 +46,7 @@ public class KinePolisMVNCT {
 	HTable ht;
 	Scan sc;
 	ResultScanner rescan;
-	String rownames=null,family=null,qualifier=null,content=null,splitter_SK=null,splitter_Count=null,Desclang=null;;
+	String rownames=null,family=null,qualifier=null,content=null,splitter_SK=null,splitter_Count=null,Desclang=null,splitter_Title=null;
 	String symb34="";
 	
 	static FileOutputStream fos=null;
@@ -116,8 +116,10 @@ public class KinePolisMVNCT {
 							///////////////////////////Movie _ title/////////////////////////
 							
 							String title=Xsoup.compile("//div[@class='field-item even']/h1/text()").evaluate(document).get();
-							String filtertitle=title.replace(",", "").replace("... ", " ").replace("...", " ");
-							System.out.print(filtertitle.trim()+"#<>#");
+							String filtertitle=title.replace(",", "").replace("... ", " ").replace("...", " ").replace("/", "").replace("-", "");
+							
+							SplitTitle(filtertitle);
+							System.out.print(splitter_Title.trim()+"#<>#");
 							//System.out.println("\n\n\n\n");
 							
 							//////////////// Original_Title///////////////////
@@ -136,8 +138,8 @@ public class KinePolisMVNCT {
 								{
 									Desclang=desc;
 							
-								String filterDesc=Desclang.replace("…", ".").replace("...", ".").replace("... ", ".");
-							System.out.print(filterDesc.trim());
+								//String filterDesc=Desclang.replace("…", ".").replace("...", ".").replace("... ", ".");
+							System.out.print(Desclang.trim());
 							}
 								System.out.print("#<>#");
 							}
@@ -397,6 +399,23 @@ public class KinePolisMVNCT {
 			}
 			//System.out.println(splitter);
 		}
+		
+		public void SplitTitle(String name)
+		{
+			//System.out.println(name);
+			if(name!=null)
+			{
+				//int len=name.length();
+				
+				String filtername=name.replaceFirst("\\:", ",");
+			String[] split=filtername.split("\\,");
+			splitter_Title=split[1];
+			//splitter_Title=filtername;
+			
+			}
+			//System.out.println(splitter);
+		}
+		
 		
 		public void SplitCountry(String name)
 		{
