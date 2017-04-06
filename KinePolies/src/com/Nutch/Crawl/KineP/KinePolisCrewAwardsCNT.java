@@ -105,39 +105,34 @@ public class KinePolisCrewAwardsCNT {
 							
 							Movie_url=Xsoup.compile("//meta[@property='og:url']/@content").evaluate(document).get();
 							
-							//System.out.println("Movie_URLS"+Movie_url);
-							
-							//SplitUrlNames(Movie_url);
-							
 							
 							List<String> CrewDirectors=Xsoup.compile("//div[@class='clearfix-field field field-name-field-movie-person-director field-type-node-reference field-label-inline clearfix']/div[@class='field-items']//a/@href").evaluate(document).list();
 							if(CrewDirectors!=null)
 							{
 								for(String CrewDirector:CrewDirectors)
 								{
+									
+									
 								String CrewDirect=mainhost+CrewDirector.trim();
-								//System.out.println(CrewDirect);
+								//System.out.println("Crew Director:\t"+CrewDirect);
 								KinePolisCrewAwdDctQLNT(CrewDirect);
 								}
 								 
 							}
 							
 							
-							List<String> CrewActors=Xsoup.compile("//div[@class='clearfix-field field field-name-movie-cast-list field-type-ds field-label-inline clearfix']//div[@class='field field-name-title field-type-ds field-label-hidden']//div[@class='field-items']//a/@href").evaluate(document).list();
+							List<String> CrewActors=Xsoup.compile("//div[@class='clearfix-field field field-name-movie-cast-list field-type-ds field-label-inline clearfix']//div[@class='field field-name-title field-type-ds field-label-hidden']//div[@class='field-items']//a/@href|//div[@id='movie-cast-list-downer']//a/@href").evaluate(document).list();
 							if(CrewActors!=null)
 							{
 								for(String  CrewActor:CrewActors)
 								{
-							//System.out.println(mainhost+CrewDirector);
 							 String CrewAwdQL=mainhost+CrewActor.trim();
 							 
-							 //System.out.println(CrewAwdQL);
-							 KinePolisCrewAwdActQLNT(CrewAwdQL);
+							//System.out.println("Crew Actors:\t"+CrewAwdQL);
+							KinePolisCrewAwdActQLNT(CrewAwdQL);
 							 
-							// KinePolisCrewPAQLNT(CrewAQL);
 								}
-							//KinePolisCrewQLsNT(CrewDQL);
-							}
+								}
 							
 						}
 					}

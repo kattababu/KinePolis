@@ -76,21 +76,28 @@ public class KinePolisCNRows {
 							
 							if(rownames.contains("/films/") ||rownames.contains("/evenements/"))
 							{
+								
 								/*
 								
-								if(rownames.equals("fr.kinepolis:https/evenements/avant-premiere-transformers-age-de-lextinction"))
+								if(rownames.equals("fr.kinepolis:https/films/le-dernier-maitre-de-lair"))
 								{
 									
 									System.out.println(rownames);
-									//new KinePolisPRCNT().KinePolisPNT(rownames);
 									
-									new KinePolisRelatedPG().KinePolisRPRGCNT(rownames);
-								}
+									//new KinePolisRMCNT().KinePolisRNT(rownames);
+									
+									new KinePolisCrewCNT().KinePolisCrewNT(rownames);
+									
+									new KinePolisPCACT().KinePolisCrewPANT(rownames);
+									
+									//
+										}
 								
 								*/
 								
 								
-										
+								
+								
 					
 							
 								c=c+1;
@@ -106,21 +113,21 @@ public class KinePolisCNRows {
 								else 
 									
 								{
-								//new KinePolisMVNCT().KinePolisCNT(rownames);								
-							//new KinePolisRMCNT().KinePolisRNT(rownames);
-							//new KinePolisPRCNT().KinePolisPNT(rownames);
-							//new KinePolisRateCNT().KinePolisRatNT(rownames);
-							//new KinePolisCrewCNT().KinePolisCrewNT(rownames);
-							//new KinePolisPCDCT().KinePolisCrewPrgNT(rownames);
-							//new KinePolisPCACT().KinePolisCrewPANT(rownames);
-							//new KinePolisPCAICNT().KinePolisCrewPrgACTNT(rownames);
-							//new KinePolisCrewAwardsCNT().KinePolisCrewActAwdCNT(rownames);
+									//new KinePolisMVNCT().KinePolisCNT(rownames);								
+									//new KinePolisRMCNT().KinePolisRNT(rownames);
+									//new KinePolisPRCNT().KinePolisPNT(rownames);
+									//new KinePolisRateCNT().KinePolisRatNT(rownames);
+									//new KinePolisCrewCNT().KinePolisCrewNT(rownames);
+									//new KinePolisPCDCT().KinePolisCrewPrgNT(rownames);
+									//new KinePolisPCACT().KinePolisCrewPANT(rownames);
+									//new KinePolisPCAICNT().KinePolisCrewPrgACTNT(rownames);
+									//new KinePolisCrewAwardsCNT().KinePolisCrewActAwdCNT(rownames);
 									
-									new KinePolisRelatedPG().KinePolisRPRGCNT(rownames);
+									//new KinePolisRelatedPG().KinePolisRPRGCNT(rownames);
 								}
 								}
 								
-								
+							
 								
 							
 							/*

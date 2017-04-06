@@ -49,7 +49,7 @@ public class KinePolisRMCNT {
 	
 	MSDigest msd=new MSDigest();
 	
-	
+	/*
 	
 	static 
 	{
@@ -57,7 +57,7 @@ public class KinePolisRMCNT {
 		
 		FileStore.RichMediaTable("richmedia");
 	}
-	
+	*/
 	
 
 	public void KinePolisRNT(String names)
@@ -65,9 +65,9 @@ public class KinePolisRMCNT {
 		try
 		{
 			
-			fos = new FileOutputStream(FileStore.fileRM,true);
-			ps = new PrintStream(fos);
-			 System.setOut(ps);
+			//fos = new FileOutputStream(FileStore.fileRM,true);
+			//ps = new PrintStream(fos);
+			 //System.setOut(ps);
 			
 			Configuration config=HBaseConfiguration.create();
 			ht=new HTable(config,"kinepolies_webpage");
@@ -91,59 +91,20 @@ public class KinePolisRMCNT {
 									
 							
 							content=Bytes.toString(kv.getValue());
-							Document document = Jsoup.parse(content);
+							final Document document = Jsoup.parse(content);
 							
 							//Mvurl=Xsoup.compile("//meta[@property='og:url']/@content").evaluate(document).get();
 							
 							//SplitMurl(Mvurl);
 							
-							
-							
-							String imgurl=Xsoup.compile("//*[contains(@class, 'field-items')]/div[contains(@class, 'field-item') and contains(@class, 'even')]/img/@src").evaluate(document).get();
-							
-							if(imgurl.isEmpty()||imgurl==""||imgurl==null)
-							{
-								
-							//System.out.println(Vimgurl3);
-								break;
-								
-								
-							}
-							else if(imgurl!=null)
-							{
-								Mvurl=Xsoup.compile("//meta[@property='og:url']/@content").evaluate(document).get();
-								
-								
-								String Dimen_size="";
-						
-							//System.out.println(mainhost+imgurl);
-								
-								MImg=mainhost+imgurl.trim();
-								msd.MD5(MImg.trim());
-								
-								String Img_typ="medium";
-								
-								if(MImg.contains("x"))
-								{
-									ImageDes(MImg);
-									Dimen_size=ImgDimes;
+							 
+							 /////////////////////////////////// Basic Image//////////////////////////
+							 final AnonymousInner ai=new AnonymousInner()
+							 {
 									
-									//System.out.print(ImgDimes+"#<>#");
-								}
-								else
-								{
-									Dimen_size="";
-									
-								}
+										
 								
 								
-								
-								ImagTab(Img_typ,Dimen_size,Mvurl);
-							}
-							
-							
-							
-							
 							/*
 							////////////////////////// Personnes/////////////// Images//////////
 							List<String>alist=Xsoup.compile("//div[contains(@class, 'field field-name-field-person-picture field-type-image field-label-hidden')]/div[contains(@class, 'field-items')]/div[contains(@class, 'field-item') and contains(@class, 'even')]/img/@src").evaluate(document).list();
@@ -181,78 +142,225 @@ public class KinePolisRMCNT {
 							*/
 							
 							
-							String Vimgurl3=Xsoup.compile("//div[@class='video-js-wrapper']//video/@poster").evaluate(document).get();
 							
 							
+									//List<String> list = Xsoup.compile("//tr/td/text()").evaluate(document).list();
 							
-							if(Vimgurl3.isEmpty()||Vimgurl3==""||Vimgurl3==null)
-							{
-								
-							//System.out.println(Vimgurl3);
-								break;
-								
-								
-							}
-							else if(Vimgurl3!=null)
-							{
-							//System.out.println(Vimgurl3);
-								Mvurl=Xsoup.compile("//meta[@property='og:url']/@content").evaluate(document).get();
-								
-								MImg=Vimgurl3.trim();
-								msd.MD5(MImg.trim());
-								
-								String Iwidth=Xsoup.compile("//div[@class='video-js-wrapper']//video/@width").evaluate(document).get();
-								String Iheight=Xsoup.compile("//div[@class='video-js-wrapper']//video/@height").evaluate(document).get();
-								
-								
-								String Image_Type="poster";
-								String Dimen_size=Iwidth.trim()+"x"+Iheight.trim();
-								
-								ImagTab(Image_Type,Dimen_size,Mvurl);
-								
-								
-							}
-							
-							
-							//List<String> list = Xsoup.compile("//tr/td/text()").evaluate(document).list();
-							
-							List<String>list=Xsoup.compile("//ul[@class='kinepolis-slider-list']//li//img/@src").evaluate(document).list();
-							for(String Slideimgurl3:list)
-							{
-								
-								if(Slideimgurl3.isEmpty()||Slideimgurl3==""||Slideimgurl3==null)
-								{
+									/////////////////////////// Image Sliders/////////////////////////////
 									
+							 
+								
+							
+							
+							
+							/////////////////////////////////////  Video Posters//////////////////////////////////
+							
+								 
+									
+							
+							
+							@Override
+							public void Medium() throws Exception {
+								// TODO Auto-generated method stub
+								
+								
+								String imgurl=Xsoup.compile("//*[contains(@class, 'field-items')]/div[contains(@class, 'field-item') and contains(@class, 'even')]/img/@src").evaluate(document).get();
+								
+								
+								if(imgurl!=null)
+								{
+									Mvurl=Xsoup.compile("//meta[@property='og:url']/@content").evaluate(document).get();
+									
+									
+									String Dimen_size="";
+							
+								//System.out.println(mainhost+imgurl);
+									
+									MImg=mainhost+imgurl.trim();
+									msd.MD5(MImg.trim());
+									
+									String Img_typ="medium";
+									
+									if(MImg.contains("x"))
+									{
+										ImageDes(MImg);
+										Dimen_size=ImgDimes;
+										
+										//System.out.print(ImgDimes+"#<>#");
+									}
+									else
+									{
+										Dimen_size="";
+										
+									}
+									
+									
+									//System.out.println("Welcome to India");
+									
+									ImagTab(Img_typ,Dimen_size,Mvurl);
+								}
+								
+							
+								
+							}
+
+
+
+							@Override
+							public void Poster() throws Exception {
+								// TODO Auto-generated method stub
+								
+								
+								String  Vimgurl3=Xsoup.compile("//div[@class='video-js-wrapper']//video/@poster").evaluate(document).get();
+								
+								
+								
+								
+								if(Vimgurl3!=null)
+								{
 								//System.out.println(Vimgurl3);
-									break;
+									Mvurl=Xsoup.compile("//meta[@property='og:url']/@content").evaluate(document).get();
+									
+									MImg=Vimgurl3.trim();
+									msd.MD5(MImg.trim());
+									
+									String Iwidth=Xsoup.compile("//div[@class='video-js-wrapper']//video/@width").evaluate(document).get();
+									String Iheight=Xsoup.compile("//div[@class='video-js-wrapper']//video/@height").evaluate(document).get();
+									
+									
+									String Image_Type="poster";
+									String Dimen_size=Iwidth.trim()+"x"+Iheight.trim();
+									
+									ImagTab(Image_Type,Dimen_size,Mvurl);
 									
 									
 								}
-							if(Slideimgurl3!=null)
+								
+
+
+
+								
+							}
+
+
+
+							@Override
+							public void Large() throws Exception {
+								// TODO Auto-generated method stub
+								
+								List<String>list=Xsoup.compile("//ul[@class='kinepolis-slider-list']//li//img/@src").evaluate(document).list();
+								for(String Slideimgurl3:list)
+								{
+									
+									
+									if(Slideimgurl3!=null)
+									{
+									//System.out.println("Happy with Posters");
+									
+								//System.out.println(mainhost+Slideimgurl3);
+									Mvurl=Xsoup.compile("//meta[@property='og:url']/@content").evaluate(document).get();
+									
+									MImg=mainhost+Slideimgurl3.trim();
+									msd.MD5(MImg.trim());
+									
+									String Iwidth=Xsoup.compile("//ul[@class='kinepolis-slider-list']//li//img/@width").evaluate(document).get();
+									String Iheight=Xsoup.compile("//ul[@class='kinepolis-slider-list']//li//img/@height").evaluate(document).get();
+									
+									
+									String Image_Type="large";
+									String Dimen_size=Iwidth.trim()+"x"+Iheight.trim();
+									
+									ImagTab(Image_Type,Dimen_size,Mvurl);
+									
+								}
+								
+								
+								
+								}
+								
+								
+								
+							}
+							 
+							 
+							 };
+							
+							Thread t1=new Thread()
 							{
+								public void run()
+								{
 								
-								
-							//System.out.println(mainhost+Slideimgurl3);
-								Mvurl=Xsoup.compile("//meta[@property='og:url']/@content").evaluate(document).get();
-								
-								MImg=mainhost+Slideimgurl3.trim();
-								msd.MD5(MImg.trim());
-								
-								String Iwidth=Xsoup.compile("//ul[@class='kinepolis-slider-list']//li//img/@width").evaluate(document).get();
-								String Iheight=Xsoup.compile("//ul[@class='kinepolis-slider-list']//li//img/@height").evaluate(document).get();
-								
-								
-								String Image_Type="large";
-								String Dimen_size=Iwidth.trim()+"x"+Iheight.trim();
-								
-								ImagTab(Image_Type,Dimen_size,Mvurl);
-								
-							}
-							}
+									try {
+										ai.Medium();
+									} catch (Exception e) {
+										// TODO Auto-generated catch block
+										//e.printStackTrace();
+										e.getMessage();
+									}
+
+								}
+							};
+							t1.start();
 							
-							
-							
-						}
+							try{  
+								  t1.join();  
+								  //Thread.sleep(500);
+								 }catch(Exception e){System.out.println(e);}  
+								 
+								 
+								 Thread t2=new Thread()
+									{
+										public void run()
+										{
+										
+											try {
+												ai.Poster();
+												//Thread.sleep(500);
+											} catch (Exception e) {
+												// TODO Auto-generated catch block
+												e.getMessage();
+											}
+
+										}
+									};
+									t2.start();
+									
+									try{  
+										  t2.join();  
+										 }catch(Exception e){System.out.println(e);}  
+
+								   	
+										 Thread t3=new Thread()
+											{
+												public void run()
+												{
+												
+													try {
+														ai.Large();
+													} catch (Exception e) {
+														// TODO Auto-generated catch block
+														//e.printStackTrace();
+														e.getMessage();
+													}
+
+												}
+											};
+											t3.start();
+											
+											try{  
+												  t3.join(); 
+												  //Thread.sleep(500);
+												 }catch(Exception e){System.out.println(e);}  
+
+								 
+								 
+								// ai.Large();
+							 					 
+							 //ai.Poster();
+							 
+							 
+							 
+							 }
 					}
 				}
 			}
@@ -289,9 +397,9 @@ public class KinePolisRMCNT {
 		try
 		{
 			
-			fos = new FileOutputStream(FileStore.fileRM,true);
-			ps = new PrintStream(fos);
-			 System.setOut(ps);
+			//fos = new FileOutputStream(FileStore.fileRM,true);
+			//ps = new PrintStream(fos);
+			// System.setOut(ps);
 			
 			Configuration config=HBaseConfiguration.create();
 			ht=new HTable(config,"kinepolies_webpage");
@@ -318,17 +426,7 @@ public class KinePolisRMCNT {
 							Document document = Jsoup.parse(content);
 							
 							
-							List<String>alist=Xsoup.compile("//div[contains(@class, 'field field-name-field-person-picture field-type-image field-label-hidden')]/div[contains(@class, 'field-items')]/div[contains(@class, 'field-item') and contains(@class, 'even')]/img/@src").evaluate(document).list();
-							for(String actsimgurl2:alist)
-							{
-								if(actsimgurl2.isEmpty()||actsimgurl2==""||actsimgurl2==null)
-								{
-									
-								//System.out.println(Vimgurl3);
-									break;
-									
-									
-								}
+							String actsimgurl2=Xsoup.compile("//div[contains(@class, 'field field-name-field-person-picture field-type-image field-label-hidden')]/div[contains(@class, 'field-items')]/div[contains(@class, 'field-item') and contains(@class, 'even')]/img/@src").evaluate(document).get();
 								
 							if(actsimgurl2!=null)
 							{
@@ -352,10 +450,11 @@ public class KinePolisRMCNT {
 							}
 							
 							
+							
 						}
 					}
 				}
-			}
+			
 		}
 		catch(Exception e)
 		{
@@ -529,3 +628,10 @@ public class KinePolisRMCNT {
 
 	
 }
+	
+	abstract class AnonymousInner {
+		   public abstract void Medium() throws Exception;
+		   public abstract void Poster() throws Exception;
+		   public abstract void Large() throws Exception;
+		   
+		}

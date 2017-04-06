@@ -116,11 +116,9 @@ public class KinePolisPCACT {
 																	 
 							 }
 							 
-							// System.out.println(CrewAQL);
-							 
 							 	
 								}
-							//KinePolisCrewQLsNT(CrewDQL);
+							
 							}
 							
 						}
@@ -188,11 +186,11 @@ public class KinePolisPCACT {
 							//System.out.println(rownames);
 							//System.out.println("\n");
 							 
-							new KinePolisPCACT().KinePolisCrewRPCACNT(rownames);
+							//new KinePolisPCACT().KinePolisCrewRPCACNT(rownames);
 							
 							
 							
-							//new KinePolisRMCNT().KinePolisCDCANT(rownames);
+							new KinePolisRMCNT().KinePolisCDCANT(rownames);
 							 //KinePolisCrewRCNT(rownames);
 						 }
 						
@@ -231,9 +229,9 @@ public class KinePolisPCACT {
 		try
 		{
 			
-			fos = new FileOutputStream(FileStore.fileC,true);
-			ps = new PrintStream(fos);
-			System.setOut(ps);
+			//fos = new FileOutputStream(FileStore.fileC,true);
+			//ps = new PrintStream(fos);
+			//System.setOut(ps);
 			
 			Configuration config=HBaseConfiguration.create();
 			ht=new HTable(config,"kinepolies_webpage");

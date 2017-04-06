@@ -52,7 +52,7 @@ public class KinePolisCrewCNT {
 	static File file=null;
 	
 	
-	
+	/*
 	
 	static 
 	{
@@ -60,7 +60,7 @@ public class KinePolisCrewCNT {
 		
 		//file=new File("/katta/KinePole/CrewDTCNT.txt");
 	}
-	
+	*/
 	
 	
 	
@@ -188,10 +188,10 @@ public class KinePolisCrewCNT {
 						 {
 							//System.out.println("Crew Data:"+rownames);
 							 
-							new KinePolisCrewCNT().KinePolisCrewRCNT(rownames);
+							//new KinePolisCrewCNT().KinePolisCrewRCNT(rownames);
 							//System.out.println("CrewImage Data:"+rownames);
 							
-							//new KinePolisRMCNT().KinePolisCDCANT(rownames);
+							new KinePolisRMCNT().KinePolisCDCANT(rownames);
 						 }
 						
 					}
@@ -231,9 +231,9 @@ public class KinePolisCrewCNT {
 		try
 		{
 			
-			fos = new FileOutputStream(FileStore.fileC,true);
-			ps = new PrintStream(fos);
-			System.setOut(ps);
+			//fos = new FileOutputStream(FileStore.fileC,true);
+			//ps = new PrintStream(fos);
+			//System.setOut(ps);
 			
 			Configuration config=HBaseConfiguration.create();
 			ht=new HTable(config,"kinepolies_webpage");
