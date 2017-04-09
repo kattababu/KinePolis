@@ -61,6 +61,10 @@ public class KinePolisPCACT {
 	static PrintStream ps=null;
 	
 	static File file=null;
+	
+	
+
+	
 	/////////////////////////////////////////////////// Crew For Actors//////////////////////////////
 	
 	
@@ -335,8 +339,15 @@ public class KinePolisPCACT {
 		 System.out.print(splitter_UName.trim()+"#<>#");
 		 
 	///////////////////////Crew_ Name///////////////////////////
+		 if(CrewName!=null)
+		 {
 		 String FilterName=CrewName.replace("-", " ").replace("(", "").replace(")", "").trim();
 		 System.out.print(FilterName.trim()+"#<>#");
+		 }
+		 else
+		 {
+		 System.out.print("#<>#");
+		 }
 		 
 	/////////////////////// Crew OriginalName///////////////////////////
 		 System.out.print("#<>#");
