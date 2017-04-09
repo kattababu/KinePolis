@@ -57,7 +57,7 @@ public class KinePolisCrewAwardsCNT {
 	{
 		FileStore.AwardsTable("award");
 		
-		//file=new File("/katta/KinePole/CrewDTCNT.txt");
+		
 	}
 	
 	
@@ -94,9 +94,9 @@ public class KinePolisCrewAwardsCNT {
 						if(family.equals("f")&& qualifier.equals("cnt"))
 						{
 									
-							System.out.println("\n");
-							System.out.println(rownames);
-							System.out.println("\n");
+							//System.out.println("\n");
+							//System.out.println(rownames);
+							//System.out.println("\n");
 							content=Bytes.toString(kv.getValue());
 							Document document = Jsoup.parse(content);
 							
@@ -195,10 +195,11 @@ public class KinePolisCrewAwardsCNT {
 						SplitUrlNames(names);
 						 if(rownames.contains(splitter_UName) && rownames.endsWith(splitter_UName))
 						 {
+							 /*
 							 System.out.println("\n");
 							System.out.println(rownames);
 							System.out.println("\n");
-							
+							*/
 							
 							String Win_type="director";
 							
@@ -288,9 +289,11 @@ public class KinePolisCrewAwardsCNT {
 						SplitUrlNames(names);
 						 if(rownames.contains(splitter_UName) && rownames.endsWith(splitter_UName))
 						 {
+							 /*
 							 System.out.println("\n");
 							System.out.println(rownames);
 							System.out.println("\n");
+							*/
 							
 							String Win_type="actor";
 							

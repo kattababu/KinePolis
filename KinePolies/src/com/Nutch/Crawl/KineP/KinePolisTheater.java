@@ -53,7 +53,7 @@ public class KinePolisTheater {
 		static File file=null;
 	
 
-	 /*
+	 
 	 static 
 		{
 			FileStore.TheaterTable("theater");
@@ -61,7 +61,7 @@ public class KinePolisTheater {
 			//file=new File("/katta/KinePole/CrewDTCNT.txt");
 		}
 		
-	 */
+	 
 	 
 	
 	
@@ -277,9 +277,9 @@ public class KinePolisTheater {
 		try
 		{
 			
-			//fos = new FileOutputStream(FileStore.fileTHR,true);
-			//ps = new PrintStream(fos);
-			//System.setOut(ps);
+			fos = new FileOutputStream(FileStore.fileTHR,true);
+			ps = new PrintStream(fos);
+			System.setOut(ps);
 		//System.out.println("incoming row"+names);
 			
 			

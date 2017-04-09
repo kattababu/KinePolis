@@ -5,7 +5,7 @@
  */
 package com.Nutch.Crawl.KineP;
 
-import java.util.List;
+//import java.util.List;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
@@ -46,14 +46,15 @@ public class KinePolisMVNCT {
 	HTable ht;
 	Scan sc;
 	ResultScanner rescan;
-	String rownames=null,family=null,qualifier=null,content=null,splitter_SK=null,splitter_Count=null,Desclang=null,splitter_Title=null;
+	String rownames=null,family=null,qualifier=null,content=null,splitter_SK=null,splitter_Count=null,data=null,splitter_Title=null;
 	String symb34="";
+	String ElCrewDes=null;
 	
 	static FileOutputStream fos=null;
 	static PrintStream ps=null;
 	static File file=null;
 	static String comma=null;
-	/*
+	
 	
 	static 
 	{
@@ -64,7 +65,7 @@ public class KinePolisMVNCT {
 		 
 
 	}
-	*/
+	
 	
 
 	public void KinePolisCNT(String names)
@@ -72,9 +73,9 @@ public class KinePolisMVNCT {
 		try
 		{
 			
-			//fos = new FileOutputStream(FileStore.fileM,true);
-			//ps = new PrintStream(fos);
-			 //System.setOut(ps);
+			fos = new FileOutputStream(FileStore.fileM,true);
+			ps = new PrintStream(fos);
+			 System.setOut(ps);
 			
 			Configuration config=HBaseConfiguration.create();
 			ht=new HTable(config,"kinepolies_webpage");
@@ -105,6 +106,8 @@ public class KinePolisMVNCT {
 							content=Bytes.toString(kv.getValue());
 							Document document = Jsoup.parse(content);
 							
+							//Element elm=document.body();
+							
 								
 								//////////Movie SK _ Value//////////////
 							
@@ -130,24 +133,97 @@ public class KinePolisMVNCT {
 							System.out.print("#<>#");
 							
 							///////////////////Description///////////////////
+							
+							
+							
+
+							Elements elsdesc=document.select("div");
+							
+							for(Element eld:elsdesc)
+							{
+								String attr=eld.attr("class");
+								//System.out.println(attr);
+								
+								if(attr.equals("field-item even"))
+								{
+									
+								
+								
+								Elements elspg=eld.getElementsByTag("p");
+								for(Element elpg:elspg)
+									
+									
+								{
+									data=elpg.ownText();
+									if(data!=null)
+									{
+										
+									
+									if(data.contains("Chorégraphie :") || data.contains("Direction Musicale :")|| data.contains("Compositeur:")||data.contains("Distribution: ")|| data.contains("Mise en scène:")|| data.contains("Direction musicale:")||data.contains("Auteur:")||data.contains("Musique :")||data.contains("Direction Musicale:")||data.contains("Distribution :"))
+									{
+										elpg.remove();
+									}
+									else
+									{
+									
+									System.out.print(data);
+									}
+									}
+									
+									
+									
+									
+								}
+								
+								}
+							
+							}
+							
+							System.out.print("#<>#");
+							
+							
+							/*
 							List<String> descript=Xsoup.compile("//div[@class='field-item even']/p/text()").evaluate(document).list();
 							if(descript!=null)
 								
 							{
+								//System.out.println(descript.);
+								
 								for(String desc:descript)
 								{
 									Desclang=desc;
+									
+									Pattern p = Pattern.compile(":([^:]*):");
+								    Matcher m = p.matcher(Desclang);
+								    while(m.find())
+								    {
+								    	m.replaceAll("");
+								    	
+								    	//System.out.println("Welcome to India");
+								    	
+								    	//System.out.println(m.group().trim());
+								    	//int min=Integer.parseInt(m.group().trim());
+								     // System.out.print((60*min)+"#<>#");
+								    }
+								  
+									
+									
+									
 							
 								//String filterDesc=Desclang.replace("…", ".").replace("...", ".").replace("... ", ".");
 							System.out.print(Desclang.trim());
-							}
+									
+								}
+								
+								
+								
 								System.out.print("#<>#");
 							}
 							else
 							{
 								System.out.print("#<>#");
 							}
-							
+							*/
 							///////////////////Genres///////////////////
 							
 							String genres=Xsoup.compile("//div[@class='clearfix-field field field-name-field-movie-genre field-type-taxonomy-term-reference field-label-inline clearfix']/h2/text()").evaluate(document).get();
@@ -224,7 +300,7 @@ public class KinePolisMVNCT {
 							System.out.print("#<>#");
 							
 							///////////////////MetaData_Language///////////////////
-							LanguageIdentifier identifier = new LanguageIdentifier(Desclang);
+							LanguageIdentifier identifier = new LanguageIdentifier(data);
 							String lang=identifier.getLanguage();
 							Locale loc =new Locale(lang);
 							String namevalue=loc.getISO3Language();
@@ -425,5 +501,6 @@ public class KinePolisMVNCT {
 			//System.out.println(splitter);
 		}
 	
-
+		
+				
 }

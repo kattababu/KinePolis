@@ -49,7 +49,7 @@ public class KinePolisRMCNT {
 	
 	MSDigest msd=new MSDigest();
 	
-	/*
+	
 	
 	static 
 	{
@@ -57,7 +57,7 @@ public class KinePolisRMCNT {
 		
 		FileStore.RichMediaTable("richmedia");
 	}
-	*/
+	
 	
 
 	public void KinePolisRNT(String names)
@@ -65,9 +65,9 @@ public class KinePolisRMCNT {
 		try
 		{
 			
-			//fos = new FileOutputStream(FileStore.fileRM,true);
-			//ps = new PrintStream(fos);
-			 //System.setOut(ps);
+			fos = new FileOutputStream(FileStore.fileRM,true);
+			ps = new PrintStream(fos);
+			 System.setOut(ps);
 			
 			Configuration config=HBaseConfiguration.create();
 			ht=new HTable(config,"kinepolies_webpage");
@@ -104,7 +104,7 @@ public class KinePolisRMCNT {
 									
 										
 								
-								
+								String Prog_types="movie".trim();
 							/*
 							////////////////////////// Personnes/////////////// Images//////////
 							List<String>alist=Xsoup.compile("//div[contains(@class, 'field field-name-field-person-picture field-type-image field-label-hidden')]/div[contains(@class, 'field-items')]/div[contains(@class, 'field-item') and contains(@class, 'even')]/img/@src").evaluate(document).list();
@@ -197,7 +197,7 @@ public class KinePolisRMCNT {
 									
 									//System.out.println("Welcome to India");
 									
-									ImagTab(Img_typ,Dimen_size,Mvurl);
+									ImagTab(Img_typ,Dimen_size,Mvurl,Prog_types);
 								}
 								
 							
@@ -231,7 +231,7 @@ public class KinePolisRMCNT {
 									String Image_Type="poster";
 									String Dimen_size=Iwidth.trim()+"x"+Iheight.trim();
 									
-									ImagTab(Image_Type,Dimen_size,Mvurl);
+									ImagTab(Image_Type,Dimen_size,Mvurl,Prog_types);
 									
 									
 								}
@@ -270,7 +270,7 @@ public class KinePolisRMCNT {
 									String Image_Type="large";
 									String Dimen_size=Iwidth.trim()+"x"+Iheight.trim();
 									
-									ImagTab(Image_Type,Dimen_size,Mvurl);
+									ImagTab(Image_Type,Dimen_size,Mvurl,Prog_types);
 									
 								}
 								
@@ -397,9 +397,9 @@ public class KinePolisRMCNT {
 		try
 		{
 			
-			//fos = new FileOutputStream(FileStore.fileRM,true);
-			//ps = new PrintStream(fos);
-			// System.setOut(ps);
+			fos = new FileOutputStream(FileStore.fileRM,true);
+			ps = new PrintStream(fos);
+			System.setOut(ps);
 			
 			Configuration config=HBaseConfiguration.create();
 			ht=new HTable(config,"kinepolies_webpage");
@@ -440,9 +440,10 @@ public class KinePolisRMCNT {
 								String Iheight=Xsoup.compile("//div[contains(@class, 'field field-name-field-person-picture field-type-image field-label-hidden')]/div[contains(@class, 'field-items')]/div[contains(@class, 'field-item') and contains(@class, 'even')]/img/@height").evaluate(document).get();
 								
 								String Image_Type="small";
+								String Prog_types="crew".trim();
 								String Dimen_size=Iwidth.trim()+"x"+Iheight.trim();
 								
-								ImagTab(Image_Type,Dimen_size,Mvurl);
+								ImagTab(Image_Type,Dimen_size,Mvurl,Prog_types);
 								
 							}
 							
@@ -490,7 +491,7 @@ public class KinePolisRMCNT {
 	
 	/////////////////////////////////////////////////////////END//////////////////////						
 							
-		public void ImagTab(String Image_Type,String Dimension_Image,String Murl)
+		public void ImagTab(String Image_Type,String Dimension_Image,String Murl,String Prog_types)
 		{
 			///////////// Image SK/////////////////
 			SplitMurl(Murl);
@@ -503,7 +504,7 @@ public class KinePolisRMCNT {
 			
 ///////////// Program_Type/////////////////
 			
-			System.out.print("movie"+"#<>#");
+			System.out.print(Prog_types.trim()+"#<>#");
 			
 ///////////// Media_ Type/////////////////
 			

@@ -186,7 +186,7 @@ public class KinePolisPCACT {
 							//System.out.println(rownames);
 							//System.out.println("\n");
 							 
-							//new KinePolisPCACT().KinePolisCrewRPCACNT(rownames);
+							new KinePolisPCACT().KinePolisCrewRPCACNT(rownames);
 							
 							
 							
@@ -229,9 +229,9 @@ public class KinePolisPCACT {
 		try
 		{
 			
-			//fos = new FileOutputStream(FileStore.fileC,true);
-			//ps = new PrintStream(fos);
-			//System.setOut(ps);
+			fos = new FileOutputStream(FileStore.fileC,true);
+			ps = new PrintStream(fos);
+			System.setOut(ps);
 			
 			Configuration config=HBaseConfiguration.create();
 			ht=new HTable(config,"kinepolies_webpage");
@@ -335,7 +335,7 @@ public class KinePolisPCACT {
 		 System.out.print(splitter_UName.trim()+"#<>#");
 		 
 	///////////////////////Crew_ Name///////////////////////////
-		 String FilterName=CrewName.replace("-", " ").trim();
+		 String FilterName=CrewName.replace("-", " ").replace("(", "").replace(")", "").trim();
 		 System.out.print(FilterName.trim()+"#<>#");
 		 
 	/////////////////////// Crew OriginalName///////////////////////////

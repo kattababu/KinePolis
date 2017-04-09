@@ -36,6 +36,7 @@ public class FileStore {
 	static File fileTvshowEps=null;
 	static File fileTHR=null;
 	static File fileTHRAVL=null;
+	static File fileRPG=null;
 	
 	//static int count=0;
 	/*
@@ -298,7 +299,27 @@ public class FileStore {
         }
     }
 	
+//////////////////////////////////////////////// Related Programs/////////////////////////////	
 	
+	
+	public static void RelatedPrgTable(String table) {
+        //get current project path
+       // String filePath = ;
+        //create a new file with Time Stamp
+        fileRPG= new File(filePath + "/" + filename+table+"_"+GetCurrentTimeStamp().replace(":","").replace(".","")+".queries");
+
+        try {
+            if (!fileRPG.exists()) {
+                fileRPG.createNewFile();
+                //System.out.println("File is created; file name is " + fileMRAT.getName());
+            } else {
+              //  System.out.println("File already exist");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 	
 	
 	

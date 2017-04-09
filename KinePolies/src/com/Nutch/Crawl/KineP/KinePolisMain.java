@@ -24,8 +24,8 @@ public class KinePolisMain {
 		// TODO Auto-generated method stub
 		
 
-		new KinePolisTheater().KinePolisCMH();
-		//new KinePolisCNRows().KinePolisCR();
+		//new KinePolisTheater().KinePolisCMH();
+		new KinePolisCNRows().KinePolisCR();
 		//new KinePolisJsonShowData().KinePolisJSD();
 	
 		

@@ -76,25 +76,23 @@ public class KinePolisCNRows {
 							
 							if(rownames.contains("/films/") ||rownames.contains("/evenements/"))
 							{
-								
 								/*
 								
-								if(rownames.equals("fr.kinepolis:https/films/le-dernier-maitre-de-lair"))
+								
+								if(rownames.contains("/evenements/"))
 								{
 									
 									System.out.println(rownames);
+									//new KinePolisMVNCT().KinePolisCNT(rownames);	
+									new  KinePolisCrewWOL().KinePolisCrewWOLNT(rownames);
 									
-									//new KinePolisRMCNT().KinePolisRNT(rownames);
 									
-									new KinePolisCrewCNT().KinePolisCrewNT(rownames);
 									
-									new KinePolisPCACT().KinePolisCrewPANT(rownames);
 									
-									//
-										}
+									}
+								
 								
 								*/
-								
 								
 								
 								
@@ -113,17 +111,18 @@ public class KinePolisCNRows {
 								else 
 									
 								{
-									//new KinePolisMVNCT().KinePolisCNT(rownames);								
-									//new KinePolisRMCNT().KinePolisRNT(rownames);
-									//new KinePolisPRCNT().KinePolisPNT(rownames);
-									//new KinePolisRateCNT().KinePolisRatNT(rownames);
-									//new KinePolisCrewCNT().KinePolisCrewNT(rownames);
-									//new KinePolisPCDCT().KinePolisCrewPrgNT(rownames);
-									//new KinePolisPCACT().KinePolisCrewPANT(rownames);
-									//new KinePolisPCAICNT().KinePolisCrewPrgACTNT(rownames);
-									//new KinePolisCrewAwardsCNT().KinePolisCrewActAwdCNT(rownames);
+									new KinePolisMVNCT().KinePolisCNT(rownames);								
+									new KinePolisRMCNT().KinePolisRNT(rownames);
+									new KinePolisPRCNT().KinePolisPNT(rownames);
+									new KinePolisRateCNT().KinePolisRatNT(rownames);
+									new KinePolisCrewCNT().KinePolisCrewNT(rownames);
+									new KinePolisPCDCT().KinePolisCrewPrgNT(rownames);
+									new KinePolisPCACT().KinePolisCrewPANT(rownames);
+									new KinePolisPCAICNT().KinePolisCrewPrgACTNT(rownames);
+									new KinePolisCrewAwardsCNT().KinePolisCrewActAwdCNT(rownames);
+									new KinePolisRelatedPG().KinePolisRPRGCNT(rownames);
+									new  KinePolisCrewWOL().KinePolisCrewWOLNT(rownames);
 									
-									//new KinePolisRelatedPG().KinePolisRPRGCNT(rownames);
 								}
 								}
 								

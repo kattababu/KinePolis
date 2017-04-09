@@ -52,15 +52,14 @@ public class KinePolisCrewCNT {
 	static File file=null;
 	
 	
-	/*
+	
 	
 	static 
 	{
 		FileStore.CrewTable("crew");
 		
-		//file=new File("/katta/KinePole/CrewDTCNT.txt");
-	}
-	*/
+			}
+	
 	
 	
 	
@@ -188,7 +187,7 @@ public class KinePolisCrewCNT {
 						 {
 							//System.out.println("Crew Data:"+rownames);
 							 
-							//new KinePolisCrewCNT().KinePolisCrewRCNT(rownames);
+							new KinePolisCrewCNT().KinePolisCrewRCNT(rownames);
 							//System.out.println("CrewImage Data:"+rownames);
 							
 							new KinePolisRMCNT().KinePolisCDCANT(rownames);
@@ -231,9 +230,9 @@ public class KinePolisCrewCNT {
 		try
 		{
 			
-			//fos = new FileOutputStream(FileStore.fileC,true);
-			//ps = new PrintStream(fos);
-			//System.setOut(ps);
+			fos = new FileOutputStream(FileStore.fileC,true);
+			ps = new PrintStream(fos);
+			System.setOut(ps);
 			
 			Configuration config=HBaseConfiguration.create();
 			ht=new HTable(config,"kinepolies_webpage");
@@ -330,7 +329,7 @@ public class KinePolisCrewCNT {
 	 
 ///////////////////////Crew_ Name///////////////////////////
 	// System.out.println(CrewName.length());
-	 String FilterName=CrewName.replace("-", " ").trim();
+	 String FilterName=CrewName.replace("-", " ").replace("(", "").replace(")", "").trim();
 	 System.out.print(FilterName.trim()+"#<>#");
 	 
 /////////////////////// Crew OriginalName///////////////////////////

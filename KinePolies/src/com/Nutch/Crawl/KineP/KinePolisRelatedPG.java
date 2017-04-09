@@ -18,8 +18,6 @@ import org.apache.hadoop.hbase.client.Scan;
 import org.apache.hadoop.hbase.util.Bytes;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
 import us.codecraft.xsoup.Xsoup;
 
@@ -48,18 +46,17 @@ public class KinePolisRelatedPG {
 	static String comma=null;
 	
 	
-/*
+
 	
 	static 
 	{
 		
-		//file=new File("/katta/KinePole/MovieCNT.txt");
 				
-				FileStore.MovieTable("movie");
+				FileStore.RelatedPrgTable("relatedprograms");
 		 
 
 	}
-	*/
+
 	
 
 	public void KinePolisRPRGCNT(String names)
@@ -67,9 +64,9 @@ public class KinePolisRelatedPG {
 		try
 		{
 			
-			//fos = new FileOutputStream(FileStore.fileM,true);
-			//ps = new PrintStream(fos);
-			 //System.setOut(ps);
+			fos = new FileOutputStream(FileStore.fileRPG,true);
+			ps = new PrintStream(fos);
+			 System.setOut(ps);
 			
 			Configuration config=HBaseConfiguration.create();
 			ht=new HTable(config,"kinepolies_webpage");
