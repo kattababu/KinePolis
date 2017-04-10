@@ -29,7 +29,7 @@ public class KinePolisMain {
 		//new KinePolisJsonShowData().KinePolisJSD();
 	
 		
-		//SplitFiles.FileSplitS();
+		SplitFiles.FileSplitS();
 		
 		
 	}
