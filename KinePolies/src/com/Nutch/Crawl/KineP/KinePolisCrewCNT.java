@@ -53,7 +53,6 @@ public class KinePolisCrewCNT {
 	
 	
 	
-	
 	static 
 	{
 		FileStore.CrewTable("crew");
@@ -109,8 +108,9 @@ public class KinePolisCrewCNT {
 								{
 							//System.out.println(mainhost+CrewDirector);
 								
-							
+						//	System.out.println("\n");
 							 String CrewDQL=mainhost+CrewDirector.trim();
+							// System.out.println("\n");
 							
 							 if(CrewDQL.contains("/films/")||CrewDQL.contains("/evenements/"))
 							 {
@@ -190,6 +190,7 @@ public class KinePolisCrewCNT {
 							new KinePolisCrewCNT().KinePolisCrewRCNT(rownames);
 							//System.out.println("CrewImage Data:"+rownames);
 							
+								
 							new KinePolisRMCNT().KinePolisCDCANT(rownames);
 						 }
 						
@@ -256,7 +257,7 @@ public class KinePolisCrewCNT {
 									
 							//System.out.println("\n");
 						//System.out.println("Content Rows"+rownames);
-							//System.out.println("\n");
+						//	System.out.println("\n");
 							
 							
 							

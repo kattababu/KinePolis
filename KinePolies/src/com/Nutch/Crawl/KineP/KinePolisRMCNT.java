@@ -285,79 +285,12 @@ public class KinePolisRMCNT {
 							 
 							 };
 							
-							Thread t1=new Thread()
-							{
-								public void run()
-								{
-								
-									try {
 										ai.Medium();
-									} catch (Exception e) {
-										// TODO Auto-generated catch block
-										//e.printStackTrace();
-										e.getMessage();
-									}
-
-								}
-							};
-							t1.start();
-							
-							try{  
-								  t1.join();  
-								  //Thread.sleep(500);
-								 }catch(Exception e){System.out.println(e);}  
-								 
-								 
-								 Thread t2=new Thread()
-									{
-										public void run()
-										{
-										
-											try {
-												ai.Poster();
-												//Thread.sleep(500);
-											} catch (Exception e) {
-												// TODO Auto-generated catch block
-												e.getMessage();
-											}
-
-										}
-									};
-									t2.start();
-									
-									try{  
-										  t2.join();  
-										 }catch(Exception e){System.out.println(e);}  
-
-								   	
-										 Thread t3=new Thread()
-											{
-												public void run()
-												{
-												
-													try {
-														ai.Large();
-													} catch (Exception e) {
-														// TODO Auto-generated catch block
-														//e.printStackTrace();
-														e.getMessage();
-													}
-
-												}
-											};
-											t3.start();
-											
-											try{  
-												  t3.join(); 
-												  //Thread.sleep(500);
-												 }catch(Exception e){System.out.println(e);}  
-
-								 
-								 
-								// ai.Large();
-							 					 
-							 //ai.Poster();
-							 
+																					
+										ai.Poster();
+																									
+										ai.Large();
+																				 
 							 
 							 
 							 }
@@ -367,7 +300,8 @@ public class KinePolisRMCNT {
 		}
 		catch(Exception e)
 		{
-			e.getMessage();
+			//e.getMessage();
+			e.printStackTrace();
 		}
 		
 		finally

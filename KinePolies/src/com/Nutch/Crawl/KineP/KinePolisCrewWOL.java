@@ -37,10 +37,9 @@ public class KinePolisCrewWOL {
 	static File file=null;
 	
 	MSDigest msd=new MSDigest();
-
+	
 	
 	int i=1;
-	
 	
 	
 	public void KinePolisCrewWOLNT(String names)
@@ -48,9 +47,6 @@ public class KinePolisCrewWOL {
 		try
 		{
 			
-			fos = new FileOutputStream(FileStore.fileC,true);
-			ps = new PrintStream(fos);
-			System.setOut(ps);
 			
 			Configuration config=HBaseConfiguration.create();
 			ht=new HTable(config,"kinepolies_webpage");
@@ -124,61 +120,13 @@ public class KinePolisCrewWOL {
 												 SplitUrlNames(splitcrews);
 												 SplitMNames(splitcrews);
 												 
-												 Thread t3=new Thread()
-													{
-														public void run()
-														{
-														
-															try {
-																ProgramCrewWOLTabs(splitter_UName,Mvurl,splitter_MName);
-																
-															} catch (Exception e) {
-																// TODO Auto-generated catch block
-																//e.printStackTrace();
-																e.getMessage();
-															}
-
-														}
-													};
-													t3.start();
-													
-													try{  
-														  t3.join(); 
-														  //Thread.sleep(500);
-														 }catch(Exception e){System.out.println(e);}  
-
-										 
-////////////////////////////////////////// Crew Program///////////////////////////////////
-														 
-														 
-														 Thread t4=new Thread()
-															{
-																public void run()
-																{
-																
-																	try {
-																		 new KinePolisProgCrewWOL().PCrewWOLTabs(splitter_UName,Mvurl,splitter_MCName,i);
-																		 i=i+1;
+												new KinePolisCrewWOL().ProgramCrewWOLTabs(splitter_UName,Mvurl,splitter_MName);
+												
+																												 
+													 new KinePolisProgCrewWOL().PCrewWOLTabs(splitter_UName,Mvurl,splitter_MCName,i++);
+																		 
 																		
-																	} catch (Exception e) {
-																		// TODO Auto-generated catch block
-																		//e.printStackTrace();
-																		e.getMessage();
-																	}
-
-																}
-															};
-															t4.start();
-															
-															try{  
-																  t4.join(); 
-																  //Thread.sleep(500);
-																 }catch(Exception e){System.out.println(e);}  
-
-
-												 //System.out.println(splitter_MName);
-												 
-												 
+																													 
 											 }
 											 
 											 
@@ -219,6 +167,8 @@ public class KinePolisCrewWOL {
 			{
 				ht.close();
 				rescan.close();
+				//ps.close();
+				//fos.close();
 			}
 			catch(Exception e)
 			{
@@ -232,8 +182,16 @@ public class KinePolisCrewWOL {
 	
 	
 	
-	public void ProgramCrewWOLTabs(String names,String url,String movies) throws Exception
+	public void ProgramCrewWOLTabs(String names,String url,String movies)
 	 {
+		try
+		{
+		
+		fos = new FileOutputStream(FileStore.fileC,true);
+		ps = new PrintStream(fos);
+		System.setOut(ps);
+		
+		
 		 /////////////////////// Crew_SK///////////////////////////
 		msd.MD5(names.trim());
 		 //System.out.print(splitter_UName.trim()+"#<>#");
@@ -242,7 +200,7 @@ public class KinePolisCrewWOL {
 		 
 	///////////////////////Crew_ Name///////////////////////////
 		// System.out.println(CrewName.length());
-		String FilterName=names.replace("-", " ").replace("(", "").replace(")", "").trim();
+		String FilterName=names.replace("-", " ").replace("(", "").replace(")", "").replace("/", " ").trim();
 		System.out.print(FilterName.trim());
 		System.out.print("#<>#");
 		 
@@ -366,7 +324,25 @@ public class KinePolisCrewWOL {
 		 
 	/////////////////////// Crew_New Line///////////////////////////
 		 System.out.print("\n");
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			
+		}
 		 
+		finally
+		{
+			try
+			{
+				ps.close();
+				fos.close();
+			}
+			catch(Exception e)
+			{
+				e.getMessage();
+			}
+		}
 		 
 		 
 		 

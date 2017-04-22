@@ -66,6 +66,7 @@ public class KinePolisCrewAwardsCNT {
 	
 	
 	
+	
 	public void KinePolisCrewActAwdCNT(String names)
 	{
 		try
@@ -93,10 +94,11 @@ public class KinePolisCrewAwardsCNT {
 					{
 						if(family.equals("f")&& qualifier.equals("cnt"))
 						{
-									
-							//System.out.println("\n");
-							//System.out.println(rownames);
-							//System.out.println("\n");
+								/*	
+							System.out.println("\n");
+							System.out.println(rownames);
+							System.out.println("\n");
+							*/
 							content=Bytes.toString(kv.getValue());
 							Document document = Jsoup.parse(content);
 							
@@ -195,7 +197,7 @@ public class KinePolisCrewAwardsCNT {
 						SplitUrlNames(names);
 						 if(rownames.contains(splitter_UName) && rownames.endsWith(splitter_UName))
 						 {
-							 /*
+							/* 
 							 System.out.println("\n");
 							System.out.println(rownames);
 							System.out.println("\n");
@@ -289,12 +291,12 @@ public class KinePolisCrewAwardsCNT {
 						SplitUrlNames(names);
 						 if(rownames.contains(splitter_UName) && rownames.endsWith(splitter_UName))
 						 {
-							 /*
+							/* 
 							 System.out.println("\n");
 							System.out.println(rownames);
 							System.out.println("\n");
-							*/
 							
+							*/
 							String Win_type="actor";
 							
 							KinePolisCrewAwdCNT(rownames,Win_type);
@@ -378,12 +380,12 @@ public class KinePolisCrewAwardsCNT {
 					{
 						if(family.equals("f")&& qualifier.equals("cnt"))
 						{
-									
-							//System.out.println("\n");
-						//System.out.println("Content Rows"+rownames);
-							//System.out.println("\n");
+							/*		
+							System.out.println("\n");
+						System.out.println("Content Rows"+rownames);
+							System.out.println("\n");
 							
-							
+							*/
 							
 							content=Bytes.toString(kv.getValue());
 							Document document = Jsoup.parse(content);
@@ -629,7 +631,9 @@ public class KinePolisCrewAwardsCNT {
 		
 		catch(Exception e)
 		{
-			e.getMessage();
+			//e.getMessage();
+			
+			e.printStackTrace();
 		}
 		
 		finally

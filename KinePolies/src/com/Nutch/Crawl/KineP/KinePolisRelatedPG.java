@@ -44,6 +44,7 @@ public class KinePolisRelatedPG {
 	static PrintStream ps=null;
 	static File file=null;
 	static String comma=null;
+	int i=1;
 	
 	
 
@@ -115,7 +116,8 @@ public class KinePolisRelatedPG {
 									
 									SplitUrlSK(releated_SK);
 									
-									RelatedTab(splitter_SK,splitter_MSK);
+									RelatedTab(splitter_SK,splitter_MSK,i);
+									i=i+1;
 									//System.out.println(splitter_SK);
 									
 								}
@@ -159,7 +161,7 @@ public class KinePolisRelatedPG {
 	
 	
 	
-	public void RelatedTab(String Mname,String Lname)
+	public void RelatedTab(String Mname,String Lname,int inc)
 	{
 		///////////////////////  Program_Sk////////////
 				
@@ -178,7 +180,7 @@ public class KinePolisRelatedPG {
 		
 		/////////////// Releated_Rank//////////////
 		
-		System.out.print("#<>#");
+		System.out.print(inc+"#<>#");
 				
 		
 		//////////////////// Created_At///////////////

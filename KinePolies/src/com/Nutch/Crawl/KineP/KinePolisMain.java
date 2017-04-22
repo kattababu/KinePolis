@@ -23,13 +23,22 @@ public class KinePolisMain {
 	public static void main(String[] args)  {
 		// TODO Auto-generated method stub
 		
+	//KinePolisTheater kpt=new KinePolisTheater();
+	//kpt.KinePolisCMH();
 
-		new KinePolisTheater().KinePolisCMH();
-		new KinePolisCNRows().KinePolisCR();
+		//new KinePolisTheater().KinePolisCMH();
+		
+		KinePolisCNRows kpcr=new KinePolisCNRows();
+		kpcr.KinePolisCR();
+		
+		//KinePolisJsonShowData kpjsd=new KinePolisJsonShowData();
+		//kpjsd.KinePolisJSD();
+		
+		
 		//new KinePolisJsonShowData().KinePolisJSD();
 	
 		
-		SplitFiles.FileSplitS();
+		//SplitFiles.FileSplitS();
 		
 		
 	}

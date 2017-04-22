@@ -4,8 +4,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+//import java.util.regex.Matcher;
+//import java.util.regex.Pattern;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
@@ -15,10 +15,10 @@ import org.apache.hadoop.hbase.client.Result;
 import org.apache.hadoop.hbase.client.ResultScanner;
 import org.apache.hadoop.hbase.client.Scan;
 import org.apache.hadoop.hbase.util.Bytes;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
+//import org.jsoup.Jsoup;
+//import org.jsoup.nodes.Document;
 
-import us.codecraft.xsoup.Xsoup;
+//import us.codecraft.xsoup.Xsoup;
 
 public class Sample {
 
@@ -82,13 +82,14 @@ public class Sample {
 				
 				
 				
-				if(rownames.equals("fr.kinepolis:https/personnes/ted-demme"))
+				if(rownames.equals("fr.kinepolis:https/films/154"))
 				{
 					if(family.equals("f") && qualifier.equals("cnt"))
 					{
 						content=Bytes.toString(kv.getValue());
 											
-					//	System.out.println(content);
+					System.out.println(content);
+					/*
 						Document document = Jsoup.parse(content);
 						
 						//System.out.println("\n\n\n\n");
@@ -130,6 +131,7 @@ public class Sample {
 							ImagTab(Image_Type,Dimen_size,Mvurl);
 							
 						}
+						*/
 					}
 					
 				}
@@ -160,7 +162,7 @@ public class Sample {
 	
 	
 	
-	
+	/*
 	
 	public static void ImagTab(String Image_Type,String Dimension_Image,String Murl)
 	{
@@ -273,7 +275,7 @@ public class Sample {
 		        	   ImgDimes="";
 		        // System.out.println("NO MATCH");
 		      }
-		      /*
+		      //////////////////////////////////////////////////////////////////////////
 			String dsp[]=splitterIMD.split("x");
 			String fn=dsp[0];
 			System.out.println(num);
@@ -283,7 +285,7 @@ public class Sample {
 			String lastn=nn.substring(0, num);
 			
 			ImgDimes=fn+"x"+lastn;
-			*/
+			////////////////////////////////////////////////////////////////////////////////////
 		
 		//System.out.println(dsp);
 			
@@ -293,7 +295,7 @@ public class Sample {
 		}
 	
 	
-
+*/
 	
 	
 	

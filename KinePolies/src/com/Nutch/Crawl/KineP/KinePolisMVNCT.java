@@ -55,7 +55,7 @@ public class KinePolisMVNCT {
 	static File file=null;
 	static String comma=null;
 	
-	
+
 	static 
 	{
 		
@@ -119,10 +119,18 @@ public class KinePolisMVNCT {
 							///////////////////////////Movie _ title/////////////////////////
 							
 							String title=Xsoup.compile("//div[@class='field-item even']/h1/text()").evaluate(document).get();
-							String filtertitle=title.replace(",", "").replace("... ", " ").replace("...", " ").replace("/", "").replace("-", "");
+							String filtertitle=title.replace(",", "").replace("... ", " ").replace("...", " ").replace("/", "").replace("(", "").replace(")", "").replace(".", "").replace("%", "").replace("!", "");//.replace("-", "");
+							if(filtertitle.contains(":"))
+							{
 							
 							SplitTitle(filtertitle);
-							System.out.print(splitter_Title.trim()+"#<>#");
+							System.out.print(splitter_Title.trim());
+							}
+							else
+							{
+								System.out.print(filtertitle.trim());
+							}
+							System.out.print("#<>#");
 							//System.out.println("\n\n\n\n");
 							
 							//////////////// Original_Title///////////////////
@@ -237,7 +245,7 @@ public class KinePolisMVNCT {
 								
 								
 								
-								System.out.print(genresvalue.replace(", ", "<>").trim()+"#<>#");
+								System.out.print(genresvalue.replace(", ", "<>").replace("/", "<>").trim()+"#<>#");
 								//*[@id="content"]/div[2]/div[1]/div[5]/div
 								
 								
@@ -444,8 +452,8 @@ public class KinePolisMVNCT {
 		}
 		catch(Exception e)
 		{
-			//e.printStackTrace();
-			e.getMessage();
+			e.printStackTrace();
+			//e.getMessage();
 		}
 		finally
 		{
@@ -482,11 +490,35 @@ public class KinePolisMVNCT {
 			if(name!=null)
 			{
 				//int len=name.length();
+			/*	
+				Matcher m = Pattern.compile("(([a-zA-Z])*):").matcher(name);
+				 if(m.find()) {
+				    splitter_Title=m.group(1);//.replace(":", "").trim();
+				    
+				   System.out.println(splitter_Title);
+				 }
+				 */
+				String regex=",";
 				
-				String filtername=name.replaceFirst("\\:", ",");
-			String[] split=filtername.split("\\,");
-			splitter_Title=split[1];
+				String filtername=name.replaceFirst("(([^0-9])):", ",");
+				//System.out.println(filtername);
+				
+				if(filtername.contains(regex))
+				{
+					
+					
+					String[] split=filtername.split("\\,");
+					splitter_Title=split[1];
+					
+				}
+				else 
+				{
+					//System.out.println("Welcome to India");
+					splitter_Title=name;
+				}
 			//splitter_Title=filtername;
+			
+			 
 			
 			}
 			//System.out.println(splitter);

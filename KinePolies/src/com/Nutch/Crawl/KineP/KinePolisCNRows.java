@@ -74,7 +74,7 @@ public class KinePolisCNRows {
 												
 						
 							
-							if(rownames.contains("/films/") ||rownames.contains("/evenements/"))
+							if(rownames.contains("/films/") || rownames.contains("/evenements/"))
 							{
 								/*
 								
@@ -99,29 +99,40 @@ public class KinePolisCNRows {
 					
 							
 								c=c+1;
-							if (c>0 && c<=250)
+							if (c>0&& c<=50)
 								{
 								
 								
 							
-								if(rownames.endsWith("/marathons-0"))
+								if(rownames.endsWith("/marathons-0") || rownames.endsWith("/matin%C3%A9es-magiques")||rownames.endsWith("/revoir-un-film")|| rownames.endsWith("/documentaires"))
 								{
 									break;
 								}
 								else 
 									
 								{
+									
+									
+									
+									
+									//System.out.println(rownames);
+									
 									new KinePolisMVNCT().KinePolisCNT(rownames);								
+											
 									new KinePolisRMCNT().KinePolisRNT(rownames);
 									new KinePolisPRCNT().KinePolisPNT(rownames);
+
 									new KinePolisRateCNT().KinePolisRatNT(rownames);
 									new KinePolisCrewCNT().KinePolisCrewNT(rownames);
 									new KinePolisPCDCT().KinePolisCrewPrgNT(rownames);
 									new KinePolisPCACT().KinePolisCrewPANT(rownames);
+
 									new KinePolisPCAICNT().KinePolisCrewPrgACTNT(rownames);
-									new KinePolisCrewAwardsCNT().KinePolisCrewActAwdCNT(rownames);
+								new KinePolisCrewAwardsCNT().KinePolisCrewActAwdCNT(rownames);
+
 									new KinePolisRelatedPG().KinePolisRPRGCNT(rownames);
-									new  KinePolisCrewWOL().KinePolisCrewWOLNT(rownames);
+									new KinePolisCrewWOL().KinePolisCrewWOLNT(rownames);
+									       			  									
 									
 								}
 								}

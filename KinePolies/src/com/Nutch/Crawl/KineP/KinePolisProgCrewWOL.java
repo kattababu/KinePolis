@@ -31,8 +31,11 @@ public class KinePolisProgCrewWOL {
 	
 	
 	
-	public void PCrewWOLTabs(String Crew_sk,String Prog_sk,String Role,int inc) throws Exception
+	public void PCrewWOLTabs(String Crew_sk,String Prog_sk,String Role,int inc)
+	
 	{
+		try
+		{
 		fos = new FileOutputStream(FileStore.filePC,true);
 		ps = new PrintStream(fos);
 		System.setOut(ps);
@@ -93,6 +96,23 @@ public class KinePolisProgCrewWOL {
 		
 //////////New Line//////////////////////
 		System.out.print("\n");
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			try
+			{
+				ps.close();
+				fos.close();
+			}
+			catch(Exception e)
+			{
+				e.getMessage();
+			}
+		}
 	}
 
 	public void SplitUrlNames(String name)

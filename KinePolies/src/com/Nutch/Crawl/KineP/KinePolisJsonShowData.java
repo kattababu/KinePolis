@@ -291,6 +291,8 @@ public class KinePolisJsonShowData {
 			{
 				ht.close();
 				rescan.close();
+				ps.close();
+				fos.close();
 			}
 			catch(Exception e)
 			{
