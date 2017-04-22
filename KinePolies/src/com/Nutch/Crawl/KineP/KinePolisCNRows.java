@@ -99,7 +99,7 @@ public class KinePolisCNRows {
 					
 							
 								c=c+1;
-							if (c>0&& c<=50)
+							if (c>0&& c<=100)
 								{
 								
 								

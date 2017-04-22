@@ -26,7 +26,7 @@ public class KinePolisMain {
 	//KinePolisTheater kpt=new KinePolisTheater();
 	//kpt.KinePolisCMH();
 
-		//new KinePolisTheater().KinePolisCMH();
+		new KinePolisTheater().KinePolisCMH();
 		
 		KinePolisCNRows kpcr=new KinePolisCNRows();
 		kpcr.KinePolisCR();
@@ -38,7 +38,7 @@ public class KinePolisMain {
 		//new KinePolisJsonShowData().KinePolisJSD();
 	
 		
-		//SplitFiles.FileSplitS();
+	SplitFiles.FileSplitS();
 		
 		
 	}
